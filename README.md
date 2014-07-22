@@ -1,0 +1,4 @@
+JTLocalize
+==========
+
+iOS localization framwork
