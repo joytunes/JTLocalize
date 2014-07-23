@@ -2,7 +2,7 @@
 
 from xml.dom import minidom
 from xml.sax.saxutils import unescape
-import glob
+import fnmatch
 from localization_utils import *
 import argparse
 
@@ -21,8 +21,10 @@ def extract_string_pairs_in_dir(directory):
 
     """
     result = []
-    for xib_path in glob.glob(os.path.join(directory, '*.xib')):
-        result += extract_string_pairs_in_xib(xib_path)
+    for root, dirnames, filenames in os.walk(args.json_directory):
+        for filename in fnmatch.filter(filenames, '*.xib'):
+            xib_path = os.path.join(root,filename)
+            result += extract_string_pairs_in_xib(xib_path)
     return result
 
 
