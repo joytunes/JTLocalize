@@ -1,0 +1,271 @@
+#!/usr/bin/env python2.7
+
+from xml.dom import minidom
+from xml.sax.saxutils import unescape
+import glob
+from localization_utils import *
+import argparse
+
+# The prefix to identify a comment for an internationalized comment.
+JT_INTERNATIONALIZED_COMMENT_PREFIX = 'jtl_'
+
+
+def extract_string_pairs_in_dir(directory):
+    """ Extract string pairs in the given directory's xib files.
+
+    Args:
+        directory (str): The path to the directory.
+
+    Returns:
+        list: The extracted string pairs for all xib files in the directory.
+
+    """
+    result = []
+    for xib_path in glob.glob(os.path.join(directory, '*.xib')):
+        result += extract_string_pairs_in_xib(xib_path)
+    return result
+
+
+def get_element_attribute_or_empty(element, attribute_name):
+    """
+
+    Args:
+        element (element): The xib's element.
+        attribute_name (str): The desired attribute's name.
+
+    Returns:
+        The attribute's value, or an empty str if none exists.
+
+    """
+    return element.attributes[attribute_name].value if element.hasAttribute(attribute_name) else ""
+
+
+def extract_element_internationalized_comment(element):
+    """ Extracts the xib element's comment, if the element has been internationalized.
+
+    Args:
+        element (element): The element from which to extract the comment.
+
+    Returns:
+        The element's internationalized comment, None if it does not exist, or hasn't been internationalized (according
+        to the JTLocalize definitions).
+
+    """
+    element_entry_comment = get_element_attribute_or_empty(element, 'userLabel')
+    if element_entry_comment == "":
+        try:
+            element_entry_comment = element.getElementsByTagName('string')[0].firstChild.nodeValue
+        except Exception:
+            element_entry_comment = ""
+    if not element_entry_comment.lower().startswith(JT_INTERNATIONALIZED_COMMENT_PREFIX):
+        return None
+    else:
+        return element_entry_comment[len(JT_INTERNATIONALIZED_COMMENT_PREFIX):]
+
+
+def warn_if_element_not_of_class(element, class_name):
+    """ Log a warning if the element is not of the given type (indicating that it is not internationalized).
+
+    Args:
+        element: The xib's XML element.
+        class_name: The type the element should be, but is missing.
+
+    """
+    if (not element.hasAttribute('customClass')) or element.attributes['customClass'].value != class_name:
+        logging.warn("Warning: %s is internationalized but isn't of type %s" % (extract_element_internationalized_comment(element), class_name))
+
+
+def add_string_pairs_from_attributed_label_element(xib_file, results, label):
+    """ Adds string pairs from an attributed label element.
+
+        Args:
+        xib_file (str): Path to the xib file.
+        results (list): The list to add the results to.
+        label (element): The attributed label element from the xib, to extract the string pairs from.
+
+    """
+    label_entry_comment = extract_element_internationalized_comment(label)
+    fragment_index = 1
+    for fragment in label.getElementsByTagName('attributedString')[0].getElementsByTagName('fragment'):
+        #The fragment text is either as an attribute <fragment content="TEXT">
+        #or a child in the format <string key='content'>TEXT</string>
+        try:
+            label_entry_key = fragment.attributes['content'].value
+        except KeyError:
+            label_entry_key = fragment.getElementsByTagName('string')[0].firstChild.nodeValue
+        results.append((label_entry_key, label_entry_comment + " Part " + str(fragment_index)))
+        fragment_index += 1
+
+
+def add_string_pairs_from_label_element(xib_file, results, label):
+    """ Adds string pairs from a label element.
+
+        Args:
+        xib_file (str): Path to the xib file.
+        results (list): The list to add the results to.
+        label (element): The label element from the xib, to extract the string pairs from.
+
+    """
+    label_entry_comment = extract_element_internationalized_comment(label)
+    if label_entry_comment is None:
+        return
+    if label.hasAttribute('usesAttributedText') and label.attributes['usesAttributedText'].value == 'YES':
+        add_string_pairs_from_attributed_label_element(results, label)
+        return
+    try:
+        label_entry_key = label.attributes['text'].value
+    except KeyError:
+        try:
+            label_entry_key = label.getElementsByTagName('string')[0].firstChild.nodeValue
+        except Exception:
+            label_entry_key = 'N/A'
+            logging.warn(xib_file + " : Missing text entry in " + label.toxml('UTF8'))
+    warn_if_element_not_of_class(label, 'JTLabel')
+    results.append((label_entry_key, label_entry_comment))
+
+
+def add_string_pairs_from_text_field_element(xib_file, results, text_field):
+    """ Adds string pairs from a textfield element.
+
+        Args:
+        xib_file (str): Path to the xib file.
+        results (list): The list to add the results to.
+        textfield(element): The textfield element from the xib, to extract the string pairs from.
+
+    """
+    text_field_entry_comment = extract_element_internationalized_comment(text_field)
+    if text_field_entry_comment is None:
+        return
+    try:
+        text_field_entry_key = text_field.attributes['text'].value
+        results.append((text_field_entry_key, text_field_entry_comment + ' default text value'))
+    except KeyError:
+        pass
+    try:
+        text_field_entry_key = text_field.attributes['placeholder'].value
+        results.append((text_field_entry_key, text_field_entry_comment + ' placeholder text value'))
+    except KeyError:
+        pass
+    warn_if_element_not_of_class(text_field, 'JTTextField')
+
+
+def add_string_pairs_from_text_view_element(xib_file, results, text_view):
+    """ Adds string pairs from a textview element.
+
+        Args:
+        xib_file (str): Path to the xib file.
+        results (list): The list to add the results to.
+        text_view(element): The textview element from the xib, to extract the string pairs from.
+
+    """
+    text_view_entry_comment = extract_element_internationalized_comment(text_view)
+    if text_view_entry_comment is None:
+        return
+    try:
+        text_view_entry_key = text_view.attributes['text'].value
+        results.append((text_view_entry_key, text_view_entry_comment + ' default text value'))
+    except KeyError:
+        pass
+    warn_if_element_not_of_class(text_view, 'JTTextView')
+
+
+def add_string_pairs_from_button_element(xib_file, results, button):
+    """ Adds strings pairs from a button xib element.
+
+    Args:
+        xib_file (str): Path to the xib file.
+        results (list): The list to add the results to.
+        button(element): The button element from the xib, to extract the string pairs from.
+
+    """
+    button_entry_comment = extract_element_internationalized_comment(button)
+    if button_entry_comment is None:
+        return
+
+    for state in button.getElementsByTagName('state'):
+        state_name = state.attributes['key'].value
+        try:
+            button_entry_key = state.attributes['title'].value
+        except KeyError:
+            continue
+        results.append((button_entry_key, button_entry_comment + " - " + state_name + " state of button"))
+
+    warn_if_element_not_of_class(button, 'JTButton')
+
+
+def extract_string_pairs_in_xib(xib_file):
+    """ Extract the strings pairs (key and comment) from a xib file.
+
+    Args:
+        xib_file (str): The path to the xib file.
+
+    Returns:
+        list: List of tuples representing the string pairs.
+
+    """
+    try:
+        results = []
+        xmldoc = minidom.parse(xib_file)
+
+        element_name_to_add_func = {'label': add_string_pairs_from_label_element,
+                                    'button': add_string_pairs_from_button_element,
+                                    'textField': add_string_pairs_from_text_field_element,
+                                    'textView': add_string_pairs_from_text_view_element}
+
+        for element_name in element_name_to_add_func:
+            add_func = element_name_to_add_func[element_name]
+            elements = xmldoc.getElementsByTagName(element_name)
+            for element in elements:
+                add_func(xib_file, results, element)
+
+        #Find strings of format JTL('Key Name', 'Key Comment') and add them to the results
+        jtl_brackets_find_results = re.findall(JTL_REGEX, open(xib_file).read())
+        unescaped_jtl_brackets_find_results = [(unescape(x), unescape(y)) for (x,y) in jtl_brackets_find_results]
+        results += unescaped_jtl_brackets_find_results
+
+        if len(results) > 0:
+            results = [(None, os.path.basename(xib_file))] + results
+        return results
+
+    except Exception, e:
+        logging.warn("ERROR: Error processing %s (%s: %s)" % (xib_file, type(e), str(e)))
+        return []
+
+
+def parse_args():
+    """ Parses the arguments given in the command line
+
+    Returns:
+        args: The configured arguments will be attributes of the returned object.
+    """
+    parser = argparse.ArgumentParser(description='Extract the string for localization from xibs directory.')
+
+    parser.add_argument("xibs_directory", help="The xibs directory.")
+
+    parser.add_argument("output_file", help="The output file.")
+
+    parser.add_argument("--log_path", default="", help="The log file path")
+
+    return parser.parse_args()
+
+# The main method for simple command line run.
+if __name__ == '__main__':
+
+    args = parse_args()
+    setup_logging(args)
+
+    logging.info('Start creating localization string pairs from xibs in directory : "%s"..' % args.xibs_directory)
+
+    string_pairs = extract_string_pairs_in_dir(args.xibs_directory)
+    output_file = open_strings_file(args.output_file, "a")
+    write_section_header_to_file(output_file, "XIB Labels Section")
+    for entry_key, entry_comment in string_pairs:
+        output_file.write('\n')
+        if entry_key is not None:
+            write_entry_to_file(output_file, entry_comment, entry_key)
+        else:
+            write_section_header_to_file(output_file, entry_comment)
+
+    output_file.close()
+
+    logging.info('Finished creating localization string pairs, output in : "%s"' % args.output_file)
