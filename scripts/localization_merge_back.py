@@ -10,7 +10,7 @@ def parse_args():
     Returns:
         args: The configured arguments will be attributes of the returned object.
     """
-    parser = argparse.ArgumentParser(description='Perform a diff on the new localizable file, and the file we already translated.')
+    parser = argparse.ArgumentParser(description='Merging the old translations and the new ones.')
 
     parser.add_argument("updated_localizable_file", help="The updated localization strings file (produced by genstrings.sh).")
 
