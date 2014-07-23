@@ -21,7 +21,7 @@ def extract_string_pairs_in_dir(directory):
 
     """
     result = []
-    for root, dirnames, filenames in os.walk(args.json_directory):
+    for root, dirnames, filenames in os.walk(directory):
         for filename in fnmatch.filter(filenames, '*.xib'):
             xib_path = os.path.join(root,filename)
             result += extract_string_pairs_in_xib(xib_path)
