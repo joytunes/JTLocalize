@@ -25,7 +25,7 @@ def handle_duplications(file_path):
 
     Args:
         file_path (str): The path to the strings file.
-        
+
     """
     logging.info('Start handling duplications for "%s"' % file_path)
     f = open_strings_file(file_path, "r+")

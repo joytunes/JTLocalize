@@ -17,7 +17,7 @@ def parse_args():
     Returns:
         args: The configured arguments will be attributes of the returned object.
     """
-    parser = argparse.ArgumentParser(description='Prepare the localization directory for translation.')
+    parser = argparse.ArgumentParser(description='Merge translated files to the localization bundle.')
 
     parser.add_argument("--localization_bundle_path", default=LOCALIZATION_BUNDLE_PATH,
                         help="The path to the localizable bundle.")
