@@ -112,7 +112,7 @@ def add_string_pairs_from_label_element(xib_file, results, label):
     if label_entry_comment is None:
         return
     if label.hasAttribute('usesAttributedText') and label.attributes['usesAttributedText'].value == 'YES':
-        add_string_pairs_from_attributed_label_element(results, label)
+        add_string_pairs_from_attributed_label_element(xib_file, results, label)
         return
     try:
         label_entry_key = label.attributes['text'].value
@@ -222,7 +222,7 @@ def extract_string_pairs_in_xib(xib_file):
 
         #Find strings of format JTL('Key Name', 'Key Comment') and add them to the results
         jtl_brackets_find_results = re.findall(JTL_REGEX, open(xib_file).read())
-        unescaped_jtl_brackets_find_results = [(unescape(x), unescape(y)) for (x,y) in jtl_brackets_find_results]
+        unescaped_jtl_brackets_find_results = [(unescape(x), unescape(y)) for (x, y) in jtl_brackets_find_results]
         results += unescaped_jtl_brackets_find_results
 
         if len(results) > 0:
