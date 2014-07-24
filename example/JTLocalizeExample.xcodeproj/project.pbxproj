@@ -1,0 +1,506 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A06033BB198005660057A8AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06033BA198005660057A8AC /* Foundation.framework */; };
+		A06033BD198005660057A8AC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06033BC198005660057A8AC /* CoreGraphics.framework */; };
+		A06033BF198005660057A8AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06033BE198005660057A8AC /* UIKit.framework */; };
+		A06033C5198005660057A8AC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A06033C3198005660057A8AC /* InfoPlist.strings */; };
+		A06033C7198005660057A8AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A06033C6198005660057A8AC /* main.m */; };
+		A06033CB198005660057A8AC /* JTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A06033CA198005660057A8AC /* JTAppDelegate.m */; };
+		A06033CE198005660057A8AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A06033CC198005660057A8AC /* Main.storyboard */; };
+		A06033D1198005660057A8AC /* JTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A06033D0198005660057A8AC /* JTViewController.m */; };
+		A06033D3198005660057A8AC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A06033D2198005660057A8AC /* Images.xcassets */; };
+		A06033DA198005660057A8AC /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06033D9198005660057A8AC /* XCTest.framework */; };
+		A06033DB198005660057A8AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06033BA198005660057A8AC /* Foundation.framework */; };
+		A06033DC198005670057A8AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06033BE198005660057A8AC /* UIKit.framework */; };
+		A06033E4198005670057A8AC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A06033E2198005670057A8AC /* InfoPlist.strings */; };
+		A06033E6198005670057A8AC /* JTLocalizeExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A06033E5198005670057A8AC /* JTLocalizeExampleTests.m */; };
+		A06033F11980065E0057A8AC /* JTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A06033F01980065E0057A8AC /* JTLabel.m */; };
+		A06033F21980065E0057A8AC /* JTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A06033F01980065E0057A8AC /* JTLabel.m */; };
+		A06033F61980F2B90057A8AC /* JTLocalizeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A06033F51980F2B90057A8AC /* JTLocalizeUtils.m */; };
+		A06033F71980F2B90057A8AC /* JTLocalizeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A06033F51980F2B90057A8AC /* JTLocalizeUtils.m */; };
+		A06033F9198100730057A8AC /* JTLocalizable.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A06033F8198100730057A8AC /* JTLocalizable.bundle */; };
+		A06033FC1981047A0057A8AC /* JTButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A06033FB1981047A0057A8AC /* JTButton.m */; };
+		A06033FF198119020057A8AC /* DTAttributedLabel+JTLocalizeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A06033FE198119020057A8AC /* DTAttributedLabel+JTLocalizeExtensions.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A06033DD198005670057A8AC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A06033AF198005660057A8AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A06033B6198005660057A8AC;
+			remoteInfo = JTLocalizeExample;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A06033B7198005660057A8AC /* JTLocalizeExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JTLocalizeExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A06033BA198005660057A8AC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A06033BC198005660057A8AC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A06033BE198005660057A8AC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A06033C2198005660057A8AC /* JTLocalizeExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JTLocalizeExample-Info.plist"; sourceTree = "<group>"; };
+		A06033C4198005660057A8AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A06033C6198005660057A8AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A06033C8198005660057A8AC /* JTLocalizeExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JTLocalizeExample-Prefix.pch"; sourceTree = "<group>"; };
+		A06033C9198005660057A8AC /* JTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JTAppDelegate.h; sourceTree = "<group>"; };
+		A06033CA198005660057A8AC /* JTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JTAppDelegate.m; sourceTree = "<group>"; };
+		A06033CD198005660057A8AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A06033CF198005660057A8AC /* JTViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JTViewController.h; sourceTree = "<group>"; };
+		A06033D0198005660057A8AC /* JTViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JTViewController.m; sourceTree = "<group>"; };
+		A06033D2198005660057A8AC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A06033D8198005660057A8AC /* JTLocalizeExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JTLocalizeExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A06033D9198005660057A8AC /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		A06033E1198005670057A8AC /* JTLocalizeExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JTLocalizeExampleTests-Info.plist"; sourceTree = "<group>"; };
+		A06033E3198005670057A8AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A06033E5198005670057A8AC /* JTLocalizeExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JTLocalizeExampleTests.m; sourceTree = "<group>"; };
+		A06033EF1980065E0057A8AC /* JTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTLabel.h; sourceTree = "<group>"; };
+		A06033F01980065E0057A8AC /* JTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTLabel.m; sourceTree = "<group>"; };
+		A06033F41980F2B90057A8AC /* JTLocalizeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTLocalizeUtils.h; sourceTree = "<group>"; };
+		A06033F51980F2B90057A8AC /* JTLocalizeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTLocalizeUtils.m; sourceTree = "<group>"; };
+		A06033F8198100730057A8AC /* JTLocalizable.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = JTLocalizable.bundle; path = contentDirectory/JTLocalizable.bundle; sourceTree = "<group>"; };
+		A06033FA1981047A0057A8AC /* JTButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTButton.h; sourceTree = "<group>"; };
+		A06033FB1981047A0057A8AC /* JTButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTButton.m; sourceTree = "<group>"; };
+		A06033FD198119020057A8AC /* DTAttributedLabel+JTLocalizeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DTAttributedLabel+JTLocalizeExtensions.h"; sourceTree = "<group>"; };
+		A06033FE198119020057A8AC /* DTAttributedLabel+JTLocalizeExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DTAttributedLabel+JTLocalizeExtensions.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A06033B4198005660057A8AC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A06033BD198005660057A8AC /* CoreGraphics.framework in Frameworks */,
+				A06033BF198005660057A8AC /* UIKit.framework in Frameworks */,
+				A06033BB198005660057A8AC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A06033D5198005660057A8AC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A06033DA198005660057A8AC /* XCTest.framework in Frameworks */,
+				A06033DC198005670057A8AC /* UIKit.framework in Frameworks */,
+				A06033DB198005660057A8AC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A06033AE198005660057A8AC = {
+			isa = PBXGroup;
+			children = (
+				A06033F8198100730057A8AC /* JTLocalizable.bundle */,
+				A06033C0198005660057A8AC /* JTLocalizeExample */,
+				A06033DF198005670057A8AC /* JTLocalizeExampleTests */,
+				A06033B9198005660057A8AC /* Frameworks */,
+				A06033B8198005660057A8AC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A06033B8198005660057A8AC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A06033B7198005660057A8AC /* JTLocalizeExample.app */,
+				A06033D8198005660057A8AC /* JTLocalizeExampleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A06033B9198005660057A8AC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A06033BA198005660057A8AC /* Foundation.framework */,
+				A06033BC198005660057A8AC /* CoreGraphics.framework */,
+				A06033BE198005660057A8AC /* UIKit.framework */,
+				A06033D9198005660057A8AC /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A06033C0198005660057A8AC /* JTLocalizeExample */ = {
+			isa = PBXGroup;
+			children = (
+				A06033C9198005660057A8AC /* JTAppDelegate.h */,
+				A06033CA198005660057A8AC /* JTAppDelegate.m */,
+				A06033CC198005660057A8AC /* Main.storyboard */,
+				A06033CF198005660057A8AC /* JTViewController.h */,
+				A06033D0198005660057A8AC /* JTViewController.m */,
+				A06033D2198005660057A8AC /* Images.xcassets */,
+				A06033C1198005660057A8AC /* Supporting Files */,
+				A06033EF1980065E0057A8AC /* JTLabel.h */,
+				A06033F01980065E0057A8AC /* JTLabel.m */,
+				A06033F41980F2B90057A8AC /* JTLocalizeUtils.h */,
+				A06033F51980F2B90057A8AC /* JTLocalizeUtils.m */,
+				A06033FA1981047A0057A8AC /* JTButton.h */,
+				A06033FB1981047A0057A8AC /* JTButton.m */,
+				A06033FD198119020057A8AC /* DTAttributedLabel+JTLocalizeExtensions.h */,
+				A06033FE198119020057A8AC /* DTAttributedLabel+JTLocalizeExtensions.m */,
+			);
+			path = JTLocalizeExample;
+			sourceTree = "<group>";
+		};
+		A06033C1198005660057A8AC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A06033C2198005660057A8AC /* JTLocalizeExample-Info.plist */,
+				A06033C3198005660057A8AC /* InfoPlist.strings */,
+				A06033C6198005660057A8AC /* main.m */,
+				A06033C8198005660057A8AC /* JTLocalizeExample-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A06033DF198005670057A8AC /* JTLocalizeExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				A06033E5198005670057A8AC /* JTLocalizeExampleTests.m */,
+				A06033E0198005670057A8AC /* Supporting Files */,
+			);
+			path = JTLocalizeExampleTests;
+			sourceTree = "<group>";
+		};
+		A06033E0198005670057A8AC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A06033E1198005670057A8AC /* JTLocalizeExampleTests-Info.plist */,
+				A06033E2198005670057A8AC /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A06033B6198005660057A8AC /* JTLocalizeExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A06033E9198005670057A8AC /* Build configuration list for PBXNativeTarget "JTLocalizeExample" */;
+			buildPhases = (
+				A06033B3198005660057A8AC /* Sources */,
+				A06033B4198005660057A8AC /* Frameworks */,
+				A06033B5198005660057A8AC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JTLocalizeExample;
+			productName = JTLocalizeExample;
+			productReference = A06033B7198005660057A8AC /* JTLocalizeExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A06033D7198005660057A8AC /* JTLocalizeExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A06033EC198005670057A8AC /* Build configuration list for PBXNativeTarget "JTLocalizeExampleTests" */;
+			buildPhases = (
+				A06033D4198005660057A8AC /* Sources */,
+				A06033D5198005660057A8AC /* Frameworks */,
+				A06033D6198005660057A8AC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A06033DE198005670057A8AC /* PBXTargetDependency */,
+			);
+			name = JTLocalizeExampleTests;
+			productName = JTLocalizeExampleTests;
+			productReference = A06033D8198005660057A8AC /* JTLocalizeExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A06033AF198005660057A8AC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = JT;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = JoyTunes;
+				TargetAttributes = {
+					A06033D7198005660057A8AC = {
+						TestTargetID = A06033B6198005660057A8AC;
+					};
+				};
+			};
+			buildConfigurationList = A06033B2198005660057A8AC /* Build configuration list for PBXProject "JTLocalizeExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A06033AE198005660057A8AC;
+			productRefGroup = A06033B8198005660057A8AC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A06033B6198005660057A8AC /* JTLocalizeExample */,
+				A06033D7198005660057A8AC /* JTLocalizeExampleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A06033B5198005660057A8AC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A06033F9198100730057A8AC /* JTLocalizable.bundle in Resources */,
+				A06033D3198005660057A8AC /* Images.xcassets in Resources */,
+				A06033C5198005660057A8AC /* InfoPlist.strings in Resources */,
+				A06033CE198005660057A8AC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A06033D6198005660057A8AC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A06033E4198005670057A8AC /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A06033B3198005660057A8AC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A06033CB198005660057A8AC /* JTAppDelegate.m in Sources */,
+				A06033FC1981047A0057A8AC /* JTButton.m in Sources */,
+				A06033F61980F2B90057A8AC /* JTLocalizeUtils.m in Sources */,
+				A06033D1198005660057A8AC /* JTViewController.m in Sources */,
+				A06033FF198119020057A8AC /* DTAttributedLabel+JTLocalizeExtensions.m in Sources */,
+				A06033F11980065E0057A8AC /* JTLabel.m in Sources */,
+				A06033C7198005660057A8AC /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A06033D4198005660057A8AC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A06033F21980065E0057A8AC /* JTLabel.m in Sources */,
+				A06033E6198005670057A8AC /* JTLocalizeExampleTests.m in Sources */,
+				A06033F71980F2B90057A8AC /* JTLocalizeUtils.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A06033DE198005670057A8AC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A06033B6198005660057A8AC /* JTLocalizeExample */;
+			targetProxy = A06033DD198005670057A8AC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A06033C3198005660057A8AC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A06033C4198005660057A8AC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A06033CC198005660057A8AC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A06033CD198005660057A8AC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A06033E2198005670057A8AC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A06033E3198005670057A8AC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A06033E7198005670057A8AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		A06033E8198005670057A8AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A06033EA198005670057A8AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JTLocalizeExample/JTLocalizeExample-Prefix.pch";
+				INFOPLIST_FILE = "JTLocalizeExample/JTLocalizeExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A06033EB198005670057A8AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JTLocalizeExample/JTLocalizeExample-Prefix.pch";
+				INFOPLIST_FILE = "JTLocalizeExample/JTLocalizeExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		A06033ED198005670057A8AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JTLocalizeExample.app/JTLocalizeExample";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JTLocalizeExample/JTLocalizeExample-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "JTLocalizeExampleTests/JTLocalizeExampleTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		A06033EE198005670057A8AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JTLocalizeExample.app/JTLocalizeExample";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JTLocalizeExample/JTLocalizeExample-Prefix.pch";
+				INFOPLIST_FILE = "JTLocalizeExampleTests/JTLocalizeExampleTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A06033B2198005660057A8AC /* Build configuration list for PBXProject "JTLocalizeExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A06033E7198005670057A8AC /* Debug */,
+				A06033E8198005670057A8AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A06033E9198005670057A8AC /* Build configuration list for PBXNativeTarget "JTLocalizeExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A06033EA198005670057A8AC /* Debug */,
+				A06033EB198005670057A8AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A06033EC198005670057A8AC /* Build configuration list for PBXNativeTarget "JTLocalizeExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A06033ED198005670057A8AC /* Debug */,
+				A06033EE198005670057A8AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A06033AF198005660057A8AC /* Project object */;
+}
