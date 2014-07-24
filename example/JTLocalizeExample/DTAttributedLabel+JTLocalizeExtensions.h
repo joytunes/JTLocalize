@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 JoyTunes. All rights reserved.
 //
 
-
+#import <DTCoreText.h>
 
 @interface DTAttributedLabel (JTLocalizeExtensions)
 
