@@ -20,7 +20,7 @@ static NSString *gJTDocumentsDirectoryCache = nil;
     [self addPath:fileName toSearchPaths:searchPaths];
     
     // documents directory
-    [self addPath:self.documentsDirectory toSearchPaths:searchPaths];
+    [self addPath:[self.documentsDirectory stringByAppendingPathComponent:fileName] toSearchPaths:searchPaths];
     
     // app bundle
     NSString *directory = [fileName stringByDeletingLastPathComponent];

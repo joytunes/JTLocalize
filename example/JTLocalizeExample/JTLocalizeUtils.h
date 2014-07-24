@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define kJTLocalizationBundle (@"JTLocalization.bundle")
+#define kJTLocalizationBundle (@"JTLocalizable.bundle")
 #define kJTStringsTableName (@"Localizable")
 
 #define JTLocalizedString(key, comment) (NSLocalizedStringFromTableInBundle((key), kJTStringsTableName, [NSBundle bundleWithPath:[JTLocalizeUtils locatePathForFile:kJTLocalizationBundle]], (comment)) ?: key)
