@@ -21,15 +21,20 @@ echo "Running genstrings"
 genstrings_output=$(find $PROJECT_BASE_DIR ! -path "*matlab*" -name "*.m" -print | xargs genstrings -s JTLocalizedString -o $TMP_LOCALIZATION_DIR 2>&1)
 echo $genstrings_output | python add_genstrings_comments_to_file.py $TMP_LOCALIZATION_FILE
 
-echo "Fetching strings from .xib files"
-python create_localized_strings_from_xibs.py $PROJECT_BASE_DIR $TMP_LOCALIZATION_FILE
+echo "Fetching strings from .xib and .storyboard files"
+python create_localized_strings_from_ib_files.py $PROJECT_BASE_DIR $TMP_LOCALIZATION_FILE
 
 
 echo "Omitting duplicates..."
 python handle_duplicates_in_localization.py $TMP_LOCALIZATION_FILE
 
-echo "Merging old localizable with new one..."
-python merge_strings_files.py $LOCALIZATION_FILE $TMP_LOCALIZATION_FILE
+if [ -f $LOCALIZATION_FILE ]; then
+    echo "Merging old localizable with new one..."
+    python merge_strings_files.py $LOCALIZATION_FILE $TMP_LOCALIZATION_FILE
+else
+    echo "No Localizable yet, moving the created file..."
+    mv $TMP_LOCALIZATION_FILE $LOCALIZATION_FILE
+fi
 
 # The Server localization is set directly into the localization directory, and the general localization file is handled
 # separately, what's left is to take care of the other file created by the script in the temporary directory.

@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python
 
 from xml.dom import minidom
 from xml.sax.saxutils import unescape
@@ -9,8 +9,30 @@ import argparse
 # The prefix to identify a comment for an internationalized comment.
 JT_INTERNATIONALIZED_COMMENT_PREFIX = 'jtl_'
 
+XIB_FILE_REGEXP = '*.xib'
 
-def extract_string_pairs_in_dir(directory):
+STORYBOARD_FILE_REGEXP = "*.storyboard"
+
+
+def write_string_pairs_from_ib_file_to_file(ib_files_directory, ib_files_regexp, output_file):
+    logging.info('Start creating localization string pairs from %s files in directory : "%s"..' % (ib_files_regexp, ib_files_directory))
+
+    string_pairs = extract_string_pairs_in_dir(ib_files_directory, ib_files_regexp)
+    output_file = open_strings_file(output_file, "a")
+    write_section_header_to_file(output_file, '%s Files Section' % ib_files_regexp)
+    for entry_key, entry_comment in string_pairs:
+        output_file.write('\n')
+        if entry_key is not None:
+            write_entry_to_file(output_file, entry_comment, entry_key)
+        else:
+            write_section_header_to_file(output_file, entry_comment)
+
+    output_file.close()
+
+    logging.info('Finished creating localization string pairs, output in : "%s"' % output_file)
+
+
+def extract_string_pairs_in_dir(directory, files_regexp):
     """ Extract string pairs in the given directory's xib files.
 
     Args:
@@ -22,9 +44,9 @@ def extract_string_pairs_in_dir(directory):
     """
     result = []
     for root, dirnames, filenames in os.walk(directory):
-        for filename in fnmatch.filter(filenames, '*.xib'):
+        for filename in fnmatch.filter(filenames, files_regexp):
             xib_path = os.path.join(root,filename)
-            result += extract_string_pairs_in_xib(xib_path)
+            result += extract_string_pairs_in_ib_file(xib_path)
     return result
 
 
@@ -195,11 +217,11 @@ def add_string_pairs_from_button_element(xib_file, results, button):
     warn_if_element_not_of_class(button, 'JTButton')
 
 
-def extract_string_pairs_in_xib(xib_file):
+def extract_string_pairs_in_ib_file(file_path):
     """ Extract the strings pairs (key and comment) from a xib file.
 
     Args:
-        xib_file (str): The path to the xib file.
+        file_path (str): The path to the xib file.
 
     Returns:
         list: List of tuples representing the string pairs.
@@ -207,7 +229,7 @@ def extract_string_pairs_in_xib(xib_file):
     """
     try:
         results = []
-        xmldoc = minidom.parse(xib_file)
+        xmldoc = minidom.parse(file_path)
 
         element_name_to_add_func = {'label': add_string_pairs_from_label_element,
                                     'button': add_string_pairs_from_button_element,
@@ -218,19 +240,19 @@ def extract_string_pairs_in_xib(xib_file):
             add_func = element_name_to_add_func[element_name]
             elements = xmldoc.getElementsByTagName(element_name)
             for element in elements:
-                add_func(xib_file, results, element)
+                add_func(file_path, results, element)
 
         #Find strings of format JTL('Key Name', 'Key Comment') and add them to the results
-        jtl_brackets_find_results = re.findall(JTL_REGEX, open(xib_file).read())
+        jtl_brackets_find_results = re.findall(JTL_REGEX, open(file_path).read())
         unescaped_jtl_brackets_find_results = [(unescape(x), unescape(y)) for (x, y) in jtl_brackets_find_results]
         results += unescaped_jtl_brackets_find_results
 
         if len(results) > 0:
-            results = [(None, os.path.basename(xib_file))] + results
+            results = [(None, os.path.basename(file_path))] + results
         return results
 
     except Exception, e:
-        logging.warn("ERROR: Error processing %s (%s: %s)" % (xib_file, type(e), str(e)))
+        logging.warn("ERROR: Error processing %s (%s: %s)" % (file_path, type(e), str(e)))
         return []
 
 
@@ -240,9 +262,9 @@ def parse_args():
     Returns:
         args: The configured arguments will be attributes of the returned object.
     """
-    parser = argparse.ArgumentParser(description='Extract the string for localization from xibs directory.')
+    parser = argparse.ArgumentParser(description='Extract the string for localization from IB files directory.')
 
-    parser.add_argument("xibs_directory", help="The xibs directory.")
+    parser.add_argument("ib_files_directory", help="The directory containing the IB files.")
 
     parser.add_argument("output_file", help="The output file.")
 
@@ -256,18 +278,8 @@ if __name__ == '__main__':
     args = parse_args()
     setup_logging(args)
 
-    logging.info('Start creating localization string pairs from xibs in directory : "%s"..' % args.xibs_directory)
+    ib_files_regexps = [STORYBOARD_FILE_REGEXP, XIB_FILE_REGEXP]
 
-    string_pairs = extract_string_pairs_in_dir(args.xibs_directory)
-    output_file = open_strings_file(args.output_file, "a")
-    write_section_header_to_file(output_file, "XIB Labels Section")
-    for entry_key, entry_comment in string_pairs:
-        output_file.write('\n')
-        if entry_key is not None:
-            write_entry_to_file(output_file, entry_comment, entry_key)
-        else:
-            write_section_header_to_file(output_file, entry_comment)
+    for ib_files_regexp in ib_files_regexps:
+        write_string_pairs_from_ib_file_to_file(args.ib_files_directory, ib_files_regexp, args.output_file)
 
-    output_file.close()
-
-    logging.info('Finished creating localization string pairs, output in : "%s"' % args.output_file)
