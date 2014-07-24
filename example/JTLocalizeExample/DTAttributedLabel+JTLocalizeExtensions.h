@@ -10,4 +10,6 @@
 
 @interface DTAttributedLabel (JTLocalizeExtensions)
 
+@property (nonatomic, readwrite) NSString *htmlString;
+
 @end

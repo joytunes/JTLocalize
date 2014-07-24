@@ -8,7 +8,7 @@
 
 #import "JTViewController.h"
 
-@interface JTViewController ()
+@interface JTViewController () <DTLabelLinkDelegate>
 
 @end
 
@@ -17,13 +17,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	self.anAttributedLabelWithLink.linkDelegate = self;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)label:(id)sender clickedOnUrl:(NSURL *)url {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Clicked link"
+                                                    message:@"You clicked the link!"
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 @end

@@ -21,3 +21,18 @@
 + (NSString *)locatePathForFile:(NSString *)fileName;
 
 @end
+
+@interface NSString (JTLocalizeExtensions)
+
+- (NSString *)stringByLocalizingJTLDirectives;
+
+@end
+
+@interface UIView (JTLocalizeExtensions)
+
+@property (nonatomic) CGFloat x;
+@property (nonatomic) CGFloat y;
+@property (nonatomic) CGFloat width;
+@property (nonatomic) CGFloat height;
+
+@end

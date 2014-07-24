@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JTLabel.h"
+#import "JTButton.h"
+#import "DTAttributedLabel+JTLocalizeExtensions.h"
+#import "JTAttributedLabelWithLink.h"
+
 
 @interface JTViewController : UIViewController
+
+@property (strong, nonatomic) IBOutlet JTLabel *aLabel;
+@property (strong, nonatomic) IBOutlet JTButton *aButton;
+@property (strong, nonatomic) IBOutlet DTAttributedLabel *anAttributedLabel;
+@property (strong, nonatomic) IBOutlet JTAttributedLabelWithLink *anAttributedLabelWithLink;
+
 
 @end

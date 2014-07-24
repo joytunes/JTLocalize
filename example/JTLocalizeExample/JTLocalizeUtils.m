@@ -57,3 +57,68 @@ static NSString *gJTDocumentsDirectoryCache = nil;
 }
 
 @end
+
+@implementation NSString (JTLocalizeExtensions)
+
+- (NSString *)stringByLocalizingJTLDirectives {
+    NSString *string = self;
+    //Intended string : JTL\(['"](.+?)['"],\s*['"](.+?)['"]\)
+    NSString *regexString = @"JTL\\(['\"](.+?)['\"],\\s*['\"](.+?)['\"]\\)";
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexString
+                                                                           options:NSRegularExpressionCaseInsensitive
+                                                                             error:nil];
+    
+    NSTextCheckingResult *match = [regex firstMatchInString:string
+                                                    options:0
+                                                      range:NSMakeRange(0, string.length)];
+    while (match != nil) {
+        NSRange localizedKeyRange = [match rangeAtIndex:1];
+        NSString *localizedKey = [string substringWithRange:localizedKeyRange];
+        NSString *localizedString = JTDynamicLocalizedString(localizedKey);
+        string = [string stringByReplacingCharactersInRange:match.range withString:localizedString];
+        match = [regex firstMatchInString:string
+                                  options:0
+                                    range:NSMakeRange(0, string.length)];
+    }
+    
+    return string;
+}
+
+@end
+
+@implementation UIView (JTLocalizeExtensions)
+
+- (CGFloat)x {
+    return self.frame.origin.x;
+}
+
+- (void)setX:(CGFloat)x {
+    self.frame = CGRectMake(x, self.y, self.width, self.height);
+}
+
+- (CGFloat)y {
+    return self.frame.origin.y;
+}
+
+- (void)setY:(CGFloat)y {
+    self.frame = CGRectMake(self.x, y, self.width, self.height);
+}
+
+
+- (CGFloat)width {
+    return self.frame.size.width;
+}
+
+- (void)setWidth:(CGFloat)width {
+    self.frame = CGRectMake(self.x, self.y, width, self.height);
+}
+
+- (CGFloat)height {
+    return self.frame.size.height;
+}
+
+- (void)setHeight:(CGFloat)height {
+    self.frame = CGRectMake(self.x, self.y, self.width, height);
+}
+
+@end
