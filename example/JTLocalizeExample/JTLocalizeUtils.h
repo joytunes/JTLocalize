@@ -27,12 +27,3 @@
 - (NSString *)stringByLocalizingJTLDirectives;
 
 @end
-
-@interface UIView (JTLocalizeExtensions)
-
-@property (nonatomic) CGFloat x;
-@property (nonatomic) CGFloat y;
-@property (nonatomic) CGFloat width;
-@property (nonatomic) CGFloat height;
-
-@end

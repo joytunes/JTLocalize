@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "DTAttributedLabel+JTLocalizeExtensions.h"
 #import "JTLocalizeUtils.h"
+#import "UIView+JTLocalizeExtensions.h"
 
 @implementation DTAttributedLabel (JTLocalizeExtensions)
 

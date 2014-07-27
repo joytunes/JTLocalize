@@ -32,6 +32,7 @@
 		A06034021981374E0057A8AC /* JTAttributedLabelWithLink.m in Sources */ = {isa = PBXBuildFile; fileRef = A06034011981374E0057A8AC /* JTAttributedLabelWithLink.m */; };
 		A06034031981459F0057A8AC /* DTAttributedLabel+JTLocalizeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A06033FE198119020057A8AC /* DTAttributedLabel+JTLocalizeExtensions.m */; };
 		A060340619814A400057A8AC /* JTTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A060340519814A400057A8AC /* JTTextField.m */; };
+		A060340919815A740057A8AC /* UIView+JTLocalizeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A060340819815A740057A8AC /* UIView+JTLocalizeExtensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,8 @@
 		A06034011981374E0057A8AC /* JTAttributedLabelWithLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTAttributedLabelWithLink.m; sourceTree = "<group>"; };
 		A060340419814A400057A8AC /* JTTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTTextField.h; sourceTree = "<group>"; };
 		A060340519814A400057A8AC /* JTTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTTextField.m; sourceTree = "<group>"; };
+		A060340719815A740057A8AC /* UIView+JTLocalizeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JTLocalizeExtensions.h"; sourceTree = "<group>"; };
+		A060340819815A740057A8AC /* UIView+JTLocalizeExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JTLocalizeExtensions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +164,8 @@
 				A06034011981374E0057A8AC /* JTAttributedLabelWithLink.m */,
 				A060340419814A400057A8AC /* JTTextField.h */,
 				A060340519814A400057A8AC /* JTTextField.m */,
+				A060340719815A740057A8AC /* UIView+JTLocalizeExtensions.h */,
+				A060340819815A740057A8AC /* UIView+JTLocalizeExtensions.m */,
 			);
 			path = JTLocalizeExample;
 			sourceTree = "<group>";
@@ -329,6 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A06033CB198005660057A8AC /* JTAppDelegate.m in Sources */,
+				A060340919815A740057A8AC /* UIView+JTLocalizeExtensions.m in Sources */,
 				A060340619814A400057A8AC /* JTTextField.m in Sources */,
 				A06033FC1981047A0057A8AC /* JTButton.m in Sources */,
 				A06033F61980F2B90057A8AC /* JTLocalizeUtils.m in Sources */,
