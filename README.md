@@ -33,7 +33,7 @@ The localize bundle is the directory containing the strings files for the differ
 
 For example:
 
-JTLocalizable.bundle
+JTLocalizable.bundle <br/>
 |   +-- en.lproj <br/>
 |   |   +-- Localizable.strings <br/>
 |   +-- ru.lproj <br/>
