@@ -63,20 +63,14 @@ DEFAULT_LANGUAGE_DIRECTORY_NAME = "en.lproj"
 
 ### The localization flow
 
-**Remember** The Localizable.strings encoding is UTF16, Little Endian, with line ending set as LF.   
-The different scripts expect & produce the files in this encoding.  
-(See appendix 1 on how to convert encoding)  
-
-### Localization Summary
-
-- Run `genstrings.sh`
-- Run `prepare_for_translation.py`
+- Run `scripts/genstrings.sh`
+- Run `scripts/prepare_for_translation.py`
 - Translate the `Localizable.strings.pending` files in the different languages directories (convert encoding if needed, see Appendix 1).
 - Save the tanslated file in the proper language directory under `Localizable.strings.translated` (convert encoding if needed, see Appendix 1).
-- Run `merge_translations.py`
+- Run `scripts/merge_translations.py`
+
 
 ## Appendixes
-
 
 ### Internationalization in iOS
 
