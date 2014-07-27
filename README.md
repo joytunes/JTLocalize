@@ -50,7 +50,7 @@ The example project also illustrtes how to include internationzalized links in y
 #### Internationalize strings in the code
 
 For internalizing strings in the code, use the JTLocalizedString() macro: 
-```objective c
+```objective-c
 NSString *localizedString = JTLocalizedString("Some string", "The Strings context for translation")
 ```
 
