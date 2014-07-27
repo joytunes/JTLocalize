@@ -7,20 +7,20 @@ JTLocalize solves two of the major pains in iOS localization:
 - No need for separate strings file per storyboard/xib - Only one file to maintain.
 - Continuous translation intergration simplified - No need to localize everything again, just send the diff and merge it back. 
 
-### Internationalize
+## How to internationalize
 
 Internationalization is done using custom objective-c classes and simple marking mechanisms.
 
-#### Internationalize UI Elements
+### Internationalize UI Elements
 
 Internationalization of UI elements works for both xibs and storyboad files.
 
 In order to internationalize UI element (`UIBotton`,`UILabel`,`UITextField`):
-- Use the corresponding class in the JTLocalize framework (`JTButton`, `JTLabel`, `JTTextField`) as the <b>Custom Class</b>es of the UI element. 
+- Use the corresponding class in the JTLocalize framework (`JTButton`, `JTLabel`, `JTTextField`) as the <b>Custom Class</b> of the UI element. 
 These classes use the proper localized string when setting the text.
 
-- Change the element's userLabel, using the `JTL_` prefix. 
-This prefix is respected by our localization scripts for string extaction.
+- Change the element's userLabel, using the `JTL_` prefix.  
+This prefix is respected by our localization scripts for string extaction.  
 The rest of the string in the userLabel (after the `JTL_` prefix) will be used as the comment of the localizaation entry in the Localizable.strings files.
 
 To internationalize `DTCoreText` elements (`DTAttributedLabel`) see the illustration in the example project.
@@ -31,14 +31,14 @@ In this html string value, simply put `JTL("Key", "Comment")` wherever you would
 
 The example project also illustrates how to include **internationzalized links** in your project.   
 
-#### Internationalize strings in the code
+### Internationalize strings in the code
 
 For internalizing strings in the code, simply use the NSLocalizedString() macro (exactly like the ordinary way): 
 ```objective-c
 NSString *localizedString = NSLocalizedString("Some string", "The Strings context for translation")
 ```
 
-### Localize
+## How to localize
 
 The JTLocalize framework provides scripts that integrate with the internationalization mechanisms, and simplify the localization flow.
 
