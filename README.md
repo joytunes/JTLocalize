@@ -148,5 +148,14 @@ The different scripts expect & produce the files in this encoding.
 - Save the tanslated file in the language directory under `Localizable.strings.translated` (convert encoding if needed, see Appendix 1).
 - Run `merge_translations.py`
 
+## Appendix 1 - How to convert Localizable.strings to proper encoding
+```
+iconv -f utf-8 -t utf-16 Localizable.strings > Localizable.new.strings 
+```
+to convert utf-8 file to the format we use in the scripts.
 
+```
+iconv -f utf-16 -t utf-8 Localizable.strings > Localizable.new.strings
+```
+for the opposite effect. 
 
