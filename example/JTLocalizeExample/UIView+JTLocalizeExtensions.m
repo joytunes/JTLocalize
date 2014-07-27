@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 JoyTunes. All rights reserved.
 //
 
-#import "UIIView+JTLocalizeExtensions.h"
+#import "UIView+JTLocalizeExtensions.h"
 
 @implementation UIView (JTLocalizeExtensions)
 

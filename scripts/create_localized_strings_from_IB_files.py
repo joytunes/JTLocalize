@@ -102,7 +102,7 @@ def warn_if_element_not_of_class(element, class_name):
 def add_string_pairs_from_attributed_label_element(xib_file, results, label):
     """ Adds string pairs from an attributed label element.
 
-        Args:
+    Args:
         xib_file (str): Path to the xib file.
         results (list): The list to add the results to.
         label (element): The attributed label element from the xib, to extract the string pairs from.
@@ -124,7 +124,7 @@ def add_string_pairs_from_attributed_label_element(xib_file, results, label):
 def add_string_pairs_from_label_element(xib_file, results, label):
     """ Adds string pairs from a label element.
 
-        Args:
+    Args:
         xib_file (str): Path to the xib file.
         results (list): The list to add the results to.
         label (element): The label element from the xib, to extract the string pairs from.
@@ -151,7 +151,7 @@ def add_string_pairs_from_label_element(xib_file, results, label):
 def add_string_pairs_from_text_field_element(xib_file, results, text_field):
     """ Adds string pairs from a textfield element.
 
-        Args:
+    Args:
         xib_file (str): Path to the xib file.
         results (list): The list to add the results to.
         textfield(element): The textfield element from the xib, to extract the string pairs from.
@@ -176,7 +176,7 @@ def add_string_pairs_from_text_field_element(xib_file, results, text_field):
 def add_string_pairs_from_text_view_element(xib_file, results, text_view):
     """ Adds string pairs from a textview element.
 
-        Args:
+    Args:
         xib_file (str): Path to the xib file.
         results (list): The list to add the results to.
         text_view(element): The textview element from the xib, to extract the string pairs from.

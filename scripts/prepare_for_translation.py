@@ -16,7 +16,7 @@ def parse_args():
     """
     parser = argparse.ArgumentParser(description='Prepare the localization bundle for translation.')
 
-    parser.add_argument("--localization_bundle_path", default=LOCALIZATION_BUNDLE_PATH,
+    parser.add_argument("localization_bundle_path", default=LOCALIZATION_BUNDLE_PATH,
                         help="The path to the localizable bundle.")
 
     parser.add_argument("--log_path", default="", help="The log file path")

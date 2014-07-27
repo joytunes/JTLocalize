@@ -10,12 +10,19 @@ PODS:
     - DTFoundation/Core
   - DTFoundation/UIKit (1.7.2):
     - DTFoundation/Core
+  - JTLocalize (1.0.0)
 
 DEPENDENCIES:
   - DTCoreText
+  - JTLocalize (from `https://github.com/joytunes/JTLocalize.git`)
+
+EXTERNAL SOURCES:
+  JTLocalize:
+    :git: https://github.com/joytunes/JTLocalize.git
 
 SPEC CHECKSUMS:
   DTCoreText: 84eb8ba2e70448fdd9d837540e371f9f587b65ba
   DTFoundation: 126729614911ae7dbab3dcc1c078f189943bee66
+  JTLocalize: f756eb973791d93a71fcbf21654ff288325baec3
 
 COCOAPODS: 0.33.1
