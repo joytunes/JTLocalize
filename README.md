@@ -27,6 +27,11 @@ Comment - The context of the string for translation.
 Key - The string to translate.
 Value - The translated value.
 
+**Notice** the Localizable.strings encoding is UTF16, Little Endian, with line ending set as LF.  
+The different scripts expect & produce the files in this encoding.  
+(See appendix 1 on how to convert encoding)  
+
+
 ### JTLocalizable.bundle - The localization bundle
 
 The localize bundle is the directory containing the strings files for the different languages the app is localized to.
@@ -92,15 +97,56 @@ DEFAULT_LANG_DIR=en.lproj
 DEFAULT_LANGUAGE_DIRECTORY_NAME = "en.lproj"
 ``` 
 
-### The genstrings.sh script
+### The localization flow
+
+**Remember** The Localizable.strings encoding is UTF16, Little Endian, with line ending set as LF.   
+The different scripts expect & produce the files in this encoding.  
+(See appendix 1 on how to convert encoding)  
+
+#### The genstrings.sh script
 
 The `genrstrings.sh` scripts wraps iOS `genstrings` script, and add custom internationalized scripts, according to the JTLocalize mechanisms.
 
-`genstrings.sh` script recieves two arguments
+`genstrings.sh` script receives two arguments
 - <u>The project base directory</u> - The directory in which the app code's lays. The assumption is that the IB files are there (xibs & storyboards).
 - <u>The localize bundle path</u> - The path to the localize bundle (containing the strings files for the different languages the app is localized to).
  
-The script will produce 
+The script will produce a new Localizable.strings file in the default language directory.
+
+#### The prepare_for_translation.py
+
+The `prapare_for_translation.py` prepares your different language's localizable files for translation.  
+This is done by performing a diff between the strings that are already translated (exist in the language directory), and the new Localizable.strings that was producded by the `genstrings.sh` script.
+
+`prepare_for_translation.py` receives one argument:
+- <u>The localize bundle path</u> - The path to the localize bundle (containing the strings files for the different languages the app is localized to).
+
+The script will produce `Localizable.strings.pending` files for each language the app is localized to (the language directory exists),
+
+This is the file containing the strings that should be translated (probably new in the app and yet to be translated).
+
+#### The merge_translations.py
+
+The `merge_translations.py` merges the new translation with the old one for each language the app is localized to.
+
+The translated files should be saved as `Localizable.strings.translated` in the language directory (replacing the `.pending` files).
+
+`merge_translations.py` receives one argument:
+- <u>The localize bundle path</u> - The path to the localize bundle (containing the strings files for the different languages the app is localized to).
+
+The script will make the proper merge into the Localizble.strings file for each language.
+
+### Localization Summary
+
+**Remember** The Localizable.strings encoding is UTF16, Little Endian, with line ending set as LF.  
+The different scripts expect & produce the files in this encoding.  
+(See appendix 1 on how to convert encoding)
+
+- Run `genstrings.sh`
+- Run `prepare_for_translation.py`
+- Translate the `Localizable.strings.pending` files in the different languages directories (convert encoding if needed, see Appendix 1).
+- Save the tanslated file in the language directory under `Localizable.strings.translated` (convert encoding if needed, see Appendix 1).
+- Run `merge_translations.py`
 
 
 
