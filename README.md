@@ -10,21 +10,17 @@ Using JTLocalize you can easily complete the localize flow for your application 
 
 ## Internationalization in iOS
 
-## The Localizable.strings file
+### The Localizable.strings file
 The Localizable.strings file is the file used by iOS to store and retrieve strings used within the app, for each supported language.
 
 The files contains entries with the following format:
+```
     /* Comment */
     key = value
-
+```
 For proper internationalization two main things need to be taken care of:                                               
- 27 - Extracting the string for localization (key and comment)                                                              
- 28 - Submitting the localized string in the code after translation. 
-
-##  The Localizable.strings file
-The file 
-
-
+- Extracting the string for localization.                                                             
+- Using the localized values after translation. 
 
 ## How to get started
 
