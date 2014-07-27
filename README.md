@@ -7,8 +7,9 @@ The framework supplies common UI elements (UIButton, UILabel, UITextField) with 
 and scripts respecting these mechanisms which simplify the localization flow.
 
 JTLocalize solves two of the major pains in iOS localization:
-- Internationalization per UI object. Meaning one strings file to maintain, no need for separate strings file for each storyboard/xib.
-- Continuus translation intergration simplified.
+- No need for separate strings file per storyboard/xib. Only one file to maintain.
+- Continuous translation intergration simplified.  
+No need to localize everything again, just send the diff and merge it back. 
 
 ### Internationalize
 
@@ -41,9 +42,21 @@ For internalizing strings in the code, simply use the NSLocalizedString() macro 
 NSString *localizedString = NSLocalizedString("Some string", "The Strings context for translation")
 ```
 
-## Localization
+### Localize
 
 The JTLocalize framework provides scripts that integrate with the internationalization mechanisms, and simplify the localization flow.
+
+
+### The localization flow
+
+- Run `scripts/genstrings.sh`
+- Run `scripts/prepare_for_translation.py`
+- Translate the `Localizable.strings.pending` files in the different languages directories  
+(convert encoding if needed, see appendix).
+- Save the tanslated file in the proper language directory under `Localizable.strings.translated`  
+(convert encoding if needed, see appendix).
+- Run `scripts/merge_translations.py`
+
 
 ### The default language directory
 
@@ -60,14 +73,6 @@ DEFAULT_LANG_DIR=en.lproj
 ```python
 DEFAULT_LANGUAGE_DIRECTORY_NAME = "en.lproj"
 ``` 
-
-### The localization flow
-
-- Run `scripts/genstrings.sh`
-- Run `scripts/prepare_for_translation.py`
-- Translate the `Localizable.strings.pending` files in the different languages directories (convert encoding if needed, see Appendix 1).
-- Save the tanslated file in the proper language directory under `Localizable.strings.translated` (convert encoding if needed, see Appendix 1).
-- Run `scripts/merge_translations.py`
 
 
 ## Appendixes
