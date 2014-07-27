@@ -33,13 +33,14 @@ For proper internationalization two main things need to be taken care of:
 
 #### Internationalize UI Elements
 
-For **UIButton**, **UILabel**, **UITextField** - Each one of them has a corresponding class in the JTLocalize framework (**JTButton**, **JTLabel**, **JTTextField**).
+For `UIButton`, `UILabel`, `UITextField` - Each one of them has a corresponding class in the JTLocalize framework (`JTButton`, `JTLabel`, `JTTextField`).
 Use them (The JTLocalize classes) as the custom classes of the UI element. 
 This classes use the proper localized string when setting the text.
 
-The next thing you need to do, is to make sure this string will be extracted to the Localizable.strings file.
-To do this, simply **change the element's userLabel, using the JTL_ prefix**. This prefix is respected by our localization scripts for string extaction.
-The rest of the string in the userLabel (after the JTL_ prefix) will be used as the comment of the localizaation entry in the Localizable.strings files.
+The other thing you need to do, is to make sure this string will be extracted to the Localizable.strings file.
+To do this, simply **change the element's userLabel, using the `JTL_` prefix**. 
+This prefix is respected by our localization scripts for string extaction.
+The rest of the string in the userLabel (after the `JTL_` prefix) will be used as the comment of the localizaation entry in the Localizable.strings files.
 
 For DTCoreText elements (DTAttributedLabel) - This is illustrated in the example project, to avoid DTCoreText dependency. 
 If you want to use them (and internationalize them), **add a keypath named htmlString with an html string value**.
