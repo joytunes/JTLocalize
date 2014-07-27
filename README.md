@@ -3,13 +3,9 @@ JTLocalize
 
 iOS localization framework.
 
-The framework supplies common UI elements (UIButton, UILabel, UITextField) with integrated IB internationalization mechanisms,
-and scripts respecting these mechanisms which simplify the localization flow.
-
 JTLocalize solves two of the major pains in iOS localization:
-- No need for separate strings file per storyboard/xib. Only one file to maintain.
-- Continuous translation intergration simplified.  
-No need to localize everything again, just send the diff and merge it back. 
+- No need for separate strings file per storyboard/xib - Only one file to maintain.
+- Continuous translation intergration simplified - No need to localize everything again, just send the diff and merge it back. 
 
 ### Internationalize
 
