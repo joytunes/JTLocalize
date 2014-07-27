@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.homepage     = 'https://github.com/joytunes/JTLocalize.git'
   s.authors      = { 'JoyTunes' => 'info@joytunes.com' }
   s.summary      = 'Localization infrastructure for iOS'
-  s.source       = { :git => 'https://github.com/joytunes/JTLocalize.git'}
+  s.source       = { :git => 'https://github.com/joytunes/JTLocalize.git', :tag => "0.0.1"}
   s.requires_arc = true
 
   s.ios.deployment_target = '6.0'
