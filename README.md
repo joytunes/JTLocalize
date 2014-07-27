@@ -76,14 +76,31 @@ NSString *localizedString = JTLocalizedString("Some string", "The Strings contex
 
 The JTLocalize framework provides scripts that integrate with the internationalization mechanisms, and simplify the localization flow.
 
+### The default language directory
+
+The default directory is of the english language, meaning the `en.lprog` directory.  
+To change the default language directory:
+
+- Change in the `scripts/genstrings`  
+
+```
+DEFAULT_LANG_DIR=en.lproj
+``` 
+- Change in the `scripts/localization_configuration.py`
+
+```python
+DEFAULT_LANGUAGE_DIRECTORY_NAME = "en.lproj"
+``` 
+
 ### The genstrings.sh script
 
 The `genrstrings.sh` scripts wraps iOS `genstrings` script, and add custom internationalized scripts, according to the JTLocalize mechanisms.
 
-`genstrings.sh` scripts accepts two arguments
-- The prject base directory - The directory in which the app code's lays. The assumption is that the IB files are there (xibs & storyboards).
-- The localize bundle path - The path to the localize bundle (containing the strings files for the different languages the app is localized to).
+`genstrings.sh` script recieves two arguments
+- <u>The project base directory</u> - The directory in which the app code's lays. The assumption is that the IB files are there (xibs & storyboards).
+- <u>The localize bundle path</u> - The path to the localize bundle (containing the strings files for the different languages the app is localized to).
  
+The script will produce 
 
 
 
