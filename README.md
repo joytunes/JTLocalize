@@ -34,7 +34,8 @@ For proper internationalization two main things need to be taken care of:
 #### Internationalize UI Elements
 
 - For UIButton, UILabel, UITextField - Each one of them has a corresponding class in the JTLocalize framework (JTButton, JTLabel, JTTextField).
-Use them as the custom classes of the UI element. This is for the second part of internationalization - using the localized string.
+    Use them (The JTLocalize classes) as the custom classes of the UI element. 
+    This classes use the proper localized string when setting the text.
 
 The next thing you need to do, is to make sure this string will be extracted to the Localizable.strings file.
 To do this, simply change the element's userLabel, using the JTL_ prefix. The rest of the string in the userLabel (after the JTL_ prefix) will be used as the comment of the localizaation entry in the Localizable.strings files.
