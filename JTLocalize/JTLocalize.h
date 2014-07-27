@@ -25,7 +25,7 @@
 
     #import "JTButton.h"
     #import "JTLabel.h"
-    #import "JTTextField"
-    #import "JTLocalizeUtils"
+    #import "JTTextField.h"
+    #import "JTLocalizeUtils.h"
 
 #endif /* _JTLOCALIZE_ */
