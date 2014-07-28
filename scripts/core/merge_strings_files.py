@@ -29,27 +29,22 @@ def merge_strings_files(old_strings_file, new_strings_file):
         new_strings_file (str): The path to the new strings file (newly produced).
 
     """
-    new_localizable_dict = generate_localization_key_to_entry_dictionary_from_file(new_strings_file)
+    old_localizable_dict = generate_localization_key_to_entry_dictionary_from_file(old_strings_file)
     output_file_elements = []
 
-    f = open_strings_file(old_strings_file, "r+")
+    f = open_strings_file(new_strings_file, "r+")
 
     for header_comment, comments, key, value in extract_header_comment_key_value_tuples_from_file(f):
         if len(header_comment) > 0:
             output_file_elements.append(Comment(header_comment))
 
-        output_comments = comments
+        localize_value = value
+        if key in old_localizable_dict:
+            localize_value = old_localizable_dict[key].value
 
-        if key in new_localizable_dict:
-            output_comments = new_localizable_dict[key].comments
-            new_localizable_dict.pop(key)
-
-        output_file_elements.append(LocalizationEntry(output_comments, key, value))
+        output_file_elements.append(LocalizationEntry(comments, key, localize_value))
 
     f.close()
-
-    for key in new_localizable_dict:
-        output_file_elements.append(new_localizable_dict[key])
 
     write_file_elements_to_strings_file(old_strings_file, output_file_elements)
 

@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 import shutil
 
-from localization_diff import localization_diff
+from core.localization_diff import localization_diff
 from localization_utils import *
-from localization_configuration import *
+from core.localization_configuration import *
 import os
 import argparse
 

@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
 from localization_utils import *
-from localization_configuration import *
-from add_genstrings_comments_to_file import add_genstrings_comments_to_file
-from create_localized_strings_from_ib_files import create_localized_strings_from_ib_files
-from handle_duplicates_in_localization import handle_duplications
-from merge_strings_files import merge_strings_files
+from core.localization_configuration import *
+from core.add_genstrings_comments_to_file import add_genstrings_comments_to_file
+from core.create_localized_strings_from_ib_files import create_localized_strings_from_ib_files
+from core.handle_duplicates_in_localization import handle_duplications
+from core.merge_strings_files import merge_strings_files
 
 import argparse
 import os

@@ -3,7 +3,7 @@
 
 import sys
 
-from localization_utils import *
+from core.localization_utils import *
 
 class Replacement:
     def __init__(self):

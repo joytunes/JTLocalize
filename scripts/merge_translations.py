@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 import shutil
 
-from localization_merge_back import localization_merge_back
+from core.localization_merge_back import localization_merge_back
 from localization_utils import *
 import os
 import argparse
 import glob
-from localization_configuration import *
+from core.localization_configuration import *
 
 TRANSLATED_SUFFIX = ".translated"
 
