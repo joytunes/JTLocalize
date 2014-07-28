@@ -59,12 +59,7 @@ The JTLocalize framework provides scripts that integrate with the internationali
 The default directory is of the english language, meaning the `en.lprog` directory.  
 To change the default language directory:
 
-- Change in the `scripts/genstrings.sh`  
-
-```
-DEFAULT_LANG_DIR=en.lproj
-``` 
-- Change in the `scripts/localization_configuration.py`
+Change in `scripts/configuration/localization_configuration.py`
 
 ```python
 DEFAULT_LANGUAGE_DIRECTORY_NAME = "en.lproj"
