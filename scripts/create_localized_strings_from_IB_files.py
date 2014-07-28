@@ -256,6 +256,13 @@ def extract_string_pairs_in_ib_file(file_path):
         return []
 
 
+def create_localized_strings_from_ib_files(ib_files_directory, output_file):
+    ib_files_regexps = [STORYBOARD_FILE_REGEXP, XIB_FILE_REGEXP]
+
+    for ib_files_regexp in ib_files_regexps:
+        write_string_pairs_from_ib_file_to_file(ib_files_directory, ib_files_regexp, output_file)
+
+
 def parse_args():
     """ Parses the arguments given in the command line
 
@@ -278,8 +285,6 @@ if __name__ == '__main__':
     args = parse_args()
     setup_logging(args)
 
-    ib_files_regexps = [STORYBOARD_FILE_REGEXP, XIB_FILE_REGEXP]
+    create_localized_strings_from_ib_files(args.ib_files_directory, args.output_file)
 
-    for ib_files_regexp in ib_files_regexps:
-        write_string_pairs_from_ib_file_to_file(args.ib_files_directory, ib_files_regexp, args.output_file)
 

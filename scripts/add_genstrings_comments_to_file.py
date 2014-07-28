@@ -16,12 +16,14 @@ def parse_args():
 
     parser.add_argument("localization_file", help="The strings file from genstrings output.")
 
+    parser.add_argument("genstrings_err", help="The stderr output of the genrstrings script.")
+
     parser.add_argument("--log_path", default="", help="The log file path")
 
     return parser.parse_args()
 
 
-def add_genstrings_comments_to_file(localization_file):
+def add_genstrings_comments_to_file(localization_file, genstrings_err):
     """ Adds the comments produced by the genstrings script for duplicate keys.
 
     Args:
@@ -30,12 +32,11 @@ def add_genstrings_comments_to_file(localization_file):
     """
     logging.info('Start adding multiple comments from genstrings warnings: (file:"%s")..' % localization_file)
 
-    genstrings_output = sys.stdin.read()
-    logging.info('genstrings output: %s' % repr(genstrings_output))
+    logging.info('genstrings output: %s' % repr(genstrings_err))
 
     loc_file = open_strings_file(localization_file, "a")
 
-    regex_matches = re.findall(r'Warning: Key "(.*?)" used with multiple comments ("[^"]*" (& "[^"]*")+)', genstrings_output)
+    regex_matches = re.findall(r'Warning: Key "(.*?)" used with multiple comments ("[^"]*" (& "[^"]*")+)', genstrings_err)
     for regex_match in regex_matches:
         logging.info('Found match: %s' % str(regex_match))
         if len(regex_match) == 3:
@@ -58,4 +59,4 @@ if __name__ == "__main__":
     args = parse_args()
     setup_logging(args)
 
-    add_genstrings_comments_to_file(args.localization_file)
+    add_genstrings_comments_to_file(args.localization_file, args.genstrings_err)
