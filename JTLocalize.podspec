@@ -10,6 +10,6 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '6.0'
 
-  s.source_files = 'JTLocalize/*.{h,m}'
+  s.source_files = 'Classes/*.{h,m}'
 
 end
