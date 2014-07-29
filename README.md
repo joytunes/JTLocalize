@@ -11,6 +11,14 @@ JTLocalize solves two of the major pains in iOS localization:
 
 Internationalization is done using custom objective-c classes and simple marking mechanisms.
 
+### Installation with CocoaPods:
+
+[CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party libraries like AFNetworking in your projects.
+
+```ruby
+pod "JTLocalize"
+```
+
 ### Internationalize UI Elements
 
 Internationalization of UI elements works for both xibs and storyboad files.
@@ -42,6 +50,15 @@ NSString *localizedString = NSLocalizedString("Some string", "The Strings contex
 
 The JTLocalize framework provides scripts that integrate with the internationalization mechanisms, and simplify the localization flow.
 
+### Installation
+
+This application requires:
+
+* [Python 2.x](https://www.python.org/download/)
+
+Install with `pip install jtlocalize`, or download the latest release version:
+
+* Release: [https://pypi.python.org/pypi/jtlocalize](https://pypi.python.org/pypi/jtlocalize) [![Version](http://img.shields.io/pypi/v/jtlocalize.svg?style=flat)](https://pypi.python.org/pypi/jtlocalize)
 
 ### The localization flow
 
