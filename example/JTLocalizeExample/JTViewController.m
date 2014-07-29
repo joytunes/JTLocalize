@@ -7,6 +7,7 @@
 //
 
 #import "JTViewController.h"
+#import "JTLocalizeUtils.h"
 
 @interface JTViewController () <DTLabelLinkDelegate>
 
@@ -27,8 +28,8 @@
 }
 
 - (void)label:(id)sender clickedOnUrl:(NSURL *)url {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Clicked link"
-                                                    message:@"You clicked the link!"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:JTLocalizedString(@"Clicked link", "A title")
+                                                    message:JTLocalizedString(@"Clicked link", "A message")
                                                    delegate:nil
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];

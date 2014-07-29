@@ -50,7 +50,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="htmlString">
-                                        <string key="value">&lt;p style='font-size: 14px;font-family: "Open Sans";text-align: center;color:rgb(149,150,157)'>JTL("Text before link ", "Some link prefix")&lt;a href="link" style="text-decoration:none;">&lt;font color="#F6475B">JTL("This is a link","Link text to something")&lt;/font>&lt;/a>JTL(" Continuation of text","Some text that comes after the link").&lt;/p></string>
+                                        <string key="value">&lt;p style='font-size: 14px;font-family: "Open Sans";text-align: center;color:rgb(149,150,157)'>JTL("The first part", "Some link prefix")&lt;a href="link" style="text-decoration:none;">&lt;font color="#F6475B">JTL("This is a link","Link text to something")&lt;/font>&lt;/a>JTL(" Continuation of text","Some text that comes after the link").&lt;/p></string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
