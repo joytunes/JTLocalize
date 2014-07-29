@@ -13,7 +13,7 @@ Internationalization is done using custom objective-c classes and simple marking
 
 ### Installation with CocoaPods:
 
-[CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party libraries like AFNetworking in your projects.
+[CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party libraries in your projects.
 
 ```ruby
 pod "JTLocalize"
