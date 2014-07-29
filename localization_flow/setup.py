@@ -8,5 +8,5 @@ setup(name='jtlocalize',
       author='JoyTunes',
       author_email='matan.eilat@joytunes.com',
       url='https://github.com/joytunes/JTLocalize/',
-      package_dir={'':'scripts'},
+      packages=['jtlocalize','jtlocalize.core', 'jtlocalize.configuration'],
      )
