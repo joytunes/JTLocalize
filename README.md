@@ -1,13 +1,11 @@
 JTLocalize
 ==========
 
-iOS localization framework.
+JTLocalize is a framework that aims to solve two common pains in iOS localization:
+- **Unified .strings file**: Collection of multiple localizable strings from multiple types of resources throughout the project. No need for separate strings file per storyboard/xib - Only one file to maintain.
+- **Continuous translation intergration simplified**: When app changes, you don't need to localize everything again. JTLocalize command-line tools will make it easy to just send the diff for translation and merge the translated diff back. 
 
-JTLocalize solves two of the major pains in iOS localization:
-- No need for separate strings file per storyboard/xib - Only one file to maintain.
-- Continuous translation intergration simplified - No need to localize everything again, just send the diff and merge it back. 
-
-## How to internationalize
+## How to internationalize (Preparing strings for the unified .strings file)
 
 Internationalization is done using custom objective-c classes and simple marking mechanisms.
 
@@ -19,7 +17,7 @@ Internationalization is done using custom objective-c classes and simple marking
 pod "JTLocalize"
 ```
 
-### Internationalize UI Elements
+### Internationalizing UI Elements
 
 Internationalization of UI elements works for both xibs and storyboad files.
 
@@ -27,10 +25,11 @@ In order to internationalize UI element (`UIBotton`,`UILabel`,`UITextField`):
 - Use the corresponding class in the JTLocalize framework (`JTButton`, `JTLabel`, `JTTextField`) as the <b>Custom Class</b> of the UI element. 
 These classes use the proper localized string when setting the text.
 
-- Change the element's userLabel, using the `JTL_` prefix.  
-This prefix is respected by our localization scripts for string extaction.  
-The rest of the string in the userLabel (after the `JTL_` prefix) will be used as the comment of the localizaation entry in the Localizable.strings files.
+- In interface Builder's Document Outline, set the element's "userLabel" (Document->Label) to a string with the `JTL_` prefix.
+This prefix is respected by our localization command-line tools for string extaction.
+The rest of the string in the userLabel (after the `JTL_` prefix) will be used as the comment of the localization entry in the Localizable.strings files.
 
+#### Internationalizing DTCoreText attributed labels
 To internationalize `DTCoreText` elements (`DTAttributedLabel`) see the illustration in the example project.
 (The reason this is only illustrated is to avoid `DTCoreText` dependency). 
 
@@ -39,9 +38,9 @@ In this html string value, simply put `JTL("Key", "Comment")` wherever you would
 
 The example project also illustrates how to include **internationzalized links** in your project.   
 
-### Internationalize strings in the code
+### Internationalizing strings in code
 
-For internalizing strings in the code, simply use the NSLocalizedString() macro (exactly like the ordinary way): 
+To internationalize strings in the code, simply use the NSLocalizedString() macro (exactly like you would do without JTLocalize): 
 ```objective-c
 NSString *localizedString = NSLocalizedString("Some string", "The Strings context for translation")
 ```
