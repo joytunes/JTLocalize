@@ -1,30 +1,34 @@
 #!/usr/bin/env python
-import shutil
 
-from core.localization_merge_back import localization_merge_back
-from localization_utils import *
-import os
-import argparse
 import glob
-from core.localization_configuration import *
+
+from jtlocalize.core.localization_merge_back import localization_merge_back
+from jtlocalize.core.localization_utils import *
+from jtlocalize.configuration.localization_configuration import *
+from jtlocalize.core.localization_commandline_operation import LocalizationCommandLineOperation
+
 
 TRANSLATED_SUFFIX = ".translated"
 
 
-def parse_args():
-    """ Parses the arguments given in the command line
+class MergeTranslationsOperation(LocalizationCommandLineOperation):
 
-    Returns:
-        args: The configured arguments will be attributes of the returned object.
-    """
-    parser = argparse.ArgumentParser(description='Merge translated files to the localization bundle.')
+    def name(self):
+        return "merge"
 
-    parser.add_argument("localization_bundle_path", default=LOCALIZATION_BUNDLE_PATH,
-                        help="The path to the localizable bundle.")
+    def description(self):
+        return "Merge translated files to the localization bundle."
 
-    parser.add_argument("--log_path", default="", help="The log file path")
+    def configure_parser(self, parser):
+        parser.add_argument("localization_bundle_path", default=LOCALIZATION_BUNDLE_PATH,
+                            help="The path to the localizable bundle.")
 
-    return parser.parse_args()
+        parser.add_argument("--log_path", default="", help="The log file path")
+
+    def run(self, parsed_args):
+        setup_logging(parsed_args)
+
+        merge_translations(parsed_args.localization_bundle_path)
 
 
 def merge_translations(localization_bundle_path):
@@ -51,10 +55,9 @@ def merge_translations(localization_bundle_path):
 
     logging.info('Finished merging translations for "%s"' % localization_bundle_path)
 
+
 # The main method for simple command line run.
 if __name__ == "__main__":
 
-    args = parse_args()
-    setup_logging(args)
-
-    merge_translations(args.localization_bundle_path)
+    operation = MergeTranslationsOperation()
+    operation.run_with_standalone_parser()

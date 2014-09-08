@@ -1,27 +1,31 @@
 #!/usr/bin/env python
+
 import shutil
 
-from core.localization_diff import localization_diff
-from localization_utils import *
-from core.localization_configuration import *
-import os
-import argparse
+from jtlocalize.core.localization_commandline_operation import LocalizationCommandLineOperation
+from jtlocalize.core.localization_diff import localization_diff
+from jtlocalize.core.localization_utils import *
+from jtlocalize.configuration.localization_configuration import *
 
 
-def parse_args():
-    """ Parses the arguments given in the command line
+class PrepareForTranslationOperation(LocalizationCommandLineOperation):
 
-    Returns:
-        args: The configured arguments will be attributes of the returned object.
-    """
-    parser = argparse.ArgumentParser(description='Prepare the localization bundle for translation.')
+    def name(self):
+        return "prepare_diff"
 
-    parser.add_argument("localization_bundle_path", default=LOCALIZATION_BUNDLE_PATH,
-                        help="The path to the localizable bundle.")
+    def description(self):
+        return "Prepare the localization bundle for translation with only the necessary diff."
 
-    parser.add_argument("--log_path", default="", help="The log file path")
+    def configure_parser(self, parser):
+        parser.add_argument("localization_bundle_path", default=LOCALIZATION_BUNDLE_PATH,
+                            help="The path to the localizable bundle.")
 
-    return parser.parse_args()
+        parser.add_argument("--log_path", default="", help="The log file path")
+
+    def run(self, parsed_args):
+        setup_logging(parsed_args)
+
+        prepare_for_translation(parsed_args.localization_bundle_path)
 
 
 def prepare_for_translation(localization_bundle_path):
@@ -57,10 +61,10 @@ def prepare_for_translation(localization_bundle_path):
 
     logging.info('Finished preparing "%s" for translation!' % localization_bundle_path)
 
+
 # The main method for simple command line run.
 if __name__ == "__main__":
 
-    args = parse_args()
-    setup_logging(args)
+    operation = PrepareForTranslationOperation()
+    operation.run_with_standalone_parser()
 
-    prepare_for_translation(args.localization_bundle_path)

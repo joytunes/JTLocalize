@@ -9,5 +9,6 @@ setup(name='jtlocalize',
       author_email='info@joytunes.com',
       url='https://github.com/joytunes/JTLocalize/',
       packages=['jtlocalize','jtlocalize.core', 'jtlocalize.configuration'],
+      scripts=['jtlocalize/bin/jtlocalize'],
       license='MIT',
      )

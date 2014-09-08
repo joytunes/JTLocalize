@@ -1,0 +1,34 @@
+#!/usr/bin/env python
+
+import argparse
+from jtlocalize.genstrings import GenerateStringsFileOperation
+from jtlocalize.merge_translations import MergeTranslationsOperation
+from jtlocalize.mock_translate import MockTranslateOperation
+from jtlocalize.prepare_for_translation import PrepareForTranslationOperation
+
+
+def jtlocalize():
+    """
+    Will configure an arguments parser that runs one of the possible command line operations, and run it
+    """
+    all_operations = [GenerateStringsFileOperation(), PrepareForTranslationOperation(), MergeTranslationsOperation(),
+                      MockTranslateOperation()]
+    all_operations_by_name = dict([(operation.name(), operation) for operation in all_operations])
+
+    parser = argparse.ArgumentParser(description='Command line interface for the JTLocalize iOS localization framework')
+
+    subparsers = parser.add_subparsers(title="operation",
+                                       help="The type of localization operation.")
+
+    for operation in all_operations:
+        sub_parser = subparsers.add_parser(operation.name(), help=operation.description())
+        operation.configure_parser(sub_parser)
+
+    args = parser.parse_args()
+    if args.operation:
+        all_operations_by_name[args.operation].run(args)
+    else:
+        parser.print_help()
+
+if __name__ == "__main__":
+    jtlocalize()
