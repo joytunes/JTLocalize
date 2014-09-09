@@ -2,6 +2,7 @@
 
 import shutil
 import subprocess
+import sys
 
 from jtlocalize.core.localization_utils import *
 from jtlocalize.configuration.localization_configuration import *
@@ -76,6 +77,11 @@ def generate_strings(project_base_dir, localization_bundle_path, tmp_directory):
     genstrings_out, genstrings_err = genstrings_process.communicate(find_out)
 
     add_genstrings_comments_to_file(tmp_localization_file, genstrings_err)
+
+    genstrings_rc = genstrings_process.returncode
+    if genstrings_rc != 0:
+        logging.fatal("genstrings returned %d, aborting run!", genstrings_rc)
+        sys.exit(genstrings_rc)
 
     create_localized_strings_from_ib_files(project_base_dir, tmp_localization_file)
 
