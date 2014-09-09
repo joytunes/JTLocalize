@@ -57,7 +57,7 @@ class MockTranslateOperation(LocalizationCommandLineOperation):
         return "Localizes a given file to the given string values."
 
     def configure_parser(self, parser):
-        parser.add_argument("file_to_mock", type=argparse.FileType("r+"), help="The file to localize.")
+        parser.add_argument("file_to_mock", help="The file to localize.")
 
         localization_option_group = parser.add_mutually_exclusive_group(required=True)
 
