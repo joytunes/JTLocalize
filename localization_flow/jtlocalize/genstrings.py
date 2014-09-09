@@ -61,7 +61,8 @@ def generate_strings(project_base_dir, localization_bundle_path, tmp_directory):
 
     logging.info("Running genstrings")
 
-    find_cmd = 'find %s ! -path "*matlab*" -name "*.m" -print' % project_base_dir
+    #TODO: use python's glob instead of find + matlab is too specific to our project, perhaps add some kind of exclude
+    find_cmd = 'find %s ! -path "*matlab*" -name "*.m" -o -name "*.mm" -print' % project_base_dir
 
     find_process = subprocess.Popen(find_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
 
