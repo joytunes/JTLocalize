@@ -13,7 +13,6 @@ def jtlocalize():
     """
     all_operations = [GenerateStringsFileOperation(), PrepareForTranslationOperation(), MergeTranslationsOperation(),
                       MockTranslateOperation()]
-    all_operations_by_name = dict([(operation.name(), operation) for operation in all_operations])
 
     parser = argparse.ArgumentParser(description='Command line interface for the JTLocalize iOS localization framework')
 
@@ -23,12 +22,10 @@ def jtlocalize():
     for operation in all_operations:
         sub_parser = subparsers.add_parser(operation.name(), help=operation.description())
         operation.configure_parser(sub_parser)
+        sub_parser.set_defaults(run=operation.run)
 
     args = parser.parse_args()
-    if args.operation:
-        all_operations_by_name[args.operation].run(args)
-    else:
-        parser.print_help()
+    args.run(args)
 
 if __name__ == "__main__":
     jtlocalize()
