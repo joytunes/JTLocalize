@@ -122,18 +122,6 @@ def generate_strings(project_base_dir, localization_bundle_path, tmp_directory, 
         logging.info("No Localizable yet, moving the created file...")
         shutil.move(tmp_localization_file, localization_file)
 
-    # logging.info("Moving others files in the temporary directory to the localization directory")
-    #
-    # copy_tmp_files_cmd = 'find %s -not -name %s -and -not -path %s -exec cp "{}" %s \ ' % (tmp_localization_directory,
-    #                                                                                        LOCALIZATION_FILENAME,
-    #                                                                                        tmp_localization_directory,
-    #                                                                                        localization_directory)
-    #
-    # copy_tmp_files_process = subprocess.Popen(copy_tmp_files_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-    #                                           shell=True)
-    #
-    # copy_tmp_files_process.communicate()
-
 
 # The main method for simple command line run.
 if __name__ == "__main__":
