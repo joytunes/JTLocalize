@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 import shutil
 import subprocess
 import sys
@@ -33,6 +32,12 @@ class GenerateStringsFileOperation(LocalizationCommandLineOperation):
         parser.add_argument("--tmp_directory", default=DEFAULT_TMP_DIRECTORY,
                             help="The default temporary directory to write files to in the process")
 
+        parser.add_argument("--exclude_dirs", nargs='+',
+                            help="Directories to exclude when looking for source files to extract strings from")
+
+        parser.add_argument("--include_strings_from_file",
+                            help="Option to add additional strings from a file other the ones extracted with genstrings")
+
         parser.add_argument("--log_path", default="", help="The log file path")
 
     def run(self, parsed_args):
@@ -40,16 +45,37 @@ class GenerateStringsFileOperation(LocalizationCommandLineOperation):
 
         generate_strings(parsed_args.project_base_directory,
                          parsed_args.localization_bundle_path,
-                         parsed_args.tmp_directory)
+                         parsed_args.tmp_directory,
+                         parsed_args.exclude_dirs,
+                         parsed_args.include_strings_from_file)
 
 
-def generate_strings(project_base_dir, localization_bundle_path, tmp_directory):
+def is_source_file(filename, exclude_dirs):
+    source_files_extentions = [".m", ".mm"]
+    return (exclude_dirs is None or not any(filename.startswith(d) for d in exclude_dirs)) and \
+        any(filename.endswith(e) for e in source_files_extentions)
+
+
+def extract_source_files(base_dir, exclude_dirs):
+    result = []
+    for root, dirnames, filenames in os.walk(base_dir):
+        for filename in filenames:
+            source_file = os.path.join(root, filename)
+            if is_source_file(source_file, exclude_dirs):
+                result.append(source_file)
+    return result
+
+
+def generate_strings(project_base_dir, localization_bundle_path, tmp_directory, exclude_dirs, include_strings_file):
     """
     Calls the builtin 'genstrings' command with JTLocalizedString as the string to search for,
     and adds strings extracted from UI elements internationalized with 'JTL' + removes duplications.
     """
 
     localization_directory = os.path.join(localization_bundle_path, DEFAULT_LANGUAGE_DIRECTORY_NAME)
+    if not os.path.exists(localization_directory):
+        os.makedirs(localization_directory)
+
     localization_file = os.path.join(localization_directory, LOCALIZATION_FILENAME)
 
     # Creating the same directory tree structure in the tmp directory
@@ -62,19 +88,14 @@ def generate_strings(project_base_dir, localization_bundle_path, tmp_directory):
 
     logging.info("Running genstrings")
 
-    #TODO: use python's glob instead of find + matlab is too specific to our project, perhaps add some kind of exclude
-    find_cmd = 'find %s \\( ! -path "*matlab*" \\) -a \\( -name "*.m"  -o  -name "*.mm" \\) -print' % project_base_dir
+    source_files = extract_source_files(project_base_dir, exclude_dirs)
 
-    find_process = subprocess.Popen(find_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-
-    find_out, find_err = find_process.communicate()
-
-    genstrings_cmd = 'xargs genstrings -s JTLocalizedString -o %s' % tmp_localization_directory
+    genstrings_cmd = 'genstrings -s JTLocalizedString -o %s %s' % (tmp_localization_directory, " ".join(source_files))
 
     genstrings_process = subprocess.Popen(genstrings_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                           stdin=subprocess.PIPE, shell=True)
 
-    genstrings_out, genstrings_err = genstrings_process.communicate(find_out)
+    genstrings_out, genstrings_err = genstrings_process.communicate()
 
     add_genstrings_comments_to_file(tmp_localization_file, genstrings_err)
 
@@ -85,6 +106,13 @@ def generate_strings(project_base_dir, localization_bundle_path, tmp_directory):
 
     create_localized_strings_from_ib_files(project_base_dir, tmp_localization_file)
 
+    if include_strings_file:
+        target = open_strings_file(tmp_localization_file, "a")
+        source = open_strings_file(include_strings_file, "r")
+        target.write(source.read())
+        source.close()
+        target.close()
+
     handle_duplications(tmp_localization_file)
 
     if os.path.isfile(localization_file):
@@ -94,17 +122,17 @@ def generate_strings(project_base_dir, localization_bundle_path, tmp_directory):
         logging.info("No Localizable yet, moving the created file...")
         shutil.move(tmp_localization_file, localization_file)
 
-    logging.info("Moving others files in the temporary directory to the localization directory")
-
-    copy_tmp_files_cmd = 'find %s -not -name %s -and -not -path %s -exec cp "{}" %s \ ' % (tmp_localization_directory,
-                                                                                           LOCALIZATION_FILENAME,
-                                                                                           tmp_localization_directory,
-                                                                                           localization_directory)
-
-    copy_tmp_files_process = subprocess.Popen(copy_tmp_files_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                                              shell=True)
-
-    copy_tmp_files_process.communicate()
+    # logging.info("Moving others files in the temporary directory to the localization directory")
+    #
+    # copy_tmp_files_cmd = 'find %s -not -name %s -and -not -path %s -exec cp "{}" %s \ ' % (tmp_localization_directory,
+    #                                                                                        LOCALIZATION_FILENAME,
+    #                                                                                        tmp_localization_directory,
+    #                                                                                        localization_directory)
+    #
+    # copy_tmp_files_process = subprocess.Popen(copy_tmp_files_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+    #                                           shell=True)
+    #
+    # copy_tmp_files_process.communicate()
 
 
 # The main method for simple command line run.
