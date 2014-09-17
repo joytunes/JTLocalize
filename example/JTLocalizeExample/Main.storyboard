@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment defaultVersion="1808" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,14 +19,12 @@
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JHi-yO-VLq" userLabel="JTL_Label describing something" customClass="JTLabel">
                                 <rect key="frame" x="73" y="39" width="174" height="67"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qkX-jE-XK4" userLabel="JTL_Button That does something" customClass="JTButton">
                                 <rect key="frame" x="84" y="94" width="153" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Default State text">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -36,27 +35,24 @@
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UXW-oB-bg8" userLabel="Attributed Label" customClass="DTAttributedLabel">
                                 <rect key="frame" x="42" y="149" width="236" height="92"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="htmlString">
-                                        <string key="value">&lt;p style='font-size: 22px;font-family: "Open Sans";color:rgb(137,139,145)'>JTL("The first part", "Part of a label in the example")&lt;br/>&lt;b>JTL("The second part", "Part of label in the example")&lt;/b>&lt;/p></string>
+                                        <string key="value">&lt;p style='font-size: 22px;font-family: "Open Sans";color:rgb(137,139,145)'&gt;JTL("The first part", "Part of a label in the example")&lt;br/&gt;&lt;b&gt;JTL("The second part", "Part of label in the example")&lt;/b&gt;&lt;/p&gt;</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2XG-Pe-t3P" userLabel="Attributed Label With Link" customClass="JTAttributedLabelWithLink">
                                 <rect key="frame" x="30" y="241" width="261" height="72"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="htmlString">
-                                        <string key="value">&lt;p style='font-size: 14px;font-family: "Open Sans";text-align: center;color:rgb(149,150,157)'>JTL("The first part", "Some link prefix")&lt;a href="link" style="text-decoration:none;">&lt;font color="#F6475B">JTL("This is a link","Link text to something")&lt;/font>&lt;/a>JTL(" Continuation of text","Some text that comes after the link").&lt;/p></string>
+                                        <string key="value">&lt;p style='font-size: 14px;font-family: "Open Sans";text-align: center;color:rgb(149,150,157)'&gt;JTL("The first part", "Some link prefix")&lt;a href="link" style="text-decoration:none;"&gt;&lt;font color="#F6475B"&gt;JTL("This is a link","Link text to something")&lt;/font&gt;&lt;/a&gt;JTL(" Continuation of text","Some text that comes after the link").&lt;/p&gt;</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Text field text" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pAZ-hq-AOh" userLabel="JTL_Text Field" customClass="JTTextField">
                                 <rect key="frame" x="93" y="393" width="135" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" red="0.57472067039106145" green="0.21065541150120445" blue="0.35077583288460185" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>

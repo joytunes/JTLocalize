@@ -11,33 +11,16 @@
 		A06033BB198005660057A8AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06033BA198005660057A8AC /* Foundation.framework */; };
 		A06033BD198005660057A8AC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06033BC198005660057A8AC /* CoreGraphics.framework */; };
 		A06033BF198005660057A8AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06033BE198005660057A8AC /* UIKit.framework */; };
-		A06033C5198005660057A8AC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A06033C3198005660057A8AC /* InfoPlist.strings */; };
 		A06033C7198005660057A8AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A06033C6198005660057A8AC /* main.m */; };
 		A06033CB198005660057A8AC /* JTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A06033CA198005660057A8AC /* JTAppDelegate.m */; };
-		A06033CE198005660057A8AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A06033CC198005660057A8AC /* Main.storyboard */; };
 		A06033D1198005660057A8AC /* JTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A06033D0198005660057A8AC /* JTViewController.m */; };
 		A06033D3198005660057A8AC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A06033D2198005660057A8AC /* Images.xcassets */; };
-		A06033DA198005660057A8AC /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06033D9198005660057A8AC /* XCTest.framework */; };
-		A06033DB198005660057A8AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06033BA198005660057A8AC /* Foundation.framework */; };
-		A06033DC198005670057A8AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06033BE198005660057A8AC /* UIKit.framework */; };
-		A06033E4198005670057A8AC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A06033E2198005670057A8AC /* InfoPlist.strings */; };
-		A06033E6198005670057A8AC /* JTLocalizeExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A06033E5198005670057A8AC /* JTLocalizeExampleTests.m */; };
-		A06033F9198100730057A8AC /* JTLocalizable.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A06033F8198100730057A8AC /* JTLocalizable.bundle */; };
 		A06033FF198119020057A8AC /* DTAttributedLabel+JTLocalizeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A06033FE198119020057A8AC /* DTAttributedLabel+JTLocalizeExtensions.m */; };
 		A06034021981374E0057A8AC /* JTAttributedLabelWithLink.m in Sources */ = {isa = PBXBuildFile; fileRef = A06034011981374E0057A8AC /* JTAttributedLabelWithLink.m */; };
-		A06034031981459F0057A8AC /* DTAttributedLabel+JTLocalizeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A06033FE198119020057A8AC /* DTAttributedLabel+JTLocalizeExtensions.m */; };
 		A060340919815A740057A8AC /* UIView+JTLocalizeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A060340819815A740057A8AC /* UIView+JTLocalizeExtensions.m */; };
+		FC142A7119C9C1A300CC4111 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC142A7019C9C1A300CC4111 /* Main.storyboard */; };
+		FC142A7619C9C4F900CC4111 /* JTLocalizable.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FC142A7519C9C4F900CC4111 /* JTLocalizable.bundle */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		A06033DD198005670057A8AC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A06033AF198005660057A8AC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A06033B6198005660057A8AC;
-			remoteInfo = JTLocalizeExample;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		24AC1A5BBD8D43CAA6F50374 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,27 +30,22 @@
 		A06033BC198005660057A8AC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		A06033BE198005660057A8AC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A06033C2198005660057A8AC /* JTLocalizeExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JTLocalizeExample-Info.plist"; sourceTree = "<group>"; };
-		A06033C4198005660057A8AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A06033C6198005660057A8AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A06033C8198005660057A8AC /* JTLocalizeExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JTLocalizeExample-Prefix.pch"; sourceTree = "<group>"; };
 		A06033C9198005660057A8AC /* JTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JTAppDelegate.h; sourceTree = "<group>"; };
 		A06033CA198005660057A8AC /* JTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JTAppDelegate.m; sourceTree = "<group>"; };
-		A06033CD198005660057A8AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A06033CF198005660057A8AC /* JTViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JTViewController.h; sourceTree = "<group>"; };
 		A06033D0198005660057A8AC /* JTViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JTViewController.m; sourceTree = "<group>"; };
 		A06033D2198005660057A8AC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		A06033D8198005660057A8AC /* JTLocalizeExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JTLocalizeExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A06033D9198005660057A8AC /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		A06033E1198005670057A8AC /* JTLocalizeExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JTLocalizeExampleTests-Info.plist"; sourceTree = "<group>"; };
-		A06033E3198005670057A8AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		A06033E5198005670057A8AC /* JTLocalizeExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JTLocalizeExampleTests.m; sourceTree = "<group>"; };
-		A06033F8198100730057A8AC /* JTLocalizable.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = JTLocalizable.bundle; path = contentDirectory/JTLocalizable.bundle; sourceTree = "<group>"; };
 		A06033FD198119020057A8AC /* DTAttributedLabel+JTLocalizeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DTAttributedLabel+JTLocalizeExtensions.h"; sourceTree = "<group>"; };
 		A06033FE198119020057A8AC /* DTAttributedLabel+JTLocalizeExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DTAttributedLabel+JTLocalizeExtensions.m"; sourceTree = "<group>"; };
 		A06034001981374E0057A8AC /* JTAttributedLabelWithLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTAttributedLabelWithLink.h; sourceTree = "<group>"; };
 		A06034011981374E0057A8AC /* JTAttributedLabelWithLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTAttributedLabelWithLink.m; sourceTree = "<group>"; };
 		A060340719815A740057A8AC /* UIView+JTLocalizeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JTLocalizeExtensions.h"; sourceTree = "<group>"; };
 		A060340819815A740057A8AC /* UIView+JTLocalizeExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JTLocalizeExtensions.m"; sourceTree = "<group>"; };
+		FC142A7019C9C1A300CC4111 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		FC142A7519C9C4F900CC4111 /* JTLocalizable.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = JTLocalizable.bundle; path = contentDirectory/JTLocalizable.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,25 +60,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A06033D5198005660057A8AC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A06033DA198005660057A8AC /* XCTest.framework in Frameworks */,
-				A06033DC198005670057A8AC /* UIKit.framework in Frameworks */,
-				A06033DB198005660057A8AC /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		A06033AE198005660057A8AC = {
 			isa = PBXGroup;
 			children = (
-				A06033F8198100730057A8AC /* JTLocalizable.bundle */,
+				FC142A7519C9C4F900CC4111 /* JTLocalizable.bundle */,
 				A06033C0198005660057A8AC /* JTLocalizeExample */,
-				A06033DF198005670057A8AC /* JTLocalizeExampleTests */,
 				A06033B9198005660057A8AC /* Frameworks */,
 				A06033B8198005660057A8AC /* Products */,
 				860A587AE44446BEB4EB8388 /* Pods.xcconfig */,
@@ -111,7 +78,6 @@
 			isa = PBXGroup;
 			children = (
 				A06033B7198005660057A8AC /* JTLocalizeExample.app */,
-				A06033D8198005660057A8AC /* JTLocalizeExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -131,19 +97,19 @@
 		A06033C0198005660057A8AC /* JTLocalizeExample */ = {
 			isa = PBXGroup;
 			children = (
+				FC142A7019C9C1A300CC4111 /* Main.storyboard */,
 				A06033C9198005660057A8AC /* JTAppDelegate.h */,
 				A06033CA198005660057A8AC /* JTAppDelegate.m */,
-				A06033CC198005660057A8AC /* Main.storyboard */,
 				A06033CF198005660057A8AC /* JTViewController.h */,
 				A06033D0198005660057A8AC /* JTViewController.m */,
-				A06033D2198005660057A8AC /* Images.xcassets */,
-				A06033C1198005660057A8AC /* Supporting Files */,
 				A06033FD198119020057A8AC /* DTAttributedLabel+JTLocalizeExtensions.h */,
 				A06033FE198119020057A8AC /* DTAttributedLabel+JTLocalizeExtensions.m */,
 				A06034001981374E0057A8AC /* JTAttributedLabelWithLink.h */,
 				A06034011981374E0057A8AC /* JTAttributedLabelWithLink.m */,
 				A060340719815A740057A8AC /* UIView+JTLocalizeExtensions.h */,
 				A060340819815A740057A8AC /* UIView+JTLocalizeExtensions.m */,
+				A06033D2198005660057A8AC /* Images.xcassets */,
+				A06033C1198005660057A8AC /* Supporting Files */,
 			);
 			path = JTLocalizeExample;
 			sourceTree = "<group>";
@@ -152,27 +118,8 @@
 			isa = PBXGroup;
 			children = (
 				A06033C2198005660057A8AC /* JTLocalizeExample-Info.plist */,
-				A06033C3198005660057A8AC /* InfoPlist.strings */,
 				A06033C6198005660057A8AC /* main.m */,
 				A06033C8198005660057A8AC /* JTLocalizeExample-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		A06033DF198005670057A8AC /* JTLocalizeExampleTests */ = {
-			isa = PBXGroup;
-			children = (
-				A06033E5198005670057A8AC /* JTLocalizeExampleTests.m */,
-				A06033E0198005670057A8AC /* Supporting Files */,
-			);
-			path = JTLocalizeExampleTests;
-			sourceTree = "<group>";
-		};
-		A06033E0198005670057A8AC /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				A06033E1198005670057A8AC /* JTLocalizeExampleTests-Info.plist */,
-				A06033E2198005670057A8AC /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -199,24 +146,6 @@
 			productReference = A06033B7198005660057A8AC /* JTLocalizeExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A06033D7198005660057A8AC /* JTLocalizeExampleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A06033EC198005670057A8AC /* Build configuration list for PBXNativeTarget "JTLocalizeExampleTests" */;
-			buildPhases = (
-				A06033D4198005660057A8AC /* Sources */,
-				A06033D5198005660057A8AC /* Frameworks */,
-				A06033D6198005660057A8AC /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A06033DE198005670057A8AC /* PBXTargetDependency */,
-			);
-			name = JTLocalizeExampleTests;
-			productName = JTLocalizeExampleTests;
-			productReference = A06033D8198005660057A8AC /* JTLocalizeExampleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -226,11 +155,6 @@
 				CLASSPREFIX = JT;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = JoyTunes;
-				TargetAttributes = {
-					A06033D7198005660057A8AC = {
-						TestTargetID = A06033B6198005660057A8AC;
-					};
-				};
 			};
 			buildConfigurationList = A06033B2198005660057A8AC /* Build configuration list for PBXProject "JTLocalizeExample" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -246,7 +170,6 @@
 			projectRoot = "";
 			targets = (
 				A06033B6198005660057A8AC /* JTLocalizeExample */,
-				A06033D7198005660057A8AC /* JTLocalizeExampleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -256,18 +179,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A06033F9198100730057A8AC /* JTLocalizable.bundle in Resources */,
+				FC142A7619C9C4F900CC4111 /* JTLocalizable.bundle in Resources */,
+				FC142A7119C9C1A300CC4111 /* Main.storyboard in Resources */,
 				A06033D3198005660057A8AC /* Images.xcassets in Resources */,
-				A06033C5198005660057A8AC /* InfoPlist.strings in Resources */,
-				A06033CE198005660057A8AC /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A06033D6198005660057A8AC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A06033E4198005670057A8AC /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,51 +234,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A06033D4198005660057A8AC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A06033E6198005670057A8AC /* JTLocalizeExampleTests.m in Sources */,
-				A06034031981459F0057A8AC /* DTAttributedLabel+JTLocalizeExtensions.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A06033DE198005670057A8AC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A06033B6198005660057A8AC /* JTLocalizeExample */;
-			targetProxy = A06033DD198005670057A8AC /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		A06033C3198005660057A8AC /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A06033C4198005660057A8AC /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		A06033CC198005660057A8AC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A06033CD198005660057A8AC /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		A06033E2198005670057A8AC /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A06033E3198005670057A8AC /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		A06033E7198005670057A8AC /* Debug */ = {
@@ -465,46 +335,6 @@
 			};
 			name = Release;
 		};
-		A06033ED198005670057A8AC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JTLocalizeExample.app/JTLocalizeExample";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JTLocalizeExample/JTLocalizeExample-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "JTLocalizeExampleTests/JTLocalizeExampleTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		A06033EE198005670057A8AC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JTLocalizeExample.app/JTLocalizeExample";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JTLocalizeExample/JTLocalizeExample-Prefix.pch";
-				INFOPLIST_FILE = "JTLocalizeExampleTests/JTLocalizeExampleTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -522,15 +352,6 @@
 			buildConfigurations = (
 				A06033EA198005670057A8AC /* Debug */,
 				A06033EB198005670057A8AC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A06033EC198005670057A8AC /* Build configuration list for PBXNativeTarget "JTLocalizeExampleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A06033ED198005670057A8AC /* Debug */,
-				A06033EE198005670057A8AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

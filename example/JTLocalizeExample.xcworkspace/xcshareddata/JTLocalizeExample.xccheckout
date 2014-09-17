@@ -10,29 +10,29 @@
 	<string>JTLocalizeExample</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>9D318D42-70C4-4DAC-BD1A-77DCDB054F9B</key>
+		<key>40FBBB4BDA3DE805C71707D85C3F25ED94DF40C7</key>
 		<string>https://github.com/joytunes/JTLocalize.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>example/JTLocalizeExample.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>9D318D42-70C4-4DAC-BD1A-77DCDB054F9B</key>
+		<key>40FBBB4BDA3DE805C71707D85C3F25ED94DF40C7</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/joytunes/JTLocalize.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>9D318D42-70C4-4DAC-BD1A-77DCDB054F9B</string>
+	<string>40FBBB4BDA3DE805C71707D85C3F25ED94DF40C7</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>9D318D42-70C4-4DAC-BD1A-77DCDB054F9B</string>
+			<string>40FBBB4BDA3DE805C71707D85C3F25ED94DF40C7</string>
 			<key>IDESourceControlWCCName</key>
 			<string>JTLocalize</string>
 		</dict>
