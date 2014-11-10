@@ -51,7 +51,7 @@ class GenerateStringsFileOperation(LocalizationCommandLineOperation):
 
 
 def is_source_file(filename, exclude_dirs):
-    source_files_extentions = [".m", ".mm"]
+    source_files_extentions = [".m", ".mm", ".swift"]
     return (exclude_dirs is None or not any(filename.startswith(d) for d in exclude_dirs)) and \
         any(filename.endswith(e) for e in source_files_extentions)
 
