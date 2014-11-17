@@ -52,9 +52,10 @@ def prepare_for_translation(localization_bundle_path):
 
             dest_strings_path = os.path.join(localization_bundle_path, lang_dir, strings_file)
             pending_path = dest_strings_path + ".pending"
+            excluded_path = dest_strings_path + ".excluded"
             if os.path.exists(dest_strings_path):
                 logging.info("Found %s in %s, creating new diff in %s" % (strings_file, lang_dir, pending_path))
-                localization_diff(strings_path, dest_strings_path, pending_path)
+                localization_diff(strings_path, dest_strings_path, excluded_path, pending_path)
             else:
                 logging.info("Didn't find %s in %s, creating new file in %s" % (strings_file, lang_dir, pending_path))
                 shutil.copyfile(strings_path, pending_path)
