@@ -3,6 +3,8 @@
 from localization_utils import *
 import argparse
 
+VALUE_PLACEHOLDER = "XXX"
+
 
 def parse_args():
     """ Parses the arguments given in the command line
@@ -42,6 +44,15 @@ def localization_diff(localizable_file, translated_file, output_translation_file
     output_file_elements = []
     f = open_strings_file(localizable_file, "r")
 
+    output_file_elements.append(Comment(
+u"""/**
+ * This file contains all the strings that were extracted from our app and that need to be translated.
+ * Each entry may or may not have a comment explaining context, and a "key" = "%s" equation.
+ * To localize, you need to fill the right side of the equation with the translation of the left side.
+ * Please keep special expressions such as '%%@' or '%%1$@' as is. Usually the comment will explain their context.
+ */
+""" % (VALUE_PLACEHOLDER,)))
+
     for header_comment, comments, key, value in extract_header_comment_key_value_tuples_from_file(f):
 
         if len(header_comment) > 0:
@@ -54,7 +65,7 @@ def localization_diff(localizable_file, translated_file, output_translation_file
             output_dictionary[value].add_comments(comments)
             output_file_elements.append(Comment(u"/* There was a value '%s' here but it was a duplicate of an older value and removed. */\n" % value))
         else:
-            loc_obj = LocalizationEntry(comments, value, value)
+            loc_obj = LocalizationEntry(comments, value, VALUE_PLACEHOLDER)
             output_dictionary[value] = loc_obj
             output_file_elements.append(loc_obj)
 
