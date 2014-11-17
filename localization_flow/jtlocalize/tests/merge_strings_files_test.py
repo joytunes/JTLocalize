@@ -3,17 +3,18 @@
 
 import unittest
 import shutil
-from core.merge_strings_files import *
-from core.localization_utils import *
+from jtlocalize.core.merge_strings_files import *
+from jtlocalize.core.localization_utils import *
 
 OLD_LOCALIZABLE_FILE_PATH = os.path.join(os.path.dirname(__file__), "resources/Localizable.old.strings")
 NEW_LOCALIZABLE_FILE_PATH = os.path.join(os.path.dirname(__file__), "resources/app_localization_strings_output.strings")
 MERGED_FILE_PATH = "/tmp/Localizable.merged.strings"
 
-'''
-Test for the merge localizable script
-'''
+
 class MergeLocalizableTest(unittest.TestCase):
+    """
+    Test for the merge localizable script
+    """
 
     def setUp(self):
         print "Starting test.."

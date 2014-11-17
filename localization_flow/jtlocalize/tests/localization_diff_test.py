@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 
 import unittest
-from core.localization_diff import *
-from core.localization_merge_back import *
-from core.localization_utils import *
-from make_unlocalized import *
+from jtlocalize.core.localization_diff import *
+from jtlocalize.core.localization_merge_back import *
+from jtlocalize.mock_translate import *
 
 NEW_LOCALIZABLE_FILE_PATH = os.path.join(os.path.dirname(__file__), "resources/Localizable.new.strings")
 OLD_TRANSLATED_FILE_PATH = os.path.join(os.path.dirname(__file__), "resources/Localizable.translated.old.strings")
@@ -12,10 +11,10 @@ NEW_TRANSLATED_FILE_PATH = "/tmp/Localizable.translated.new.strings"
 MERGED_FILE_PATH = "/tmp/Localizable.merged.strings"
 
 
-'''
-The test is currently pretty stupid, just wanted to check a specific use case
-'''
 class LocalizationDiffTest(unittest.TestCase):
+    """
+    The test is currently pretty stupid, just wanted to check a specific use case
+    """
 
     def setUp(self):
         print "Starting test.."
@@ -25,7 +24,7 @@ class LocalizationDiffTest(unittest.TestCase):
         os.remove(NEW_TRANSLATED_FILE_PATH)
 
     def translate_pending_file(self):
-        unlocalize(NEW_TRANSLATED_FILE_PATH, ["-wrap", "ma"])
+        mock_translate(NEW_TRANSLATED_FILE_PATH, wrap="test")
 
     def assert_only_new_keys_in_pending_file(self):
 
@@ -45,7 +44,7 @@ class LocalizationDiffTest(unittest.TestCase):
 
         for header_comment, comments, key, value in extract_header_comment_key_value_tuples_from_file(f):
             merged_value = merged_file_dict[key].value
-            self.assertEqual(merged_value, "ma(%s)" % value)
+            self.assertEqual(merged_value, "test(%s)" % value)
 
     def test_simple_flow(self):
 

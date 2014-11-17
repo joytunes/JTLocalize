@@ -73,7 +73,7 @@ class MockTranslateOperation(LocalizationCommandLineOperation):
         mock_translate(parsed_args.file_to_mock, parsed_args.preset, parsed_args.static, parsed_args.wrap)
 
 
-def mock_translate(file_to_mock, preset, static, wrap):
+def mock_translate(file_to_mock, preset=None, static=None, wrap=None):
     if preset:
         replace_english_values(file_to_mock, PRESET_REPLACEMENTS[preset])
 
