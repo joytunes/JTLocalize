@@ -53,11 +53,7 @@ u"""/**
  */
 """ % (VALUE_PLACEHOLDER,)))
 
-    for header_comment, comments, key, value in extract_header_comment_key_value_tuples_from_file(f):
-
-        if len(header_comment) > 0:
-            output_file_elements.append(Comment(header_comment))
-
+    for _header_comment, comments, key, value in extract_header_comment_key_value_tuples_from_file(f):
         if key in translated_list:
             if key in old_translated_file_dictionary:
                 old_translated_file_dictionary.pop(key)
