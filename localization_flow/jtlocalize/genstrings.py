@@ -14,6 +14,7 @@ from jtlocalize.core.localization_commandline_operation import LocalizationComma
 
 LOCALIZATION_FILENAME = "Localizable.strings"
 DEFAULT_TMP_DIRECTORY = "/tmp"
+NO_COMMENT_PROVIDED_STRING = "No comment provided by engineer."
 
 
 class GenerateStringsFileOperation(LocalizationCommandLineOperation):
@@ -97,6 +98,7 @@ def generate_strings(project_base_dir, localization_bundle_path, tmp_directory, 
 
     genstrings_out, genstrings_err = genstrings_process.communicate()
 
+    remove_empty_comments_from_file(tmp_localization_file)
     add_genstrings_comments_to_file(tmp_localization_file, genstrings_err)
 
     genstrings_rc = genstrings_process.returncode
@@ -121,6 +123,24 @@ def generate_strings(project_base_dir, localization_bundle_path, tmp_directory, 
     else:
         logging.info("No Localizable yet, moving the created file...")
         shutil.move(tmp_localization_file, localization_file)
+
+
+def remove_empty_comments_from_file(file_path):
+    orig_file = open_strings_file(file_path, "r")
+    filtered_path = file_path + ".filtered"
+    filtered_file = open_strings_file(filtered_path, "w")
+    for line in orig_file.readlines():
+        if NO_COMMENT_PROVIDED_STRING in line:
+            processed_line = u"/* */\n"
+        else:
+            processed_line = line
+
+        filtered_file.write(processed_line)
+
+    orig_file.close()
+    filtered_file.close()
+    os.remove(file_path)
+    shutil.move(filtered_path, file_path)
 
 
 # The main method for simple command line run.

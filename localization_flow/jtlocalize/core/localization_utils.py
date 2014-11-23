@@ -112,6 +112,8 @@ def extract_header_comment_key_value_tuples_from_file(file_descriptor):
     returned_list = []
     for header_comment, _ignored, raw_comments, key, value in findall_result:
         comments = re.findall("/\* (.*?) \*/", raw_comments)
+        if len(comments) == 0:
+            comments = [u""]
         returned_list.append((header_comment, comments, key, value))
 
     return returned_list
