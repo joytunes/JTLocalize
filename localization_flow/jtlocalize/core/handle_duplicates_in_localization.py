@@ -39,7 +39,6 @@ def handle_duplications(file_path):
 
         if key in keys_to_objects:
             keys_to_objects[key].add_comments(comments)
-            file_elements.append(Comment(u"/* There was a key named '%s' here but it was a duplicate of an older key and removed. */\n" % key))
             duplicates_found.append(key)
         else:
             loc_obj = LocalizationEntry(comments, key, value)
