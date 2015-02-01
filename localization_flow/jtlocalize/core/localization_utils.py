@@ -15,6 +15,22 @@ JTL_REGEX = r"""JTL\(['"](.+?)['"],\s*['"](.+?)['"]\)"""
 HEADER_COMMENT_KEY_VALUE_TUPLES_REGEX = '((/\*\*\* *[^\n]*? *\*\*\*/\n\n)*)(/\* *[^;]* *\*/\n)"(.*?)" *= *"(.*?)";\s*\n'
 
 
+def rewrite_localization_file_with_entry_modifications(localizable_file, output_file, modification_func):
+
+    file_descriptor = open_strings_file(localizable_file, "r")
+
+    output_file_elements = []
+
+    for header_comment, comments, key, value in extract_header_comment_key_value_tuples_from_file(file_descriptor):
+
+        if len(header_comment) > 0:
+            output_file_elements.append(Comment(header_comment))
+
+        output_file_elements.append(modification_func(LocalizationEntry(comments, key, value)))
+
+    write_file_elements_to_strings_file(output_file, output_file_elements)
+
+
 def open_strings_file(file_path, mode):
     """ Open the strings file
 
