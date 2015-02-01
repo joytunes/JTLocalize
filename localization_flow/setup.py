@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup(name='jtlocalize',
-      version='0.0.4',
+      version='0.0.5',
       description='iOS localization framework',
       author='JoyTunes',
       author_email='info@joytunes.com',
