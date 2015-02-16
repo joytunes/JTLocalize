@@ -63,13 +63,13 @@ Install with `pip install jtlocalize`, or download the latest release version:
 
 ### The localization flow
 
-- Run `scripts/genstrings.sh`
-- Run `scripts/prepare_for_translation.py`
+- Run `jtlocalize generate /path/to/project /path/to/JTLocalizable.bundle`
+- Run `jtlocalize prepare_diff /path/to/JTLocalizable.bundle`
 - Translate the `Localizable.strings.pending` files in the different languages directories  
 (convert encoding if needed, see appendix).
 - Save the translated file in the proper language directory under `Localizable.strings.translated`  
 (convert encoding if needed, see appendix).
-- Run `scripts/merge_translations.py`
+- Run `jtlocalize merge /path/to/JTLocalizable.bundle`
 
 
 ### The default language directory
