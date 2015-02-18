@@ -1,6 +1,6 @@
 // JTTextField.m
 //
-// Copyright (c) 2014 JoyTunes (http://joytunes.com)
+// Copyright (c) 2015 JoyTunes (http://joytunes.com)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -26,10 +26,17 @@
 @implementation JTTextField
 
 - (void)awakeFromNib {
-    NSString *localizedPlaceholder = JTDynamicLocalizedString(self.placeholder);
-    self.placeholder = localizedPlaceholder;
-    NSString *localizedString = JTDynamicLocalizedString(self.text);
-    self.text = localizedString;
+    if (self.attributedPlaceholder.needsAttributedLocalization) {
+        self.attributedPlaceholder = self.attributedPlaceholder.localizedAttributedStringByFragments;
+    } else {
+        self.placeholder = self.placeholder.localizedString;
+    }
+
+    if (self.attributedText.needsAttributedLocalization) {
+        self.attributedText = self.attributedText.localizedAttributedStringByFragments;
+    } else {
+        self.text = self.text.localizedString;
+    }
 }
 
 @end

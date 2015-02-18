@@ -1,6 +1,6 @@
 // JTButton.h
 //
-// Copyright (c) 2014 JoyTunes (http://joytunes.com)
+// Copyright (c) 2015 JoyTunes (http://joytunes.com)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,10 +23,5 @@
 #import <UIKit/UIKit.h>
 
 @interface JTButton : UIButton
-
-@property (nonatomic, assign) BOOL customizeStates;
-
-//Use like numberOfLines in UILabel
-@property (nonatomic, assign) int numberOfLines;
 
 @end

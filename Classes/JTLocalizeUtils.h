@@ -1,6 +1,6 @@
 // JTLocalizeUtils.h
 //
-// Copyright (c) 2014 JoyTunes (http://joytunes.com)
+// Copyright (c) 2015 JoyTunes (http://joytunes.com)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -39,5 +39,17 @@
 @interface NSString (JTLocalizeExtensions)
 
 - (NSString *)stringByLocalizingJTLDirectives;
+
+- (NSString *)localizedString;
+
+@end
+
+@interface NSAttributedString(JTExtensions)
+
+// Divide the string into fragments by asking for the effective range of an attribute set
+// For each such range, extract the string, localize and inject back inside.
+- (NSAttributedString *)localizedAttributedStringByFragments;
+
+- (BOOL)needsAttributedLocalization;
 
 @end

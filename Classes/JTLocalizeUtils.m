@@ -1,6 +1,6 @@
 // JTLocalizeUtils.m
 //
-// Copyright (c) 2014 JoyTunes (http://joytunes.com)
+// Copyright (c) 2015 JoyTunes (http://joytunes.com)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -88,7 +88,7 @@ static NSString *gJTDocumentsDirectoryCache = nil;
     while (match != nil) {
         NSRange localizedKeyRange = [match rangeAtIndex:1];
         NSString *localizedKey = [string substringWithRange:localizedKeyRange];
-        NSString *localizedString = JTDynamicLocalizedString(localizedKey);
+        NSString *localizedString = localizedKey.localizedString;
         string = [string stringByReplacingCharactersInRange:match.range withString:localizedString];
         match = [regex firstMatchInString:string
                                   options:0
@@ -96,6 +96,39 @@ static NSString *gJTDocumentsDirectoryCache = nil;
     }
     
     return string;
+}
+
+- (NSString *)localizedString {
+    return JTDynamicLocalizedString(self);
+}
+
+@end
+
+@implementation NSAttributedString(JTExtensions)
+
+- (NSAttributedString *)localizedAttributedStringByFragments {
+    NSMutableAttributedString *localizedText = self.mutableCopy;
+    NSRange range;
+    NSUInteger startIndex = localizedText.length - 1;
+    while (startIndex > 0) {
+        [localizedText attributesAtIndex:startIndex effectiveRange:&range];
+        NSString *fragment = [localizedText attributedSubstringFromRange:range].string;
+        NSString *localizedFragment = [fragment localizedString];
+        [localizedText replaceCharactersInRange:range withString:localizedFragment];
+        startIndex = range.location - 1;
+    }
+
+    return localizedText;
+}
+
+- (BOOL)needsAttributedLocalization {
+    if (self.length == 0) {
+        return NO;
+    }
+
+    NSRange range;
+    [self attributesAtIndex:0 effectiveRange:&range];
+    return range.length < self.length;
 }
 
 @end

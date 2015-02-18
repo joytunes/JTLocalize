@@ -1,4 +1,4 @@
-// JTLocalize.h
+// JTTextField.m
 //
 // Copyright (c) 2015 JoyTunes (http://joytunes.com)
 //
@@ -20,13 +20,17 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#ifndef _JTLOCALIZE_
-    #define _JTLOCALIZE_
+#import "JTTextView.h"
+#import "JTLocalizeUtils.h"
 
-    #import "JTButton.h"
-    #import "JTLabel.h"
-    #import "JTTextField.h"
-    #import "JTTextView.h"
-    #import "JTLocalizeUtils.h"
+@implementation JTTextView
 
-#endif /* _JTLOCALIZE_ */
+- (void)awakeFromNib {
+    if (self.attributedText.needsAttributedLocalization) {
+        self.attributedText = self.attributedText.localizedAttributedStringByFragments;
+    } else {
+        self.text = self.text.localizedString;
+    }
+}
+
+@end

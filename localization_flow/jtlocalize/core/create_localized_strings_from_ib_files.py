@@ -99,26 +99,37 @@ def warn_if_element_not_of_class(element, class_name):
         logging.warn("Warning: %s is internationalized but isn't of type %s" % (extract_element_internationalized_comment(element), class_name))
 
 
-def add_string_pairs_from_attributed_label_element(xib_file, results, label):
-    """ Adds string pairs from an attributed label element.
+def add_string_pairs_from_attributed_ui_element(results, ui_element, comment_prefix):
+    """ Adds string pairs from a UI element with attributed text
 
     Args:
-        xib_file (str): Path to the xib file.
         results (list): The list to add the results to.
-        label (element): The attributed label element from the xib, to extract the string pairs from.
+        attributed_element (element): The element from the xib that contains, to extract the fragments from.
+        comment_prefix (str): The prefix of the comment to use for extracted string
+                              (will be appended "Part X" suffices)
 
+    Returns:
+        bool: Whether or not an attributed string was found.
     """
-    label_entry_comment = extract_element_internationalized_comment(label)
+    attributed_strings = ui_element.getElementsByTagName('attributedString')
+    if attributed_strings.length == 0:
+        return False
+
+    attributed_element = attributed_strings[0]
     fragment_index = 1
-    for fragment in label.getElementsByTagName('attributedString')[0].getElementsByTagName('fragment'):
-        #The fragment text is either as an attribute <fragment content="TEXT">
+    for fragment in attributed_element.getElementsByTagName('fragment'):
+        # The fragment text is either as an attribute <fragment content="TEXT">
         #or a child in the format <string key='content'>TEXT</string>
         try:
             label_entry_key = fragment.attributes['content'].value
         except KeyError:
             label_entry_key = fragment.getElementsByTagName('string')[0].firstChild.nodeValue
-        results.append((label_entry_key, label_entry_comment + " Part " + str(fragment_index)))
+
+        comment = "%s Part %d" % (comment_prefix, fragment_index)
+        results.append((label_entry_key, comment))
         fragment_index += 1
+
+    return fragment_index > 1
 
 
 def add_string_pairs_from_label_element(xib_file, results, label):
@@ -133,19 +144,21 @@ def add_string_pairs_from_label_element(xib_file, results, label):
     label_entry_comment = extract_element_internationalized_comment(label)
     if label_entry_comment is None:
         return
-    if label.hasAttribute('usesAttributedText') and label.attributes['usesAttributedText'].value == 'YES':
-        add_string_pairs_from_attributed_label_element(xib_file, results, label)
-        return
-    try:
-        label_entry_key = label.attributes['text'].value
-    except KeyError:
-        try:
-            label_entry_key = label.getElementsByTagName('string')[0].firstChild.nodeValue
-        except Exception:
-            label_entry_key = 'N/A'
-            logging.warn(xib_file + " : Missing text entry in " + label.toxml('UTF8'))
+
     warn_if_element_not_of_class(label, 'JTLabel')
-    results.append((label_entry_key, label_entry_comment))
+
+    if label.hasAttribute('usesAttributedText') and label.attributes['usesAttributedText'].value == 'YES':
+        add_string_pairs_from_attributed_ui_element(results, label, label_entry_comment)
+    else:
+        try:
+            label_entry_key = label.attributes['text'].value
+        except KeyError:
+            try:
+                label_entry_key = label.getElementsByTagName('string')[0].firstChild.nodeValue
+            except Exception:
+                label_entry_key = 'N/A'
+                logging.warn(xib_file + " : Missing text entry in " + label.toxml('UTF8'))
+        results.append((label_entry_key, label_entry_comment))
 
 
 def add_string_pairs_from_text_field_element(xib_file, results, text_field):
@@ -154,17 +167,21 @@ def add_string_pairs_from_text_field_element(xib_file, results, text_field):
     Args:
         xib_file (str): Path to the xib file.
         results (list): The list to add the results to.
-        textfield(element): The textfield element from the xib, to extract the string pairs from.
+        text_field(element): The textfield element from the xib, to extract the string pairs from.
 
     """
     text_field_entry_comment = extract_element_internationalized_comment(text_field)
     if text_field_entry_comment is None:
         return
-    try:
-        text_field_entry_key = text_field.attributes['text'].value
-        results.append((text_field_entry_key, text_field_entry_comment + ' default text value'))
-    except KeyError:
-        pass
+
+    if text_field.hasAttribute('usesAttributedText') and text_field.attributes['usesAttributedText'].value == 'YES':
+        add_string_pairs_from_attributed_ui_element(results, text_field, text_field_entry_comment)
+    else:
+        try:
+            text_field_entry_key = text_field.attributes['text'].value
+            results.append((text_field_entry_key, text_field_entry_comment + ' default text value'))
+        except KeyError:
+            pass
     try:
         text_field_entry_key = text_field.attributes['placeholder'].value
         results.append((text_field_entry_key, text_field_entry_comment + ' placeholder text value'))
@@ -185,11 +202,15 @@ def add_string_pairs_from_text_view_element(xib_file, results, text_view):
     text_view_entry_comment = extract_element_internationalized_comment(text_view)
     if text_view_entry_comment is None:
         return
-    try:
-        text_view_entry_key = text_view.attributes['text'].value
-        results.append((text_view_entry_key, text_view_entry_comment + ' default text value'))
-    except KeyError:
-        pass
+
+    if text_view.hasAttribute('usesAttributedText') and text_view.attributes['usesAttributedText'].value == 'YES':
+        add_string_pairs_from_attributed_ui_element(results, text_view, text_view_entry_comment)
+    else:
+        try:
+            text_view_entry_key = text_view.attributes['text'].value
+            results.append((text_view_entry_key, text_view_entry_comment + ' default text value'))
+        except KeyError:
+            pass
     warn_if_element_not_of_class(text_view, 'JTTextView')
 
 
@@ -208,11 +229,14 @@ def add_string_pairs_from_button_element(xib_file, results, button):
 
     for state in button.getElementsByTagName('state'):
         state_name = state.attributes['key'].value
-        try:
-            button_entry_key = state.attributes['title'].value
-        except KeyError:
-            continue
-        results.append((button_entry_key, button_entry_comment + " - " + state_name + " state of button"))
+        state_entry_comment = button_entry_comment + " - " + state_name + " state of button"
+        if not add_string_pairs_from_attributed_ui_element(results, state, state_entry_comment):
+            try:
+                button_entry_key = state.attributes['title'].value
+            except KeyError:
+                continue
+
+            results.append((button_entry_key, state_entry_comment))
 
     warn_if_element_not_of_class(button, 'JTButton')
 

@@ -1,4 +1,4 @@
-// JTLocalize.h
+// JTTextView.h
 //
 // Copyright (c) 2015 JoyTunes (http://joytunes.com)
 //
@@ -20,13 +20,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#ifndef _JTLOCALIZE_
-    #define _JTLOCALIZE_
+#import <UIKit/UIKit.h>
 
-    #import "JTButton.h"
-    #import "JTLabel.h"
-    #import "JTTextField.h"
-    #import "JTTextView.h"
-    #import "JTLocalizeUtils.h"
+@interface JTTextView : UITextView
 
-#endif /* _JTLOCALIZE_ */
+@end
