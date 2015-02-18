@@ -5,4 +5,4 @@ xcodeproj 'JTLocalizeExample.xcodeproj'
 inhibit_all_warnings!
 
 pod 'DTCoreText'
-pod 'JTLocalize'
+pod 'JTLocalize', :path => '../JTLocalize.podspec'
