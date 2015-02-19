@@ -26,17 +26,8 @@
 @implementation JTTextField
 
 - (void)awakeFromNib {
-    if (self.attributedPlaceholder.needsAttributedLocalization) {
-        self.attributedPlaceholder = self.attributedPlaceholder.localizedAttributedStringByFragments;
-    } else {
-        self.placeholder = self.placeholder.localizedString;
-    }
-
-    if (self.attributedText.needsAttributedLocalization) {
-        self.attributedText = self.attributedText.localizedAttributedStringByFragments;
-    } else {
-        self.text = self.text.localizedString;
-    }
+    [self localizeTextPropertyNamed:NSStringFromSelector(@selector(text))];
+    [self localizeTextPropertyNamed:NSStringFromSelector(@selector(placeholder))];
 }
 
 @end

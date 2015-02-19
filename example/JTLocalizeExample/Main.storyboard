@@ -31,9 +31,6 @@
                                 <state key="disabled" title="Disabled State text"/>
                                 <state key="selected" title="Selected State text"/>
                                 <state key="highlighted" title="Highlighted State text"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="customizeStates" value="YES"/>
-                                </userDefinedRuntimeAttributes>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXv-Lk-Wtk" userLabel="JTL_Label with attributed text describing something" customClass="JTLabel">
                                 <rect key="frame" x="73" y="99" width="174" height="67"/>
@@ -131,9 +128,6 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="customizeStates" value="YES"/>
-                                </userDefinedRuntimeAttributes>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Text field text" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pAZ-hq-AOh" userLabel="JTL_Text Field" customClass="JTTextField">
                                 <rect key="frame" x="47" y="397" width="226" height="30"/>

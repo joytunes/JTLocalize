@@ -44,12 +44,18 @@
 
 @end
 
-@interface NSAttributedString(JTExtensions)
+@interface NSAttributedString(JTLocalizeExtensions)
 
 // Divide the string into fragments by asking for the effective range of an attribute set
 // For each such range, extract the string, localize and inject back inside.
 - (NSAttributedString *)localizedAttributedStringByFragments;
 
 - (BOOL)needsAttributedLocalization;
+
+@end
+
+@interface UIView(JTLocalizeExtensions)
+
+- (void)localizeTextPropertyNamed:(NSString *)propertyName;
 
 @end

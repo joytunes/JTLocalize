@@ -27,11 +27,7 @@
 @implementation JTLabel
 
 - (void)awakeFromNib {
-    if (self.attributedText.needsAttributedLocalization) {
-        self.attributedText = self.attributedText.localizedAttributedStringByFragments;
-    } else {
-        self.text = self.text.localizedString;
-    }
+    [self localizeTextPropertyNamed:NSStringFromSelector(@selector(text))];
 }
 
 @end

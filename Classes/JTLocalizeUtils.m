@@ -104,14 +104,14 @@ static NSString *gJTDocumentsDirectoryCache = nil;
 
 @end
 
-@implementation NSAttributedString(JTExtensions)
+@implementation NSAttributedString(JTLocalizeExtensions)
 
 - (NSAttributedString *)localizedAttributedStringByFragments {
     NSMutableAttributedString *localizedText = self.mutableCopy;
     NSRange range;
-    NSUInteger startIndex = localizedText.length - 1;
+    NSInteger startIndex = localizedText.length - 1;
     while (startIndex > 0) {
-        [localizedText attributesAtIndex:startIndex effectiveRange:&range];
+        [localizedText attributesAtIndex:(NSUInteger)startIndex effectiveRange:&range];
         NSString *fragment = [localizedText attributedSubstringFromRange:range].string;
         NSString *localizedFragment = [fragment localizedString];
         [localizedText replaceCharactersInRange:range withString:localizedFragment];
@@ -129,6 +129,22 @@ static NSString *gJTDocumentsDirectoryCache = nil;
     NSRange range;
     [self attributesAtIndex:0 effectiveRange:&range];
     return range.length < self.length;
+}
+
+@end
+
+@implementation UIView(JTLocalizeExtensions)
+
+- (void)localizeTextPropertyNamed:(NSString *)propertyName {
+    NSString *attributedPropertyName = [NSString stringWithFormat:@"attributed%@", propertyName.capitalizedString];
+    NSAttributedString *attributedText = [self valueForKey:attributedPropertyName];
+    if (attributedText.needsAttributedLocalization) {
+        [self setValue:attributedText.localizedAttributedStringByFragments
+                forKey:attributedPropertyName];
+    } else {
+        NSString *text = [self valueForKey:propertyName];
+        [self setValue:text.localizedString forKey:propertyName];
+    }
 }
 
 @end
