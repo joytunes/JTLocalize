@@ -1,20 +1,24 @@
 import argparse
 from core.localization_utils import extract_header_comment_key_value_tuples_from_file, open_strings_file
+from jtlocalize.core.localization_commandline_operation import LocalizationCommandLineOperation
 
 __author__ = 'lwager'
 
-def parse_args():
-    """ Parses the arguments given in the command line
 
-    Returns:
-        args: The configured arguments will be attributes of the returned object.
-    """
-    parser = argparse.ArgumentParser(
-        description='Perform a word count on pending localization file.')
+class WordCountOperation(LocalizationCommandLineOperation):
 
-    parser.add_argument("localizable_file", help="The file that requires translation.")
+    def name(self):
+        return "word_count"
 
-    return parser.parse_args()
+    def description(self):
+        return "Perform a word count on pending localization file."
+
+    def configure_parser(self, parser):
+        parser.add_argument("localizable_file", help="The file that requires translation.")
+
+    def run(self, parsed_args):
+        print word_count(parsed_args.localizable_file)
+
 
 def word_count(f_name):
 
@@ -26,5 +30,5 @@ def word_count(f_name):
     return count
 
 if __name__ == "__main__":
-    args = parse_args()
-    print word_count(args.localizable_file)
+    operation = WordCountOperation()
+    operation.run_with_standalone_parser()

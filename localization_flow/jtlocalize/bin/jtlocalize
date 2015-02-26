@@ -5,6 +5,7 @@ from jtlocalize.genstrings import GenerateStringsFileOperation
 from jtlocalize.merge_translations import MergeTranslationsOperation
 from jtlocalize.mock_translate import MockTranslateOperation
 from jtlocalize.prepare_for_translation import PrepareForTranslationOperation
+from jtlocalize.word_count import WordCountOperation
 
 
 def jtlocalize():
@@ -12,7 +13,7 @@ def jtlocalize():
     Will configure an arguments parser that runs one of the possible command line operations, and run it
     """
     all_operations = [GenerateStringsFileOperation(), PrepareForTranslationOperation(), MergeTranslationsOperation(),
-                      MockTranslateOperation()]
+                      MockTranslateOperation(), WordCountOperation()]
 
     parser = argparse.ArgumentParser(description='Command line interface for the JTLocalize iOS localization framework')
 
