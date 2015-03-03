@@ -42,10 +42,17 @@ The example project also illustrates how to include **internationzalized links**
 
 ### Internationalizing strings in code
 
-To internationalize strings in the code, simply use the NSLocalizedString() macro (exactly like you would do without JTLocalize):
+To internationalize strings in the code, simply use the JTLocalizedString() macro (exactly like you would do without JTLocalize, but with a different macro):
 ```objective-c
-NSString *localizedString = NSLocalizedString("Some string", "The Strings context for translation")
+NSString *localizedString = JTLocalizedString("Some string", "The Strings context for translation")
 ```
+
+#### Swift
+
+Swift doesn't support C-macros. We currently didn't insert any Swift functions into the Pod itself, because CocoaPods' Swift support is still in beta (as of writing these lines).
+
+Instead, we attached a POC to our example project to show you how you can easily use `JTLocalize` in your Swift projects. 
+See [JTSwiftPOC.swift](https://github.com/joytunes/JTLocalize/blob/master/example/JTLocalizeExample/JTSwiftPOC.swift)
 
 ## How to localize
 
