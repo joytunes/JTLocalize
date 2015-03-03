@@ -1,14 +1,14 @@
 PODS:
-  - DTCoreText (1.6.14):
-    - DTFoundation/Core (~> 1.7.1)
-    - DTFoundation/DTAnimatedGIF (~> 1.7.1)
-    - DTFoundation/DTHTMLParser (~> 1.7.1)
-    - DTFoundation/UIKit (~> 1.7.1)
-  - DTFoundation/Core (1.7.4)
-  - DTFoundation/DTAnimatedGIF (1.7.4)
-  - DTFoundation/DTHTMLParser (1.7.4):
+  - DTCoreText (1.6.15):
+    - DTFoundation/Core (~> 1.7.5)
+    - DTFoundation/DTAnimatedGIF (~> 1.7.5)
+    - DTFoundation/DTHTMLParser (~> 1.7.5)
+    - DTFoundation/UIKit (~> 1.7.5)
+  - DTFoundation/Core (1.7.5)
+  - DTFoundation/DTAnimatedGIF (1.7.5)
+  - DTFoundation/DTHTMLParser (1.7.5):
     - DTFoundation/Core
-  - DTFoundation/UIKit (1.7.4):
+  - DTFoundation/UIKit (1.7.5):
     - DTFoundation/Core
   - JTLocalize (0.0.2)
 
@@ -21,8 +21,8 @@ EXTERNAL SOURCES:
     :path: ../JTLocalize.podspec
 
 SPEC CHECKSUMS:
-  DTCoreText: 1fc0aadfa238d14c6cc56035af4e2b76b958e3b1
-  DTFoundation: 721a63964fb9acd64cb8c9d3d1642ee60bac3d6a
+  DTCoreText: d446600133d01214758ff45004b1b8109e5b8c9f
+  DTFoundation: bea4e07459f0f88a5aa3b8258fab1576bbe2e58c
   JTLocalize: 8f65f68c71f73b5b00fc24101eded3f1558e46d5
 
 COCOAPODS: 0.35.0

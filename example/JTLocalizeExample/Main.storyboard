@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,14 +18,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JHi-yO-VLq" userLabel="JTL_Label describing something" customClass="JTLabel">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JHi-yO-VLq" userLabel="JTL_Label describing something" customClass="JTLabel">
                                 <rect key="frame" x="73" y="20" width="174" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qkX-jE-XK4" userLabel="JTL_Button That does something" customClass="JTButton">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qkX-jE-XK4" userLabel="JTL_Button That does something" customClass="JTButton">
                                 <rect key="frame" x="84" y="49" width="153" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="dBX-YJ-Uy6"/>
+                                </constraints>
                                 <state key="normal" title="Default State text">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -32,8 +36,11 @@
                                 <state key="selected" title="Selected State text"/>
                                 <state key="highlighted" title="Highlighted State text"/>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXv-Lk-Wtk" userLabel="JTL_Label with attributed text describing something" customClass="JTLabel">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXv-Lk-Wtk" userLabel="JTL_Label with attributed text describing something" customClass="JTLabel">
                                 <rect key="frame" x="73" y="99" width="174" height="67"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="67" id="shY-9E-WCY"/>
+                                </constraints>
                                 <attributedString key="attributedText">
                                     <fragment content="Attributed Label Part 1 ">
                                         <attributes>
@@ -52,7 +59,7 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UXW-oB-bg8" userLabel="Attributed Label" customClass="DTAttributedLabel">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UXW-oB-bg8" userLabel="Attributed Label" customClass="DTAttributedLabel">
                                 <rect key="frame" x="42" y="212" width="236" height="92"/>
                                 <color key="backgroundColor" red="1" green="0.95686274510000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <userDefinedRuntimeAttributes>
@@ -61,17 +68,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2XG-Pe-t3P" userLabel="Attributed Label With Link" customClass="JTAttributedLabelWithLink">
-                                <rect key="frame" x="30" y="312" width="261" height="72"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="htmlString">
-                                        <string key="value">&lt;p style='font-size: 14px;font-family: "Open Sans";text-align: center;color:rgb(149,150,157)'&gt;JTL("The first part", "Some link prefix")&lt;a href="link" style="text-decoration:none;"&gt;&lt;font color="#F6475B"&gt;JTL("This is a link","Link text to something")&lt;/font&gt;&lt;/a&gt;JTL(" Continuation of text","Some text that comes after the link").&lt;/p&gt;</string>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yhX-vj-qnP" userLabel="JTL_Button with attributed text that does something" customClass="JTButton">
-                                <rect key="frame" x="55" y="174" width="192" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yhX-vj-qnP" userLabel="JTL_Button with attributed text that does something" customClass="JTButton">
+                                <rect key="frame" x="64" y="174" width="192" height="30"/>
                                 <color key="backgroundColor" red="0.58823529409999997" green="0.84313725490000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
@@ -129,13 +127,13 @@
                                     </attributedString>
                                 </state>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Text field text" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pAZ-hq-AOh" userLabel="JTL_Text Field" customClass="JTTextField">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Text field text" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pAZ-hq-AOh" userLabel="JTL_Text Field" customClass="JTTextField">
                                 <rect key="frame" x="47" y="397" width="226" height="30"/>
                                 <color key="textColor" red="0.57472067039106145" green="0.21065541150120445" blue="0.35077583288460185" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" allowsEditingTextAttributes="YES" borderStyle="roundedRect" placeholder="dont attribute placeholder" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oPA-5y-qU7" userLabel="JTL_Attributed Text Field" customClass="JTTextField">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" allowsEditingTextAttributes="YES" borderStyle="roundedRect" placeholder="dont attribute placeholder" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oPA-5y-qU7" userLabel="JTL_Attributed Text Field" customClass="JTTextField">
                                 <rect key="frame" x="47" y="429" width="226" height="30"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Attributed">
@@ -155,15 +153,21 @@
                                 </attributedString>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Text View" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Zc8-9V-FXX" userLabel="JTL_Text View" customClass="JTTextView">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Text View" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Zc8-9V-FXX" userLabel="JTL_Text View" customClass="JTTextView">
                                 <rect key="frame" x="35" y="467" width="250" height="35"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="fbf-dX-Qe4"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="geT-xa-EmN" userLabel="JTL_Attributed Text View" customClass="JTTextView">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="geT-xa-EmN" userLabel="JTL_Attributed Text View" customClass="JTTextView">
                                 <rect key="frame" x="60" y="513" width="200" height="35"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="auh-Z3-eCT"/>
+                                </constraints>
                                 <attributedString key="attributedText">
                                     <fragment content="Attributed">
                                         <attributes>
@@ -182,8 +186,50 @@
                                 </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2XG-Pe-t3P" userLabel="Attributed Label With Link" customClass="JTAttributedLabelWithLink">
+                                <rect key="frame" x="30" y="312" width="261" height="72"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="htmlString">
+                                        <string key="value">&lt;p style='font-size: 14px;font-family: "Open Sans";text-align: center;color:rgb(149,150,157)'&gt;JTL("The first part", "Some link prefix")&lt;a href="link" style="text-decoration:none;"&gt;&lt;font color="#F6475B"&gt;JTL("This is a link","Link text to something")&lt;/font&gt;&lt;/a&gt;JTL(" Continuation of text","Some text that comes after the link").&lt;/p&gt;</string>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2XG-Pe-t3P" firstAttribute="top" secondItem="UXW-oB-bg8" secondAttribute="bottom" constant="8" symbolic="YES" id="0U8-mg-lvn"/>
+                            <constraint firstAttribute="centerX" secondItem="oPA-5y-qU7" secondAttribute="centerX" id="0hw-Fz-9b8"/>
+                            <constraint firstAttribute="centerX" secondItem="UXW-oB-bg8" secondAttribute="centerX" id="1XI-Lv-46k"/>
+                            <constraint firstAttribute="centerX" secondItem="yhX-vj-qnP" secondAttribute="centerX" id="30V-9P-gjc"/>
+                            <constraint firstItem="vXv-Lk-Wtk" firstAttribute="leading" secondItem="JHi-yO-VLq" secondAttribute="leading" id="6XQ-Fg-gab"/>
+                            <constraint firstItem="oPA-5y-qU7" firstAttribute="leading" secondItem="pAZ-hq-AOh" secondAttribute="leading" id="DRJ-Iu-tST"/>
+                            <constraint firstAttribute="centerX" secondItem="vXv-Lk-Wtk" secondAttribute="centerX" id="Elb-pg-DVM"/>
+                            <constraint firstItem="vXv-Lk-Wtk" firstAttribute="top" secondItem="qkX-jE-XK4" secondAttribute="bottom" constant="8" symbolic="YES" id="FPJ-lk-OaT"/>
+                            <constraint firstAttribute="bottom" secondItem="geT-xa-EmN" secondAttribute="bottom" constant="20" symbolic="YES" id="Gvf-1Y-lnI"/>
+                            <constraint firstItem="Zc8-9V-FXX" firstAttribute="top" secondItem="oPA-5y-qU7" secondAttribute="bottom" constant="8" symbolic="YES" id="HoE-f4-Xin"/>
+                            <constraint firstItem="JHi-yO-VLq" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="57" id="I6N-5t-6XZ"/>
+                            <constraint firstAttribute="centerX" secondItem="2XG-Pe-t3P" secondAttribute="centerX" id="Ipw-M7-u5E"/>
+                            <constraint firstItem="yhX-vj-qnP" firstAttribute="top" secondItem="vXv-Lk-Wtk" secondAttribute="bottom" constant="8" symbolic="YES" id="KnT-HT-XdI"/>
+                            <constraint firstItem="UXW-oB-bg8" firstAttribute="top" secondItem="yhX-vj-qnP" secondAttribute="bottom" constant="8" symbolic="YES" id="OFg-fx-Bhb"/>
+                            <constraint firstAttribute="centerX" secondItem="pAZ-hq-AOh" secondAttribute="centerX" id="PW6-01-B90"/>
+                            <constraint firstItem="2XG-Pe-t3P" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="14" id="TaS-gP-E0E"/>
+                            <constraint firstItem="pAZ-hq-AOh" firstAttribute="top" secondItem="2XG-Pe-t3P" secondAttribute="bottom" constant="13" id="VDj-Oi-S0Z"/>
+                            <constraint firstItem="UXW-oB-bg8" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="26" id="XjQ-Jr-yS2"/>
+                            <constraint firstItem="oPA-5y-qU7" firstAttribute="top" secondItem="pAZ-hq-AOh" secondAttribute="bottom" constant="2" id="a4R-UD-gge"/>
+                            <constraint firstItem="pAZ-hq-AOh" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="31" id="biR-dt-6T9"/>
+                            <constraint firstItem="JHi-yO-VLq" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="czR-cc-hU8"/>
+                            <constraint firstAttribute="centerX" secondItem="qkX-jE-XK4" secondAttribute="centerX" id="hMJ-vc-EQ0"/>
+                            <constraint firstItem="qkX-jE-XK4" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="68" id="hWR-Mt-phm"/>
+                            <constraint firstItem="geT-xa-EmN" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="44" id="hwY-Ve-hBh"/>
+                            <constraint firstAttribute="centerX" secondItem="Zc8-9V-FXX" secondAttribute="centerX" id="jH5-75-XDQ"/>
+                            <constraint firstAttribute="centerX" secondItem="JHi-yO-VLq" secondAttribute="centerX" id="mTY-0r-lcx"/>
+                            <constraint firstItem="Zc8-9V-FXX" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="19" id="nkM-kY-dtL"/>
+                            <constraint firstItem="geT-xa-EmN" firstAttribute="top" secondItem="Zc8-9V-FXX" secondAttribute="bottom" constant="11" id="rCP-Fg-TAi"/>
+                            <constraint firstItem="2XG-Pe-t3P" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="312" id="wfB-nS-oN1"/>
+                            <constraint firstItem="qkX-jE-XK4" firstAttribute="top" secondItem="JHi-yO-VLq" secondAttribute="bottom" constant="8" symbolic="YES" id="whQ-Zg-lk1"/>
+                            <constraint firstAttribute="centerX" secondItem="geT-xa-EmN" secondAttribute="centerX" id="xHb-M2-OoW"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="aButton" destination="qkX-jE-XK4" id="zaK-I0-0pf"/>

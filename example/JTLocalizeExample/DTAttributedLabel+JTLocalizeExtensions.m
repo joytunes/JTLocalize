@@ -6,9 +6,8 @@
 //  Copyright (c) 2014 JoyTunes. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <JTLocalize/JTLocalize.h>
 #import "DTAttributedLabel+JTLocalizeExtensions.h"
-#import "JTLocalizeUtils.h"
 #import "UIView+JTLocalizeExtensions.h"
 
 @implementation DTAttributedLabel (JTLocalizeExtensions)

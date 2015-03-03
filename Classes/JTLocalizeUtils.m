@@ -1,4 +1,4 @@
-// JTLocalizeUtils.m
+ // JTLocalizeUtils.m
 //
 // Copyright (c) 2015 JoyTunes (http://joytunes.com)
 //
@@ -22,53 +22,78 @@
 
 #import "JTLocalizeUtils.h"
 
-static NSString *gJTDocumentsDirectoryCache = nil;
+NSString *const kJTDefaultLocalizationBundleName = @"JTLocalizable.bundle";
+NSString *const kJTDefaultStringsTableName = @"Localizable";
 
-@implementation JTLocalizeUtils
+
+@interface JTLocalize()
+
+@property (nonatomic, copy) NSString *stringsTableName;
+@property (nonatomic, strong) NSBundle *localizationBundle;
+
+@end
 
 
-+ (NSString *)locatePathForFile:(NSString *)fileName {
-    NSMutableArray *searchPaths = [NSMutableArray array];
-    
-    // maybe the file was full path to begin with
-    [self addPath:fileName toSearchPaths:searchPaths];
-    
-    // documents directory
-    [self addPath:[self.documentsDirectory stringByAppendingPathComponent:fileName] toSearchPaths:searchPaths];
-    
-    // app bundle
-    NSString *directory = [fileName stringByDeletingLastPathComponent];
-    NSString *file = [fileName lastPathComponent];
-    [self addPath:[[NSBundle bundleForClass:self] pathForResource:file ofType:nil inDirectory:directory]
-    toSearchPaths:searchPaths];
-    
-    // temp dir
-    [self addPath:[NSTemporaryDirectory() stringByAppendingPathComponent:fileName] toSearchPaths:searchPaths];
-    
-    for (NSString *path in searchPaths) {
-        if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-            return path;
+@implementation JTLocalize
+
++ (JTLocalize *)instance {
+    static JTLocalize *_instance = nil;
+
+    @synchronized (self) {
+        if (_instance == nil) {
+            _instance = [[self alloc] init];
         }
     }
-    
-    return nil;
+
+    return _instance;
 }
 
-#pragma mark - Helpers
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.stringsTableName = kJTDefaultStringsTableName;
+        self.localizationBundle = [self.class defaultLocalizationBundle];
+    }
 
-+ (void)addPath:(NSString *)path toSearchPaths:(NSMutableArray *)paths {
-    if (path != nil) {
-        [paths addObject:path];
+    return self;
+}
+
+// Will try to find the kJTDefaultLocalizationBundleName as a resource in the app bundle.
+// If not found - will use the app bundle itself.
++ (NSBundle *)defaultLocalizationBundle {
+    NSBundle *appBundle = [NSBundle bundleForClass:self.class];
+    NSBundle *result = [NSBundle bundleWithPath:[appBundle pathForResource:kJTDefaultLocalizationBundleName ofType:nil]];
+
+    if (result != nil) {
+        return result;
+    } else {
+        return appBundle;
+    }
+
+}
+
++ (void)setLocalizationBundleToPath:(NSString *)bundlePath stringsTableName:(NSString *)tableName {
+    [self instance].stringsTableName = tableName ?: kJTDefaultStringsTableName;
+
+    NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
+    if (bundle != nil) {
+        [self instance].localizationBundle = bundle;
+    } else {
+        [self instance].localizationBundle = [self defaultLocalizationBundle];
     }
 }
 
-+ (NSString *)documentsDirectory {
-    if (gJTDocumentsDirectoryCache == nil) {
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        gJTDocumentsDirectoryCache = (paths.count > 0) ? paths.firstObject : nil;
-    }
-    return gJTDocumentsDirectoryCache;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-parameter"
++ (NSString *)localizedStringForKey:(NSString *)key comment:(NSString *)comment {
+    NSString *localized = NSLocalizedStringFromTableInBundle(key,
+                                                             [self instance].stringsTableName,
+                                                             [self instance].localizationBundle,
+                                                             comment);
+
+    return localized ?: key;
 }
+#pragma clang diagnostic pop
 
 @end
 
@@ -99,7 +124,7 @@ static NSString *gJTDocumentsDirectoryCache = nil;
 }
 
 - (NSString *)localizedString {
-    return JTDynamicLocalizedString(self);
+    return [JTLocalize localizedStringForKey:self comment:@""];
 }
 
 @end

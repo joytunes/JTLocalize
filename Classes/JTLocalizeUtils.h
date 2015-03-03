@@ -22,17 +22,28 @@
 
 #import <Foundation/Foundation.h>
 
-#define kJTLocalizationBundle (@"JTLocalizable.bundle")
-#define kJTStringsTableName (@"Localizable")
+extern NSString *const kJTDefaultLocalizationBundleName;
+extern NSString *const kJTDefaultStringsTableName;
 
-#define JTLocalizedString(key, comment) (NSLocalizedStringFromTableInBundle((key), kJTStringsTableName, [NSBundle bundleWithPath:[JTLocalizeUtils locatePathForFile:kJTLocalizationBundle]], (comment)) ?: key)
+
+#define JTLocalizedString(aKey, aComment) ([JTLocalize localizedStringForKey:(aKey) comment:(aComment)])
 
 // For localizing variables. Act the same as JTLocalizedString, but scripts won't complain about it.
 #define JTDynamicLocalizedString(key) (JTLocalizedString((key), @""))
 
-@interface JTLocalizeUtils : NSObject
+@interface JTLocalize : NSObject
 
-+ (NSString *)locatePathForFile:(NSString *)fileName;
+// Calling this will allow JTLocalize to search for strings in a new bundle path
+// This is useful if you want your app to download this bundle from a remote server:
+// will allow you to dynamically change all internationalized strings in your app.
+// (notice that NSBundles are cached, so call this only once you're finished downloading)
+// Giving nil in each parameters will cause the defaults to be restored.
++ (void)setLocalizationBundleToPath:(NSString *)bundlePath stringsTableName:(NSString *)tableName;
+
+// Will search the string in the pre-set bundle path.
+// If not set otherwise: will search kJTDefaultLocalizationBundleName in the app bundle,
+// and will use kJTDefaultStringsTableName
++ (NSString *)localizedStringForKey:(NSString *)key comment:(NSString *)comment;
 
 @end
 
