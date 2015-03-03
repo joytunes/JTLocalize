@@ -20,6 +20,7 @@
 		A060340919815A740057A8AC /* UIView+JTLocalizeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A060340819815A740057A8AC /* UIView+JTLocalizeExtensions.m */; };
 		FC142A7119C9C1A300CC4111 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC142A7019C9C1A300CC4111 /* Main.storyboard */; };
 		FC142A7619C9C4F900CC4111 /* JTLocalizable.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FC142A7519C9C4F900CC4111 /* JTLocalizable.bundle */; };
+		FC70600A1AA5DC5000E55088 /* JTSwiftPOC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7060091AA5DC5000E55088 /* JTSwiftPOC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +30,6 @@
 		A06033BA198005660057A8AC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A06033BC198005660057A8AC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		A06033BE198005660057A8AC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		A06033C2198005660057A8AC /* JTLocalizeExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JTLocalizeExample-Info.plist"; sourceTree = "<group>"; };
 		A06033C6198005660057A8AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A06033C8198005660057A8AC /* JTLocalizeExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JTLocalizeExample-Prefix.pch"; sourceTree = "<group>"; };
 		A06033C9198005660057A8AC /* JTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JTAppDelegate.h; sourceTree = "<group>"; };
@@ -47,6 +47,8 @@
 		BC23987EF043E41D4C4C0D9B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FC142A7019C9C1A300CC4111 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		FC142A7519C9C4F900CC4111 /* JTLocalizable.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JTLocalizable.bundle; sourceTree = "<group>"; };
+		FC7060081AA5DC4F00E55088 /* JTLocalizeExample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JTLocalizeExample-Bridging-Header.h"; sourceTree = "<group>"; };
+		FC7060091AA5DC5000E55088 /* JTSwiftPOC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTSwiftPOC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,8 @@
 				A06034011981374E0057A8AC /* JTAttributedLabelWithLink.m */,
 				A060340719815A740057A8AC /* UIView+JTLocalizeExtensions.h */,
 				A060340819815A740057A8AC /* UIView+JTLocalizeExtensions.m */,
+				FC7060091AA5DC5000E55088 /* JTSwiftPOC.swift */,
+				FC7060081AA5DC4F00E55088 /* JTLocalizeExample-Bridging-Header.h */,
 				A06033D2198005660057A8AC /* Images.xcassets */,
 				A06033C1198005660057A8AC /* Supporting Files */,
 			);
@@ -118,7 +122,7 @@
 		A06033C1198005660057A8AC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A06033C2198005660057A8AC /* JTLocalizeExample-Info.plist */,
+				FC70600C1AA5DEFA00E55088 /* JTLocalizeExample-Info.plist */,
 				A06033C6198005660057A8AC /* main.m */,
 				A06033C8198005660057A8AC /* JTLocalizeExample-Prefix.pch */,
 			);
@@ -173,6 +177,7 @@
 			knownRegions = (
 				en,
 				Base,
+				he,
 			);
 			mainGroup = A06033AE198005660057A8AC;
 			productRefGroup = A06033B8198005660057A8AC /* Products */;
@@ -239,6 +244,7 @@
 				A060340919815A740057A8AC /* UIView+JTLocalizeExtensions.m in Sources */,
 				A06033D1198005660057A8AC /* JTViewController.m in Sources */,
 				A06033FF198119020057A8AC /* DTAttributedLabel+JTLocalizeExtensions.m in Sources */,
+				FC70600A1AA5DC5000E55088 /* JTSwiftPOC.swift in Sources */,
 				A06034021981374E0057A8AC /* JTAttributedLabelWithLink.m in Sources */,
 				A06033C7198005660057A8AC /* main.m in Sources */,
 			);
@@ -323,10 +329,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JTLocalizeExample/JTLocalizeExample-Prefix.pch";
 				INFOPLIST_FILE = "JTLocalizeExample/JTLocalizeExample-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "JTLocalizeExample/JTLocalizeExample-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -337,10 +347,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JTLocalizeExample/JTLocalizeExample-Prefix.pch";
 				INFOPLIST_FILE = "JTLocalizeExample/JTLocalizeExample-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "JTLocalizeExample/JTLocalizeExample-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

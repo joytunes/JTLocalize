@@ -7,6 +7,7 @@
 //
 
 #import "JTViewController.h"
+#import "JTLocalizeExample-Swift.h"
 #import <JTLocalize/JTLocalize.h>
 
 @interface JTViewController () <DTLabelLinkDelegate>
@@ -19,6 +20,7 @@
 {
     [super viewDidLoad];
 	self.anAttributedLabelWithLink.linkDelegate = self;
+    [[[JTSwiftPOC alloc] init] foo];
 }
 
 - (void)didReceiveMemoryWarning
