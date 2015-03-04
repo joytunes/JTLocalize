@@ -11,7 +11,7 @@ class Replacement:
     def __init__(self):
         pass
 
-    def regex(self):
+    def replace_value(self, value):
         pass
 
 
@@ -20,7 +20,7 @@ class StaticReplacement(Replacement):
         Replacement.__init__(self)
         self.static_val = static_val.decode("utf8")
 
-    def regex(self):
+    def replace_value(self, _value):
         return self.static_val
 
 
@@ -29,18 +29,18 @@ class WrapReplacement(Replacement):
         Replacement.__init__(self)
         self.wrapping_prefix = wrapping_prefix.decode("utf8")
 
-    def regex(self):
-        return u"%s(\\1)" % self.wrapping_prefix
+    def replace_value(self, value):
+        return u"%s(%s)" % (self.wrapping_prefix, value)
 
 
 def replace_english_values(filename, replacement):
     f = open_strings_file(filename, "r+")
-    compiled = re.compile('= "(.*?)";', re.MULTILINE | re.DOTALL)
-    subbed = compiled.sub(u'= "%s";' % replacement.regex(), f.read())
-    f.seek(0)
-    f.write(subbed)
-    f.truncate()
+    localization_entries = []
+    for header_comment, comments, key, value in extract_header_comment_key_value_tuples_from_file(f):
+        localization_entries.append(LocalizationEntry(comments, key, replacement.replace_value(key)))
     f.close()
+
+    write_file_elements_to_strings_file(filename, localization_entries)
 
 
 PRESET_REPLACEMENTS = {"chicken": StaticReplacement("Chicken"),

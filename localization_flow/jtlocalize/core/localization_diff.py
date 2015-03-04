@@ -43,7 +43,7 @@ def localization_diff(localizable_file, translated_file, excluded_strings_file, 
             translation, but are not in the already given translation file.
     """
     old_translated_file_dictionary = generate_localization_key_to_entry_dictionary_from_file(translated_file)
-    if os.path.isfile(excluded_strings_file):
+    if excluded_strings_file is not None and os.path.isfile(excluded_strings_file):
         excluded_file_dictionary = generate_localization_key_to_entry_dictionary_from_file(excluded_strings_file)
     else:
         excluded_file_dictionary = {}

@@ -48,7 +48,7 @@ class LocalizationDiffTest(unittest.TestCase):
 
     def test_simple_flow(self):
 
-        localization_diff(NEW_LOCALIZABLE_FILE_PATH, OLD_TRANSLATED_FILE_PATH, NEW_TRANSLATED_FILE_PATH)
+        localization_diff(NEW_LOCALIZABLE_FILE_PATH, OLD_TRANSLATED_FILE_PATH, None, NEW_TRANSLATED_FILE_PATH)
 
         self.assert_only_new_keys_in_pending_file()
 
