@@ -51,7 +51,6 @@ def merge_translations(localization_bundle_path):
                                             os.path.basename(strings_path))
 
             localization_merge_back(localizable_path, strings_path, translated_path, strings_path)
-            os.remove(translated_path)
 
     logging.info('Finished merging translations for "%s"' % localization_bundle_path)
 
