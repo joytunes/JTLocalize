@@ -62,10 +62,15 @@ def setup_logging(args=None):
     Args:
         args (optional): The arguments returned by the argparse module.
     """
+    logging_level = logging.WARNING
+    if args.verbose:
+        logging_level = logging.INFO
+    config = {"level": logging_level, "format": "jtlocalize:%(message)s"}
+
     if args is not None and args.log_path != "":
-        logging.basicConfig(filename=args.log_path, level=logging.INFO)
-    else:
-        logging.basicConfig(level=logging.INFO)
+        config["filename"] = args.log_path
+
+    logging.basicConfig(**config)
 
 
 def __generate_localization_dictionary_from_file(file_path, localization_entry_attribute_name_for_key):

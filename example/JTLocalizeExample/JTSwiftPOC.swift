@@ -26,12 +26,12 @@ import UIKit
 // These 2 methods should have been in the Pod itself, but until Swift support in CocoaPods goes out of beta, 
 // this is the syntax.
 
-func JTLocalizedString(key: String, comment: String) -> String {
+func JTLocalizedString(key: String, comment: String) -> String { // genstrings will warn about this line, but it's fine
     return JTLocalize.localizedStringForKey(key, comment: comment)
 }
 
 func JTDynamicLocalizedString(key: String) -> String {
-    return JTLocalizedString(key, "")
+    return JTLocalize.localizedStringForKey(key, "")
 }
 
 public class JTSwiftPOC: NSObject {

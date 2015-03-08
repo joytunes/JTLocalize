@@ -25,6 +25,8 @@ class GenerateStringsFileOperation(LocalizationCommandLineOperation):
         return "Create the unified strings file."
 
     def configure_parser(self, parser):
+        super(GenerateStringsFileOperation, self).configure_parser(parser)
+
         parser.add_argument("project_base_directory", help="The directory in which the app code lays")
 
         parser.add_argument("localization_bundle_path", default=LOCALIZATION_BUNDLE_PATH,
@@ -38,8 +40,6 @@ class GenerateStringsFileOperation(LocalizationCommandLineOperation):
 
         parser.add_argument("--include_strings_from_file",
                             help="Option to add additional strings from a file other the ones extracted with genstrings")
-
-        parser.add_argument("--log_path", default="", help="The log file path")
 
     def run(self, parsed_args):
         setup_logging(parsed_args)

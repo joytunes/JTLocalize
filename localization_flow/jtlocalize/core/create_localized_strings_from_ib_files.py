@@ -15,21 +15,19 @@ STORYBOARD_FILE_REGEXP = "*.storyboard"
 
 
 def write_string_pairs_from_ib_file_to_file(ib_files_directory, ib_files_regexp, output_file):
-    logging.info('Start creating localization string pairs from %s files in directory : "%s"..' % (ib_files_regexp, ib_files_directory))
+    logging.info('Creating localization string pairs from %s files', ib_files_regexp)
 
     string_pairs = extract_string_pairs_in_dir(ib_files_directory, ib_files_regexp)
-    output_file = open_strings_file(output_file, "a")
-    write_section_header_to_file(output_file, '%s Files Section' % ib_files_regexp)
+    output_file_desc = open_strings_file(output_file, "a")
+    write_section_header_to_file(output_file_desc, '%s Files Section' % ib_files_regexp)
     for entry_key, entry_comment in string_pairs:
-        output_file.write('\n')
+        output_file_desc.write('\n')
         if entry_key is not None:
-            write_entry_to_file(output_file, entry_comment, entry_key)
+            write_entry_to_file(output_file_desc, entry_comment, entry_key)
         else:
-            write_section_header_to_file(output_file, entry_comment)
+            write_section_header_to_file(output_file_desc, entry_comment)
 
-    output_file.close()
-
-    logging.info('Finished creating localization string pairs, output in : "%s"' % output_file)
+    output_file_desc.close()
 
 
 def extract_string_pairs_in_dir(directory, files_regexp):
@@ -96,7 +94,8 @@ def warn_if_element_not_of_class(element, class_name):
 
     """
     if (not element.hasAttribute('customClass')) or element.attributes['customClass'].value != class_name:
-        logging.warn("Warning: %s is internationalized but isn't of type %s" % (extract_element_internationalized_comment(element), class_name))
+        logging.warn("WARNING: %s is internationalized but isn't of type %s",
+                     extract_element_internationalized_comment(element), class_name)
 
 
 def add_string_pairs_from_attributed_ui_element(results, ui_element, comment_prefix):
@@ -157,7 +156,7 @@ def add_string_pairs_from_label_element(xib_file, results, label):
                 label_entry_key = label.getElementsByTagName('string')[0].firstChild.nodeValue
             except Exception:
                 label_entry_key = 'N/A'
-                logging.warn(xib_file + " : Missing text entry in " + label.toxml('UTF8'))
+                logging.warn("%s: Missing text entry in %s", xib_file, label.toxml('UTF8'))
         results.append((label_entry_key, label_entry_comment))
 
 
@@ -276,7 +275,7 @@ def extract_string_pairs_in_ib_file(file_path):
         return results
 
     except Exception, e:
-        logging.warn("ERROR: Error processing %s (%s: %s)" % (file_path, type(e), str(e)))
+        logging.warn("ERROR: Error processing %s (%s: %s)", file_path, type(e), str(e))
         return []
 
 

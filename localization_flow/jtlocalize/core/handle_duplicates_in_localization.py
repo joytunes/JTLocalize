@@ -27,7 +27,7 @@ def handle_duplications(file_path):
         file_path (str): The path to the strings file.
 
     """
-    logging.info('Start handling duplications for "%s"' % file_path)
+    logging.info('Handling duplications for "%s"', file_path)
     f = open_strings_file(file_path, "r+")
     header_comment_key_value_tuples = extract_header_comment_key_value_tuples_from_file(f)
     file_elements = []
@@ -56,7 +56,7 @@ def handle_duplications(file_path):
     f.close()
 
     logging.info("Omitted %d duplicates (%s)" % (len(duplicates_found), ",".join(duplicates_found)))
-    logging.info('Finished handling duplications for "%s"' % file_path)
+    logging.info('Finished handling duplications for "%s"', file_path)
 
 
 # The main method for simple command line run.

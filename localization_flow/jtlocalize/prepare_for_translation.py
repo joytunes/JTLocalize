@@ -17,10 +17,10 @@ class PrepareForTranslationOperation(LocalizationCommandLineOperation):
         return "Prepare the localization bundle for translation with only the necessary diff."
 
     def configure_parser(self, parser):
+        super(PrepareForTranslationOperation, self).configure_parser(parser)
+        
         parser.add_argument("localization_bundle_path", default=LOCALIZATION_BUNDLE_PATH,
                             help="The path to the localizable bundle.")
-
-        parser.add_argument("--log_path", default="", help="The log file path")
 
     def run(self, parsed_args):
         setup_logging(parsed_args)
@@ -39,7 +39,7 @@ def prepare_for_translation(localization_bundle_path):
 
     """
 
-    logging.info('Start preparing "%s" for translation..' % localization_bundle_path)
+    logging.info("Preparing for translation..")
 
     for strings_file in os.listdir(os.path.join(localization_bundle_path, DEFAULT_LANGUAGE_DIRECTORY_NAME)):
         if not strings_file.endswith(".strings"):
@@ -56,11 +56,9 @@ def prepare_for_translation(localization_bundle_path):
             if not os.path.exists(dest_strings_path):
                 open_strings_file(dest_strings_path, "a").close()
 
-            logging.info("Preparing diff for %s in %s" % (lang_dir, pending_path))
+            logging.info("Preparing diff for %s in %s", lang_dir, pending_path)
             localization_diff(strings_path, dest_strings_path, excluded_path, pending_path)
 
-
-    logging.info('Finished preparing "%s" for translation!' % localization_bundle_path)
 
 
 # The main method for simple command line run.

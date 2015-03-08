@@ -30,18 +30,24 @@ def add_genstrings_comments_to_file(localization_file, genstrings_err):
         localization_file (str): The path to the strings file.
 
     """
-    logging.info('Start adding multiple comments from genstrings warnings: (file:"%s")..' % localization_file)
 
-    logging.info('genstrings output: %s' % repr(genstrings_err))
+    errors_to_log = [line for line in genstrings_err.splitlines() if "used with multiple comments" not in line]
+
+    if len(errors_to_log) > 0:
+        logging.warning("genstrings warnings:\n%s", "\n".join(errors_to_log))
 
     loc_file = open_strings_file(localization_file, "a")
 
-    regex_matches = re.findall(r'Warning: Key "(.*?)" used with multiple comments ("[^"]*" (& "[^"]*")+)', genstrings_err)
+    regex_matches = re.findall(r'Warning: Key "(.*?)" used with multiple comments ("[^"]*" (& "[^"]*")+)',
+                               genstrings_err)
+
+    logging.info("Adding multiple comments from genstrings output")
     for regex_match in regex_matches:
-        logging.info('Found match: %s' % str(regex_match))
         if len(regex_match) == 3:
             key = regex_match[0]
             comments = [comment.strip()[1:-1] for comment in regex_match[1].split("&")]
+
+            logging.info("Found key with %d comments: %s", len(comments), key)
 
             loc_key = LocalizationEntry(comments, key, key)
 
@@ -49,8 +55,6 @@ def add_genstrings_comments_to_file(localization_file, genstrings_err):
             loc_file.write(u"\n")
 
     loc_file.close()
-
-    logging.info('Finished adding multiple comments to file : "%s"..' % localization_file)
 
 
 # The main method for simple command line run.

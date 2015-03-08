@@ -20,10 +20,9 @@ class MergeTranslationsOperation(LocalizationCommandLineOperation):
         return "Merge translated files to the localization bundle."
 
     def configure_parser(self, parser):
+        super(MergeTranslationsOperation, self).configure_parser(parser)
         parser.add_argument("localization_bundle_path", default=LOCALIZATION_BUNDLE_PATH,
                             help="The path to the localizable bundle.")
-
-        parser.add_argument("--log_path", default="", help="The log file path")
 
     def run(self, parsed_args):
         setup_logging(parsed_args)
@@ -40,7 +39,7 @@ def merge_translations(localization_bundle_path):
         localization_bundle_path (str): The path to the localization bundle.
 
     """
-    logging.info('Start merging translations for "%s"..' % localization_bundle_path)
+    logging.info("Merging translations")
     for lang_dir in os.listdir(localization_bundle_path):
         if lang_dir == DEFAULT_LANGUAGE_DIRECTORY_NAME:
             continue
@@ -51,8 +50,6 @@ def merge_translations(localization_bundle_path):
                                             os.path.basename(strings_path))
 
             localization_merge_back(localizable_path, strings_path, translated_path, strings_path)
-
-    logging.info('Finished merging translations for "%s"' % localization_bundle_path)
 
 
 # The main method for simple command line run.

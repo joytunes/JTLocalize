@@ -22,7 +22,6 @@ class LocalizationCommandLineOperation(object):
         """
         pass
 
-    @abstractmethod
     def configure_parser(self, parser):
         """
         Adds the necessary supported arguments to the argument parser.
@@ -30,7 +29,8 @@ class LocalizationCommandLineOperation(object):
         Args:
             parser (argparse.ArgumentParser): The parser to add arguments to.
         """
-        pass
+        parser.add_argument("--log_path", default="", help="The log file path")
+        parser.add_argument("--verbose", help="Increase logging verbosity", action="store_true")
 
     @abstractmethod
     def run(self, parsed_args):
