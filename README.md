@@ -76,7 +76,7 @@ Install with `pip install jtlocalize`, or download the latest release version:
 
 ### The standard localization flow
 
-Usually we will use the `generate`, `prepare_diff` and `merge` sub-operations of the `jtlocalize` command-line tool, int the following manner:
+Usually we will use the `generate`, `prepare_diff` and `merge` sub-operations of the `jtlocalize` command-line tool, in the following manner:
 - Make sure your `JTLocalizable.bundle` is ready with directories for all the languages you need 
 (see appendix for more info)
 - Run `jtlocalize generate /path/to/project /path/to/JTLocalizable.bundle`
