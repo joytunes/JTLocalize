@@ -11,7 +11,7 @@ However, we had several pains that weren't answered out of the box easily:
 
 **JTLocalize** was written to solve these pains:
 - **Unified .strings file**: Collection of multiple localizable strings from multiple types of resources throughout the project. No need for separate strings file per storyboard/xib - Only one file to maintain without duplicate strings.
-- **Continuous translation intergration simplified**: When app changes, you don't need to localize everything again. `jtlocalize` command-line tools will make it easy to just send the diff for translation and merge the translated diff back.
+- **Continuous translation intergration simplified**: When the app changes, you don't need to localize everything again. `jtlocalize` command-line tools will make it easy to just send the diff for translation and merge the translated diff back.
 - **Configurable location of localization bundle**: This allows you to easily decide to use the main bundle as default, and move to another path once you downloaded it from server. As a side effect of this, you can easily use JTLocalize to change all the English versions of your strings from server.
 
 
