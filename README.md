@@ -51,7 +51,7 @@ In this html string value, simply put `JTL("Key", "Comment")` wherever you would
 
 ### Internationalizing strings in code
 
-To internationalize strings in the code, simply use the JTLocalizedString() macro (exactly like you would do without JTLocalize, but with a different macro):
+To internationalize strings in the code, simply use the JTLocalizedString() macro (exactly as you would use NSLocalizedString() normally, but with a different macro):
 ```objective-c
 NSString *localizedString = JTLocalizedString("Some string", "The Strings context for translation")
 ```
