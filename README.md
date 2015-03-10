@@ -76,11 +76,11 @@ Install with `pip install jtlocalize`, or download the latest release version:
 
 ### The standard localization flow
 
-Usually we will use the `generate`, `prepare\_diff` and `merge` sub-operations of the `jtlocalize` command-line tool, int the following manner:
+Usually we will use the `generate`, `prepare_diff` and `merge` sub-operations of the `jtlocalize` command-line tool, int the following manner:
 - Make sure your `JTLocalizable.bundle` is ready with directories for all the languages you need 
 (see appendix for more info)
 - Run `jtlocalize generate /path/to/project /path/to/JTLocalizable.bundle`
-- Run `jtlocalize prepare\_diff /path/to/JTLocalizable.bundle`
+- Run `jtlocalize prepare_diff /path/to/JTLocalizable.bundle`
 - Translate the `Localizable.strings.pending` files in the different languages directories  
 (convert encoding if needed, see appendix).
 - Save the translated file in the proper language directory under `Localizable.strings.translated`  
@@ -88,20 +88,21 @@ Usually we will use the `generate`, `prepare\_diff` and `merge` sub-operations o
 - Run `jtlocalize merge /path/to/JTLocalizable.bundle`
 
 
-#### mock\_translate
+#### mock_translate
 
 Another useful sub-operation that can help you make sure you didn't forget to internationalize any strings in your app.
 
 Example Usage:
 ```
-jtlocalize mock\_translate --preset chicken /path/to/Localizable.strings
+jtlocalize mock_translate --preset chicken /path/to/Localizable.strings
 ```
 Will localize the given file so that all translations are "Chicken".
 
-#### word\_count
+#### word_count
 
 Often we need to send a pending strings file to a 3rd party translation service, which charge us by a word count.
-To get an accurate word count of the words that actually needs to be translated, you can run `jtlocalize word\_count /path/to/Localizable.strings.pending`
+To get an accurate word count of the words that actually needs to be translated, you can run: 
+`jtlocalize word_count /path/to/Localizable.strings.pending`
 
 #### More operations and flags
 
@@ -124,7 +125,7 @@ JTLocalizable.bundle
 |&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;+-- Localizable.strings  
 
 The `jtlocalize` command_line tools assume en.lproj is the default language directory (will be configurable in future).
-Whenever you need to add a new language, just make sure you add an empty LANGUAGE_CODE.lproj directory to the bundle before running `prepare\_diff`.
+Whenever you need to add a new language, just make sure you add an empty LANGUAGE_CODE.lproj directory to the bundle before running `prepare_diff`.
 
 ### Convert Localizable.strings from/to proper encoding
 
