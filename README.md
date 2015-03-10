@@ -38,6 +38,8 @@ These classes use the proper localized string when setting the text.
 - In interface Builder's Document Outline, set the element's "userLabel" (Document->Label) to a string with the `JTL_` prefix.
 This prefix is respected by our localization command-line tool for string extraction.
 The rest of the string in the userLabel (after the `JTL_` prefix) will be used as the comment of the localization entry in the Localizable.strings files.
+![alt tag](https://raw.github.com/joytunes/JTLocalize/JTLocalize_storyboard.png)
+
 
 #### Internationalizing DTCoreText attributed labels
 To internationalize `DTCoreText` elements (`DTAttributedLabel`) see the illustration in the example project (DTAttributedLabel+JTLocalizeExtensions, JTAttributedLabelWithLink).
