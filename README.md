@@ -1,4 +1,4 @@
-![JTLocalize](https://github.com/joytunes/JTLocalize/blob/master/JTLocalize/logo.png)
+![JTLocalize](https://github.com/joytunes/JTLocalize/blob/master/logo.png)
 ==========
 
 ### Abstract
