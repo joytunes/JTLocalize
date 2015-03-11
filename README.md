@@ -112,6 +112,21 @@ To get an accurate word count of the words that actually needs to be translated,
 `jtlocalize` supports many flags and features for configuring your localization flow.
 You can run `jtlocalize --help` or `jtlocalize OPERATION --help` to gen information about all of them.
 
+## Updating localization bundle in runtime
+
+As mentioned above, we wanted to enable easy relocation of the localization bundle out of the main app bundle, to support the use case of updating the bundle from a remote server (and as an awesome side effect - **allowing us to change English strings without releasing a new version!**).
+
+By default, app will search for localized versions `Localizable.strings` in the `JTLocalizable.bundle` (see appendix) that is in the app bundle.
+
+To change this behavior, you can change the path in the following manner:
+```objective-c
+[JTLocalize setLocalizationBundleToPath:NEW_PATH stringsTableName:NEW_TABLE_NAME];
+```
+You can pass nil as `NEW_PATH` or `NEW_TABLE_NAME` to use the defaults (app bundle, and `"Localizable"`)
+
+At JoyTunes, we use the bundle version of `JTLocalizable.bundle` by default. When app loads - we download an updated version from our servers to the Documents directory, and call `setLocalizationBundleToPath` with the path we downloaded it to.
+
+Notice that `NSBundle`s are automatically cached, so making this call without changing the path won't cause the bundle's content to refresh even if it was changed.
 
 ## Appendices
 
