@@ -63,7 +63,7 @@ def setup_logging(args=None):
         args (optional): The arguments returned by the argparse module.
     """
     logging_level = logging.WARNING
-    if args.verbose:
+    if args is not None and args.verbose:
         logging_level = logging.INFO
     config = {"level": logging_level, "format": "jtlocalize:%(message)s"}
 
