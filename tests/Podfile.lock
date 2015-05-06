@@ -1,0 +1,14 @@
+PODS:
+  - JTLocalize (0.1.0)
+
+DEPENDENCIES:
+  - JTLocalize (from `../JTLocalize.podspec`)
+
+EXTERNAL SOURCES:
+  JTLocalize:
+    :path: ../JTLocalize.podspec
+
+SPEC CHECKSUMS:
+  JTLocalize: 943a2e88ec877fe7c41d620d743fde2bdbe80edc
+
+COCOAPODS: 0.35.0

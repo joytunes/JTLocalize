@@ -1,0 +1,5 @@
+platform :ios, '6.0'
+workspace 'JTLocalizeTests.xcworkspace'
+xcodeproj 'JTLocalizeTests.xcodeproj'
+
+pod 'JTLocalize', :path => '../JTLocalize.podspec'
