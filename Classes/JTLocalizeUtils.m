@@ -101,23 +101,20 @@ NSString *const kJTDefaultStringsTableName = @"Localizable";
 
 - (NSString *)stringByLocalizingJTLDirectives {
     NSString *string = self;
-    //Intended string : JTL\(['"](.+?)['"],\s*['"](.+?)['"]\)
-    NSString *regexString = @"JTL\\(['\"](.+?)['\"],\\s*['\"](.+?)['\"]\\)";
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexString
-                                                                           options:NSRegularExpressionCaseInsensitive
-                                                                             error:nil];
     
-    NSTextCheckingResult *match = [regex firstMatchInString:string
-                                                    options:0
-                                                      range:NSMakeRange(0, string.length)];
-    while (match != nil) {
-        NSRange localizedKeyRange = [match rangeAtIndex:1];
-        NSString *localizedKey = [string substringWithRange:localizedKeyRange];
-        NSString *localizedString = localizedKey.localizedString;
-        string = [string stringByReplacingCharactersInRange:match.range withString:localizedString];
-        match = [regex firstMatchInString:string
-                                  options:0
-                                    range:NSMakeRange(0, string.length)];
+    BOOL done = NO;
+    while (!done) {
+        NSTextCheckingResult *match = [[[self class] localizationRegex]
+                                       firstMatchInString:string options:0 range:NSMakeRange(0, string.length)];
+        
+        if (match != nil) {
+            NSRange localizedKeyRange = [match rangeAtIndex:1];
+            NSString *localizedKey = [string substringWithRange:localizedKeyRange];
+            NSString *localizedString = localizedKey.localizedString;
+            string = [string stringByReplacingCharactersInRange:match.range withString:localizedString];
+        } else {
+            done = YES;
+        }
     }
     
     return string;
@@ -125,6 +122,20 @@ NSString *const kJTDefaultStringsTableName = @"Localizable";
 
 - (NSString *)localizedString {
     return [JTLocalize localizedStringForKey:self comment:@""];
+}
+
++ (NSRegularExpression *)localizationRegex {
+    static NSRegularExpression *regex = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        //Intended string : JTL\(['"](.+?)['"],\s*['"](.*?)['"]\)
+        NSString *regexString = @"JTL\\(['\"](.+?)['\"],\\s*['\"](.*?)['\"]\\)";
+        regex = [NSRegularExpression regularExpressionWithPattern:regexString
+                                                          options:NSRegularExpressionCaseInsensitive |
+                                                                  NSRegularExpressionDotMatchesLineSeparators
+                                                            error:nil];
+    });
+    return regex;
 }
 
 @end

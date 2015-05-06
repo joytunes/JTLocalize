@@ -23,7 +23,7 @@
     
     self.testBundlePath = [NSTemporaryDirectory() stringByAppendingPathComponent:
                            [NSString stringWithFormat:@"JTLocalizeTestBundle%.0f.bundle",
-                                                      [NSDate date].timeIntervalSince1970]];
+                                                      [NSDate date].timeIntervalSince1970 * 1000.0]];
     NSString *currLangDir = [self.testBundlePath stringByAppendingPathComponent:@"en.lproj"];
     NSString *currLangLocalizationFileName = [[currLangDir stringByAppendingPathComponent:kJTDefaultStringsTableName]
                                               stringByAppendingPathExtension:@"strings"];
@@ -45,7 +45,7 @@
 
 - (void)localizeString:(NSString *)key to:(NSString *)value {
     NSString *line = [NSString stringWithFormat:@"\"%@\" = \"%@\";\n", key, value];
-    [self.currLangLocalizationFileHandle writeData:[line dataUsingEncoding:NSUTF16StringEncoding]];
+    [self.currLangLocalizationFileHandle writeData:[line dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
 - (void)finishLocalizing {
@@ -64,6 +64,21 @@
     [self finishLocalizing];
     
     XCTAssertEqualObjects(@"JTL('Bla', 'BlaBla')".stringByLocalizingJTLDirectives, @"בלה");
+}
+
+- (void)testLocalizeMultipleJTLExpressions {
+    [self localizeString:@"foo" to:@"shmoo"];
+    [self localizeString:@"bar" to:@"shmar"];
+    [self finishLocalizing];
+
+    XCTAssertEqualObjects(@"JTL('foo', '')&JTL('bar', '')".stringByLocalizingJTLDirectives, @"shmoo&shmar");
+}
+
+- (void)testLocalizeMultilineJTLExpression {
+    [self localizeString:@"hey\nhow are you?" to:@"היי\nמה נשמע?"];
+    [self finishLocalizing];
+
+    XCTAssertEqualObjects(@"JTL('hey\nhow are you?', '')".stringByLocalizingJTLDirectives, @"היי\nמה נשמע?");
 }
 
 @end
