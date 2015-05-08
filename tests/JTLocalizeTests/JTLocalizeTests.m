@@ -55,8 +55,24 @@
     [JTLocalize setLocalizationBundleToPath:self.testBundlePath stringsTableName:nil];
 }
 
-- (void)testLocalizeSimpleJTLStringNoTranslation {
-    XCTAssertEqualObjects(@"JTL('Bla', 'BlaBla')".stringByLocalizingJTLDirectives, @"Bla");
+- (void)testStringWithoutJTLDirectiveIsNotModified {
+    NSString *aString = @"aosidjhawenaljdnaslkdjhas9awhereahrp we4r823 08r";
+    NSString *modifiedString = [aString stringByLocalizingJTLDirectives];
+    XCTAssertEqualObjects(aString, modifiedString);
+}
+
+- (void)testStringWithJTLDirectiveIsProcessed {
+    NSString *srcString = @"1 2 JTL(\"3\",\"4\") 5 6 JTL(\"7\",\"8\") 9 10";
+    NSString *expectedString = @"1 2 3 5 6 7 9 10";
+    NSString *modifiedString = [srcString stringByLocalizingJTLDirectives];
+    XCTAssertEqualObjects(modifiedString, expectedString);
+}
+
+- (void)testStringWithSingleQuoteJTLDirectiveIsProcessed {
+    NSString *srcString = @"1 2 JTL('3','4') 5 6 JTL('7','8') 9 10";
+    NSString *expectedString = @"1 2 3 5 6 7 9 10";
+    NSString *modifiedString = [srcString stringByLocalizingJTLDirectives];
+    XCTAssertEqualObjects(modifiedString, expectedString);
 }
 
 - (void)testLocalizeSimpleJTLStringWhenThereIsTranslation {
