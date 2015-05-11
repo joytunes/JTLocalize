@@ -35,6 +35,11 @@ class GenerateStringsFileOperation(LocalizationCommandLineOperation):
         parser.add_argument("--tmp_directory", default=DEFAULT_TMP_DIRECTORY,
                             help="The default temporary directory to write files to in the process")
 
+        parser.add_argument("--special_ui_components_prefix",
+                            help="By default script will warn about ui components using JTL comments that aren't using "
+                                 "the JT prefix (e.g. JTLabel). if you pass a value like XYZ here, it won't warn about "
+                                 "components like XYZButton, XYZLabel, etc.")
+
         parser.add_argument("--exclude_dirs", nargs='+',
                             help="Directories to exclude when looking for source files to extract strings from")
 
@@ -48,7 +53,8 @@ class GenerateStringsFileOperation(LocalizationCommandLineOperation):
                          parsed_args.localization_bundle_path,
                          parsed_args.tmp_directory,
                          parsed_args.exclude_dirs,
-                         parsed_args.include_strings_from_file)
+                         parsed_args.include_strings_from_file,
+                         parsed_args.special_ui_components_prefix)
 
 
 def is_source_file(filename, exclude_dirs):
@@ -67,7 +73,8 @@ def extract_source_files(base_dir, exclude_dirs):
     return result
 
 
-def generate_strings(project_base_dir, localization_bundle_path, tmp_directory, exclude_dirs, include_strings_file):
+def generate_strings(project_base_dir, localization_bundle_path, tmp_directory, exclude_dirs, include_strings_file,
+                     special_ui_components_prefix):
     """
     Calls the builtin 'genstrings' command with JTLocalizedString as the string to search for,
     and adds strings extracted from UI elements internationalized with 'JTL' + removes duplications.
@@ -106,7 +113,7 @@ def generate_strings(project_base_dir, localization_bundle_path, tmp_directory, 
         logging.fatal("genstrings returned %d, aborting run!", genstrings_rc)
         sys.exit(genstrings_rc)
 
-    create_localized_strings_from_ib_files(project_base_dir, tmp_localization_file)
+    create_localized_strings_from_ib_files(project_base_dir, tmp_localization_file, special_ui_components_prefix)
 
     if include_strings_file:
         target = open_strings_file(tmp_localization_file, "a")
