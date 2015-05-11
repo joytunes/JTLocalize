@@ -2,6 +2,7 @@ language: objective-c
 podfile: tests/Podfile
 xcode_workspace: tests/JTLocalizeTests.xcworkspace
 xcode_scheme: JTLocalizeTests
+xcode_sdk: iphonesimulator
 notifications:
   email:
     on_success: change
