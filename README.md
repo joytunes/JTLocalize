@@ -1,5 +1,6 @@
 ![JTLocalize](https://github.com/joytunes/JTLocalize/blob/master/logo.png)
 ==========
+![Travis Build](https://travis-ci.org/joytunes/JTLocalize.svg)
 
 ### Abstract
 
