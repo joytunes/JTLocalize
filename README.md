@@ -1,6 +1,8 @@
 ![JTLocalize](https://github.com/joytunes/JTLocalize/blob/master/logo.png)
 ==========
-![Travis Build](https://travis-ci.org/joytunes/JTLocalize.svg)
+[![Travis Build](https://travis-ci.org/joytunes/JTLocalize.svg)](https://travis-ci.org/joytunes/JTLocalize)
+[![PyPi Version](http://img.shields.io/pypi/v/jtlocalize.svg?style=flat)](https://pypi.python.org/pypi/jtlocalize)
+
 
 ### Abstract
 
