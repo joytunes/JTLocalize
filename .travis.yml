@@ -1,0 +1,10 @@
+language: objective-c
+podfile: tests/Podfile
+xcode_workspace: tests/JTLocalizeTests.xcworkspace
+xcode_scheme: JTLocalizeTests
+notifications:
+  email:
+    on_success: change
+    on_failure: always
+  slack:
+    secure: KiNy3k2CRm9ZMALVI9vuRGSI0lTrhkcP3vXV1OC6YMR5zAbKl6cbalFjil8paR+sT4J2JcEAo+4eyQDW7KJoxTHTnqzabmJlJ7lf5PBrPHTimmq7T6qfE39mDIKLn7Yz0t6oTdi5K6O/zEqJ8m79qf+sjpqjIrtFgI0z/7COyjw=
