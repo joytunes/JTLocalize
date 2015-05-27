@@ -42,7 +42,7 @@
 
 - (void)setupTextForState:(UIControlState)state {
     NSString *title = [self titleForState:state];
-    if (title.length > 0) {
+    if ([self shouldLocalizeTitle:title forState:state]) {
         [self setTitle:title.localizedString forState:state];
     }
 
@@ -50,6 +50,11 @@
     if (attributedTitle.length > 0) {
         [self setAttributedTitle:attributedTitle.localizedAttributedStringByFragments forState:state];
     }
+}
+
+- (BOOL)shouldLocalizeTitle:(NSString *)title forState:(UIControlState)state {
+    return title.length > 0 &&
+            (state == UIControlStateNormal || ![title isEqualToString:[self titleForState:UIControlStateNormal]]);
 }
 
 @end
