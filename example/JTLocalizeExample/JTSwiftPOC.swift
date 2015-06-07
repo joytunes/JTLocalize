@@ -31,7 +31,7 @@ func JTLocalizedString(key: String, comment: String) -> String { // genstrings w
 }
 
 func JTDynamicLocalizedString(key: String) -> String {
-    return JTLocalize.localizedStringForKey(key, "")
+    return JTLocalize.localizedStringForKey(key, comment: "")
 }
 
 public class JTSwiftPOC: NSObject {

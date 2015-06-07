@@ -17,10 +17,9 @@
 		A06033D3198005660057A8AC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A06033D2198005660057A8AC /* Images.xcassets */; };
 		A06033FF198119020057A8AC /* DTAttributedLabel+JTLocalizeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A06033FE198119020057A8AC /* DTAttributedLabel+JTLocalizeExtensions.m */; };
 		A06034021981374E0057A8AC /* JTAttributedLabelWithLink.m in Sources */ = {isa = PBXBuildFile; fileRef = A06034011981374E0057A8AC /* JTAttributedLabelWithLink.m */; };
-		A060340919815A740057A8AC /* UIView+JTLocalizeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A060340819815A740057A8AC /* UIView+JTLocalizeExtensions.m */; };
 		FC142A7619C9C4F900CC4111 /* JTLocalizable.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FC142A7519C9C4F900CC4111 /* JTLocalizable.bundle */; };
 		FC70600A1AA5DC5000E55088 /* JTSwiftPOC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7060091AA5DC5000E55088 /* JTSwiftPOC.swift */; };
-		FC70600F1AA895CF00E55088 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC7060111AA895D000E55088 /* Main.storyboard */; };
+		FC71E0031B24871C00F044B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC71E0021B24871C00F044B5 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,14 +41,11 @@
 		A06033FE198119020057A8AC /* DTAttributedLabel+JTLocalizeExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DTAttributedLabel+JTLocalizeExtensions.m"; sourceTree = "<group>"; };
 		A06034001981374E0057A8AC /* JTAttributedLabelWithLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTAttributedLabelWithLink.h; sourceTree = "<group>"; };
 		A06034011981374E0057A8AC /* JTAttributedLabelWithLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTAttributedLabelWithLink.m; sourceTree = "<group>"; };
-		A060340719815A740057A8AC /* UIView+JTLocalizeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JTLocalizeExtensions.h"; sourceTree = "<group>"; };
-		A060340819815A740057A8AC /* UIView+JTLocalizeExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JTLocalizeExtensions.m"; sourceTree = "<group>"; };
 		BC23987EF043E41D4C4C0D9B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FC142A7519C9C4F900CC4111 /* JTLocalizable.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JTLocalizable.bundle; sourceTree = "<group>"; };
 		FC7060081AA5DC4F00E55088 /* JTLocalizeExample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JTLocalizeExample-Bridging-Header.h"; sourceTree = "<group>"; };
 		FC7060091AA5DC5000E55088 /* JTSwiftPOC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTSwiftPOC.swift; sourceTree = "<group>"; };
-		FC7060101AA895D000E55088 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		FC7060131AA895DE00E55088 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Main.strings; sourceTree = "<group>"; };
+		FC71E0021B24871C00F044B5 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +97,7 @@
 		A06033C0198005660057A8AC /* JTLocalizeExample */ = {
 			isa = PBXGroup;
 			children = (
-				FC7060111AA895D000E55088 /* Main.storyboard */,
+				FC71E0021B24871C00F044B5 /* Main.storyboard */,
 				A06033C9198005660057A8AC /* JTAppDelegate.h */,
 				A06033CA198005660057A8AC /* JTAppDelegate.m */,
 				A06033CF198005660057A8AC /* JTViewController.h */,
@@ -110,8 +106,6 @@
 				A06033FE198119020057A8AC /* DTAttributedLabel+JTLocalizeExtensions.m */,
 				A06034001981374E0057A8AC /* JTAttributedLabelWithLink.h */,
 				A06034011981374E0057A8AC /* JTAttributedLabelWithLink.m */,
-				A060340719815A740057A8AC /* UIView+JTLocalizeExtensions.h */,
-				A060340819815A740057A8AC /* UIView+JTLocalizeExtensions.m */,
 				FC7060091AA5DC5000E55088 /* JTSwiftPOC.swift */,
 				FC7060081AA5DC4F00E55088 /* JTLocalizeExample-Bridging-Header.h */,
 				A06033D2198005660057A8AC /* Images.xcassets */,
@@ -194,8 +188,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC71E0031B24871C00F044B5 /* Main.storyboard in Resources */,
 				FC142A7619C9C4F900CC4111 /* JTLocalizable.bundle in Resources */,
-				FC70600F1AA895CF00E55088 /* Main.storyboard in Resources */,
 				A06033D3198005660057A8AC /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -241,7 +235,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A06033CB198005660057A8AC /* JTAppDelegate.m in Sources */,
-				A060340919815A740057A8AC /* UIView+JTLocalizeExtensions.m in Sources */,
 				A06033D1198005660057A8AC /* JTViewController.m in Sources */,
 				A06033FF198119020057A8AC /* DTAttributedLabel+JTLocalizeExtensions.m in Sources */,
 				FC70600A1AA5DC5000E55088 /* JTSwiftPOC.swift in Sources */,
@@ -251,18 +244,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		FC7060111AA895D000E55088 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FC7060101AA895D000E55088 /* Base */,
-				FC7060131AA895DE00E55088 /* he */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		A06033E7198005670057A8AC /* Debug */ = {

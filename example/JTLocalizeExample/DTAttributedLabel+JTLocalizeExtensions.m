@@ -22,7 +22,6 @@
 
 #import <JTLocalize/JTLocalize.h>
 #import "DTAttributedLabel+JTLocalizeExtensions.h"
-#import "UIView+JTLocalizeExtensions.h"
 
 @implementation DTAttributedLabel (JTLocalizeExtensions)
 
@@ -37,8 +36,8 @@
                               initWithHTMLData:[htmlString dataUsingEncoding:NSUTF8StringEncoding]
                               documentAttributes:nil];
     
-    CGFloat requiredHeight = [self suggestedFrameSizeToFitEntireStringConstraintedToWidth:self.width].height;
-    CGFloat insetSize = (self.height - requiredHeight) / 2;
+    CGFloat requiredHeight = [self suggestedFrameSizeToFitEntireStringConstraintedToWidth:self.frame.size.width].height;
+    CGFloat insetSize = (self.frame.size.height - requiredHeight) / 2;
     self.edgeInsets = UIEdgeInsetsMake(insetSize, 0, insetSize, 0);
 }
 

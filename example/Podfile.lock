@@ -10,7 +10,7 @@ PODS:
     - DTFoundation/Core
   - DTFoundation/UIKit (1.7.5):
     - DTFoundation/Core
-  - JTLocalize (0.0.2)
+  - JTLocalize (0.1.1)
 
 DEPENDENCIES:
   - DTCoreText
@@ -21,8 +21,8 @@ EXTERNAL SOURCES:
     :path: ../JTLocalize.podspec
 
 SPEC CHECKSUMS:
-  DTCoreText: d446600133d01214758ff45004b1b8109e5b8c9f
-  DTFoundation: bea4e07459f0f88a5aa3b8258fab1576bbe2e58c
-  JTLocalize: 8f65f68c71f73b5b00fc24101eded3f1558e46d5
+  DTCoreText: 13ce06e63204a3b47c9db974e3d9be982bb0b1ed
+  DTFoundation: 1d28080c20c3da041706545363f8238ab53a6204
+  JTLocalize: 6a484b9a4041f7e4df08ef29691af6d1c958ae21
 
 COCOAPODS: 0.35.0
