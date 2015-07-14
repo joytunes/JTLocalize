@@ -21,6 +21,7 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 extern NSString *const kJTDefaultLocalizationBundleName;
 extern NSString *const kJTDefaultStringsTableName;
