@@ -26,7 +26,7 @@ import UIKit
 // These 2 methods should have been in the Pod itself, but until Swift support in CocoaPods goes out of beta, 
 // this is the syntax.
 
-func JTLocalizedString(key: String, comment: String) -> String { // genstrings will warn about this line, but it's fine
+func JTLocalizedString(key: String, _ comment: String) -> String { // genstrings will warn about this line, but it's fine
     return JTLocalize.localizedStringForKey(key, comment: comment)
 }
 
@@ -40,6 +40,6 @@ public class JTSwiftPOC: NSObject {
         let localizedString2 = NSString.localizedStringWithFormat(
             JTLocalizedString("Format: %@", "A swift test with format"), localizedString1)
         
-        println(localizedString2)
+        print(localizedString2)
     }
 }
