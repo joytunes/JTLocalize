@@ -20,6 +20,7 @@
 		FC142A7619C9C4F900CC4111 /* JTLocalizable.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FC142A7519C9C4F900CC4111 /* JTLocalizable.bundle */; };
 		FC70600A1AA5DC5000E55088 /* JTSwiftPOC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7060091AA5DC5000E55088 /* JTSwiftPOC.swift */; };
 		FC71E0031B24871C00F044B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC71E0021B24871C00F044B5 /* Main.storyboard */; };
+		FCF433431BD7AD2600D390F4 /* Launch.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCF433421BD7AD2600D390F4 /* Launch.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		FC7060081AA5DC4F00E55088 /* JTLocalizeExample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JTLocalizeExample-Bridging-Header.h"; sourceTree = "<group>"; };
 		FC7060091AA5DC5000E55088 /* JTSwiftPOC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTSwiftPOC.swift; sourceTree = "<group>"; };
 		FC71E0021B24871C00F044B5 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		FCF433421BD7AD2600D390F4 /* Launch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Launch.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 		A06033AE198005660057A8AC = {
 			isa = PBXGroup;
 			children = (
+				FCF433421BD7AD2600D390F4 /* Launch.xib */,
 				FC142A7519C9C4F900CC4111 /* JTLocalizable.bundle */,
 				A06033C0198005660057A8AC /* JTLocalizeExample */,
 				A06033B9198005660057A8AC /* Frameworks */,
@@ -191,6 +194,7 @@
 			files = (
 				FC71E0031B24871C00F044B5 /* Main.storyboard in Resources */,
 				FC142A7619C9C4F900CC4111 /* JTLocalizable.bundle in Resources */,
+				FCF433431BD7AD2600D390F4 /* Launch.xib in Resources */,
 				A06033D3198005660057A8AC /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -323,11 +327,11 @@
 			baseConfigurationReference = BC23987EF043E41D4C4C0D9B /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JTLocalizeExample/JTLocalizeExample-Prefix.pch";
 				INFOPLIST_FILE = "JTLocalizeExample/JTLocalizeExample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.joytunes.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -342,11 +346,11 @@
 			baseConfigurationReference = 704788B19F54AD7921602F93 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JTLocalizeExample/JTLocalizeExample-Prefix.pch";
 				INFOPLIST_FILE = "JTLocalizeExample/JTLocalizeExample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.joytunes.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
