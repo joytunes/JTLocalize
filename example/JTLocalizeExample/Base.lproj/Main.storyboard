@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8121.17" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -20,12 +20,14 @@
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JHi-yO-VLq" userLabel="JTL_Label describing something" customClass="JTLabel">
                                 <rect key="frame" x="73" y="20" width="174" height="21"/>
+                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qkX-jE-XK4" userLabel="JTL_Button That does something" customClass="JTButton">
                                 <rect key="frame" x="84" y="49" width="153" height="42"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="dBX-YJ-Uy6"/>
                                 </constraints>
@@ -38,6 +40,7 @@
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXv-Lk-Wtk" userLabel="JTL_Label with attributed text describing something" customClass="JTLabel">
                                 <rect key="frame" x="73" y="99" width="174" height="67"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="67" id="shY-9E-WCY"/>
                                 </constraints>
@@ -61,6 +64,7 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UXW-oB-bg8" userLabel="Attributed Label" customClass="DTAttributedLabel">
                                 <rect key="frame" x="42" y="212" width="236" height="92"/>
+                                <animations/>
                                 <color key="backgroundColor" red="1" green="0.95686274510000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="htmlString">
@@ -70,6 +74,7 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yhX-vj-qnP" userLabel="JTL_Button with attributed text that does something" customClass="JTButton">
                                 <rect key="frame" x="64" y="174" width="192" height="30"/>
+                                <animations/>
                                 <color key="backgroundColor" red="0.58823529409999997" green="0.84313725490000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
@@ -129,12 +134,14 @@
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Text field text" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pAZ-hq-AOh" userLabel="JTL_Text Field" customClass="JTTextField">
                                 <rect key="frame" x="47" y="397" width="226" height="30"/>
+                                <animations/>
                                 <color key="textColor" red="0.57472067039106145" green="0.21065541150120445" blue="0.35077583288460185" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" allowsEditingTextAttributes="YES" borderStyle="roundedRect" placeholder="dont attribute placeholder" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oPA-5y-qU7" userLabel="JTL_Attributed Text Field" customClass="JTTextField">
                                 <rect key="frame" x="47" y="429" width="226" height="30"/>
+                                <animations/>
                                 <attributedString key="attributedText">
                                     <fragment content="Attributed">
                                         <attributes>
@@ -155,6 +162,7 @@
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Text View" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Zc8-9V-FXX" userLabel="JTL_Text View" customClass="JTTextView">
                                 <rect key="frame" x="35" y="467" width="250" height="35"/>
+                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="fbf-dX-Qe4"/>
@@ -164,6 +172,7 @@
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="geT-xa-EmN" userLabel="JTL_Attributed Text View" customClass="JTTextView">
                                 <rect key="frame" x="60" y="513" width="200" height="35"/>
+                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="auh-Z3-eCT"/>
@@ -188,6 +197,7 @@
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2XG-Pe-t3P" userLabel="Attributed Label With Link" customClass="JTAttributedLabelWithLink">
                                 <rect key="frame" x="30" y="312" width="261" height="72"/>
+                                <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="htmlString">
@@ -196,6 +206,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="2XG-Pe-t3P" firstAttribute="top" secondItem="UXW-oB-bg8" secondAttribute="bottom" constant="8" symbolic="YES" id="0U8-mg-lvn"/>
