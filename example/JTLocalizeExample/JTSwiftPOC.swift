@@ -37,7 +37,7 @@ func JTDynamicLocalizedString(key: String) -> String {
 public class JTSwiftPOC: NSObject {
     public func foo() {
         let localizedString1 = JTLocalizedString("Swift test 1", "A simple swift test")
-        let localizedString2 = NSString.localizedStringWithFormat(
+        let localizedString2 = String(format:
             JTLocalizedString("Format: %@", "A swift test with format"), localizedString1)
         
         print(localizedString2)
