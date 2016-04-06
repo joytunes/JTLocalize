@@ -133,6 +133,9 @@ def generate_strings(project_base_dir, localization_bundle_path, tmp_directory, 
 
 
 def remove_empty_comments_from_file(file_path):
+    if not os.path.exists(file_path):
+        return
+
     orig_file = open_strings_file(file_path, "r")
     filtered_path = file_path + ".filtered"
     filtered_file = open_strings_file(filtered_path, "w")
