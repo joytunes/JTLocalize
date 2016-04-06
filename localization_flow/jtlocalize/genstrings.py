@@ -98,7 +98,8 @@ def generate_strings(project_base_dir, localization_bundle_path, tmp_directory, 
 
     source_files = extract_source_files(project_base_dir, exclude_dirs)
 
-    genstrings_cmd = 'genstrings -s JTLocalizedString -o %s %s' % (tmp_localization_directory, " ".join(source_files))
+    genstrings_cmd = 'genstrings -s JTLocalizedString -o %s %s' % (tmp_localization_directory, " ".join(
+            ['"%s"' % (source_file,) for source_file in source_files]))
 
     genstrings_process = subprocess.Popen(genstrings_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                           stdin=subprocess.PIPE, shell=True)
