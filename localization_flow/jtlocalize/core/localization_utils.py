@@ -16,7 +16,6 @@ HEADER_COMMENT_KEY_VALUE_TUPLES_REGEX = '((/\*\*\* *[^\n]*? *\*\*\*/\n\n)*)(/\* 
 
 
 def rewrite_localization_file_with_entry_modifications(localizable_file, output_file, modification_func):
-
     file_descriptor = open_strings_file(localizable_file, "r")
 
     output_file_elements = []
@@ -92,7 +91,8 @@ def __generate_localization_dictionary_from_file(file_path, localization_entry_a
 
     for header_comment, comments, key, value in header_comment_key_value_tuples:
         localization_entry = LocalizationEntry(comments, key, value)
-        localization_dictionary[localization_entry.__getattribute__(localization_entry_attribute_name_for_key)] = localization_entry
+        localization_dictionary[
+            localization_entry.__getattribute__(localization_entry_attribute_name_for_key)] = localization_entry
     f.close()
     return localization_dictionary
 
@@ -235,7 +235,7 @@ def write_dict_to_new_file(file_name, localization_key_to_comment):
 
     Args:
         localization_key_to_comment (dict): A mapping between localization keys and comments.
-        file_path (str): The path of the file to append to.
+        file_name (str): The path of the file to append to.
 
     """
     output_file_descriptor = open_strings_file(file_name, "w")
@@ -243,3 +243,39 @@ def write_dict_to_new_file(file_name, localization_key_to_comment):
         write_entry_to_file(output_file_descriptor, entry_comment, entry_key)
         output_file_descriptor.write(u'\n')
     output_file_descriptor.close()
+
+
+def find_files(base_dir, extensions, exclude_dirs=list()):
+    """ Find all files matching the given extensions.
+
+    Args:
+        base_dir (str): Path of base directory to search in.
+        extensions (list): A list of file extensions to search for.
+        exclude_dirs (list): A list of directories to exclude from search.
+
+    Returns:
+        list of paths that match the search
+    """
+    result = []
+    for root, dir_names, file_names in os.walk(base_dir):
+        for filename in file_names:
+            candidate = os.path.join(root, filename)
+            if should_include_file_in_search(candidate, extensions, exclude_dirs):
+                result.append(candidate)
+    return result
+
+
+def should_include_file_in_search(file_name, extensions, exclude_dirs):
+    """ Whether or not a filename matches a search criteria according to arguments.
+
+    Args:
+        file_name (str): A file path to check.
+        extensions (list): A list of file extensions file should match.
+        exclude_dirs (list): A list of directories to exclude from search.
+
+    Returns:
+        A boolean of whether or not file matches search criteria.
+
+    """
+    return (exclude_dirs is None or not any(file_name.startswith(d) for d in exclude_dirs)) and \
+        any(file_name.endswith(e) for e in extensions)

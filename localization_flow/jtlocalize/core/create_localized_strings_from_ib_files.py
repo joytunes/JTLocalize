@@ -1,28 +1,24 @@
 #!/usr/bin/env python
 
+import argparse
 from xml.dom import minidom
 from xml.sax.saxutils import unescape
-import fnmatch
+
 from localization_utils import *
-import argparse
 
 # The prefix to identify a comment for an internationalized comment.
 JT_INTERNATIONALIZED_COMMENT_PREFIX = 'jtl_'
 
-XIB_FILE_REGEXP = '*.xib'
-
-STORYBOARD_FILE_REGEXP = '*.storyboard'
-
 DEFAULT_UI_COMPONENTS_PREFIX = 'JT'
 
 
-def write_string_pairs_from_ib_file_to_file(ib_files_directory, ib_files_regexp, output_file,
+def write_string_pairs_from_ib_file_to_file(ib_files_directory, exclude_dirs, output_file,
                                             special_ui_components_prefix):
-    logging.info('Creating localization string pairs from %s files', ib_files_regexp)
+    logging.info('Creating localization string pairs from IB files')
 
-    string_pairs = extract_string_pairs_in_dir(ib_files_directory, ib_files_regexp, special_ui_components_prefix)
+    string_pairs = extract_string_pairs_in_dir(ib_files_directory, exclude_dirs, special_ui_components_prefix)
     output_file_desc = open_strings_file(output_file, "a")
-    write_section_header_to_file(output_file_desc, '%s Files Section' % ib_files_regexp)
+    write_section_header_to_file(output_file_desc, 'IB Files Section')
     for entry_key, entry_comment in string_pairs:
         output_file_desc.write('\n')
         if entry_key is not None:
@@ -33,24 +29,23 @@ def write_string_pairs_from_ib_file_to_file(ib_files_directory, ib_files_regexp,
     output_file_desc.close()
 
 
-def extract_string_pairs_in_dir(directory, files_regexp, special_ui_components_prefix):
-    """ Extract string pairs in the given directory's xib files.
+def extract_string_pairs_in_dir(directory, exclude_dirs, special_ui_components_prefix):
+    """ Extract string pairs in the given directory's xib/storyboard files.
 
     Args:
         directory (str): The path to the directory.
-        file_regexp (str): A string for the glob that file names should match.
+        exclude_dirs (str): A list of directories to exclude from extraction.
         special_ui_components_prefix (str):
             If not None, extraction will not warn about internationalized UI components with this class prefix.
 
     Returns:
-        list: The extracted string pairs for all xib files in the directory.
+        list: The extracted string pairs for all IB files in the directory.
 
     """
     result = []
-    for root, dirnames, filenames in os.walk(directory):
-        for filename in fnmatch.filter(filenames, files_regexp):
-            xib_path = os.path.join(root,filename)
-            result += extract_string_pairs_in_ib_file(xib_path, special_ui_components_prefix)
+    for ib_file_path in find_files(directory, [".xib", ".storyboard"], exclude_dirs):
+        result += extract_string_pairs_in_ib_file(ib_file_path, special_ui_components_prefix)
+
     return result
 
 
@@ -128,7 +123,7 @@ def add_string_pairs_from_attributed_ui_element(results, ui_element, comment_pre
     fragment_index = 1
     for fragment in attributed_element.getElementsByTagName('fragment'):
         # The fragment text is either as an attribute <fragment content="TEXT">
-        #or a child in the format <string key='content'>TEXT</string>
+        # or a child in the format <string key='content'>TEXT</string>
         try:
             label_entry_key = fragment.attributes['content'].value
         except KeyError:
@@ -283,7 +278,7 @@ def extract_string_pairs_in_ib_file(file_path, special_ui_components_prefix):
             for element in elements:
                 add_func(file_path, results, element, special_ui_components_prefix)
 
-        #Find strings of format JTL('Key Name', 'Key Comment') and add them to the results
+        # Find strings of format JTL('Key Name', 'Key Comment') and add them to the results
         jtl_brackets_find_results = re.findall(JTL_REGEX, open(file_path).read())
         unescaped_jtl_brackets_find_results = [(unescape(x), unescape(y)) for (x, y) in jtl_brackets_find_results]
         results += unescaped_jtl_brackets_find_results
@@ -297,12 +292,9 @@ def extract_string_pairs_in_ib_file(file_path, special_ui_components_prefix):
         return []
 
 
-def create_localized_strings_from_ib_files(ib_files_directory, output_file, special_ui_components_prefix=None):
-    ib_files_regexps = [STORYBOARD_FILE_REGEXP, XIB_FILE_REGEXP]
-
-    for ib_files_regexp in ib_files_regexps:
-        write_string_pairs_from_ib_file_to_file(ib_files_directory, ib_files_regexp, output_file,
-                                                special_ui_components_prefix)
+def create_localized_strings_from_ib_files(ib_files_directory, exclude_dirs, output_file,
+                                           special_ui_components_prefix=None):
+    write_string_pairs_from_ib_file_to_file(ib_files_directory, exclude_dirs, output_file, special_ui_components_prefix)
 
 
 def parse_args():
@@ -322,6 +314,9 @@ def parse_args():
                              "JT prefix (e.g. JTLabel). if you pass a value like XYZ here, it won't warn about "
                              "components like XYZButton, XYZLabel, etc.")
 
+    parser.add_argument("--exclude_dirs", nargs='+',
+                        help="Directories to exclude when looking for IB files to extract strings from")
+
     parser.add_argument("--log_path", default="", help="The log file path")
 
     return parser.parse_args()
@@ -332,6 +327,7 @@ if __name__ == '__main__':
     args = parse_args()
     setup_logging(args)
 
-    create_localized_strings_from_ib_files(args.ib_files_directory, args.output_file, args.special_ui_components_prefix)
+    create_localized_strings_from_ib_files(args.ib_files_directory, args.exclude_dirs, args.output_file,
+                                           args.special_ui_components_prefix)
 
 

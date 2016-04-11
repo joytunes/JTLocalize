@@ -57,20 +57,8 @@ class GenerateStringsFileOperation(LocalizationCommandLineOperation):
                          parsed_args.special_ui_components_prefix)
 
 
-def is_source_file(filename, exclude_dirs):
-    source_files_extentions = [".m", ".mm", ".swift"]
-    return (exclude_dirs is None or not any(filename.startswith(d) for d in exclude_dirs)) and \
-        any(filename.endswith(e) for e in source_files_extentions)
-
-
 def extract_source_files(base_dir, exclude_dirs):
-    result = []
-    for root, dirnames, filenames in os.walk(base_dir):
-        for filename in filenames:
-            source_file = os.path.join(root, filename)
-            if is_source_file(source_file, exclude_dirs):
-                result.append(source_file)
-    return result
+    return find_files(base_dir, [".m", ".mm", ".swift"], exclude_dirs)
 
 
 def generate_strings(project_base_dir, localization_bundle_path, tmp_directory, exclude_dirs, include_strings_file,
@@ -114,7 +102,8 @@ def generate_strings(project_base_dir, localization_bundle_path, tmp_directory, 
         logging.fatal("genstrings returned %d, aborting run!", genstrings_rc)
         sys.exit(genstrings_rc)
 
-    create_localized_strings_from_ib_files(project_base_dir, tmp_localization_file, special_ui_components_prefix)
+    create_localized_strings_from_ib_files(project_base_dir, exclude_dirs, tmp_localization_file,
+                                           special_ui_components_prefix)
 
     if include_strings_file:
         target = open_strings_file(tmp_localization_file, "a")
