@@ -244,7 +244,10 @@ def add_string_pairs_from_button_element(xib_file, results, button, special_ui_c
             try:
                 button_entry_key = state.attributes['title'].value
             except KeyError:
-                continue
+                try:
+                    button_entry_key = state.getElementsByTagName('string')[0].firstChild.nodeValue
+                except Exception:
+                    continue
 
             results.append((button_entry_key, state_entry_comment))
 
