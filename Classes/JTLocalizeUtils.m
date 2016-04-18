@@ -72,6 +72,10 @@ NSString *const kJTDefaultStringsTableName = @"Localizable";
 
 }
 
++ (void)setLocalizationBundleToPath:(NSString *)bundlePath stringsTableName:(NSString *)tableName {
+    [JTLocalize setLocalizationBundleToPath:bundlePath stringsTableName:tableName preferredLocale:nil];
+}
+
 + (BOOL)setLocalizationBundleToPath:(NSString *)bundlePath stringsTableName:(NSString *)tableName preferredLocale:(NSString *)preferredLocale {
     
     // This is used to flag whether some kind of "default fallback" occured along the way

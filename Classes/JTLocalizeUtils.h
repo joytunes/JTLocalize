@@ -39,6 +39,11 @@ extern NSString *const kJTDefaultStringsTableName;
 // will allow you to dynamically change all internationalized strings in your app.
 // (notice that NSBundles are cached, so call this only once you're finished downloading)
 // Giving nil in each parameters will cause the defaults to be restored.
++ (void)setLocalizationBundleToPath:(NSString *)bundlePath stringsTableName:(NSString *)tableName;
+
+// Optionally provide a preferredLocale argument to setLocalizationBundleToPath,
+// this would point to the specific <preferredLocale.lproj> sub-path in the bundle
+// and the strings file there would be used regardless of locale setting of the device
 + (BOOL)setLocalizationBundleToPath:(NSString *)bundlePath stringsTableName:(NSString *)tableName preferredLocale:(NSString *)preferredLocale;
 
 // Will search the string in the pre-set bundle path.
