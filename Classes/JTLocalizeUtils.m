@@ -29,6 +29,7 @@ NSString *const kJTDefaultStringsTableName = @"Localizable";
 @interface JTLocalize()
 
 @property (nonatomic, copy) NSString *stringsTableName;
+@property (nonatomic, copy) NSString *effectiveLocale;
 @property (nonatomic, strong) NSBundle *localizationBundle;
 
 @end
@@ -53,6 +54,7 @@ NSString *const kJTDefaultStringsTableName = @"Localizable";
     if (self) {
         self.stringsTableName = kJTDefaultStringsTableName;
         self.localizationBundle = [self.class defaultLocalizationBundle];
+        self.effectiveLocale = [[self.localizationBundle preferredLocalizations] firstObject] ?: @"en";
     }
 
     return self;
@@ -89,6 +91,7 @@ NSString *const kJTDefaultStringsTableName = @"Localizable";
         wasFullySuccessful = NO;
     }
     [self instance].localizationBundle = bundle;
+    [self instance].effectiveLocale = [[bundle preferredLocalizations] firstObject] ?: @"en";
     
     // If a preferred locale is explicitly provided, we point the localization bundle
     // directly to the sub-path of the give locale (overriding the OS-based lookup)
@@ -97,12 +100,17 @@ NSString *const kJTDefaultStringsTableName = @"Localizable";
         if (localePath != nil){
             [self instance].stringsTableName = nil;
             [self instance].localizationBundle = [NSBundle bundleWithPath:localePath];
+            [self instance].effectiveLocale = preferredLocale;
         } else {
             wasFullySuccessful = NO;
         }
     }
-    
+        
     return wasFullySuccessful;
+}
+
++ (NSString *)effectiveLocale {
+    return [self instance].effectiveLocale;
 }
 
 #pragma clang diagnostic push
