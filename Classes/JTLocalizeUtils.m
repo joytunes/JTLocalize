@@ -126,8 +126,7 @@ NSString *const kJTDefaultStringsTableName = @"Localizable";
     
     BOOL done = NO;
     while (!done) {
-        NSTextCheckingResult *match = [[[self class] localizationRegex]
-                                       firstMatchInString:string options:0 range:NSMakeRange(0, string.length)];
+        NSTextCheckingResult *match = [string matchForJTLDirective];
         
         if (match != nil) {
             NSRange localizedKeyRange = [match rangeAtIndex:1];
@@ -144,6 +143,12 @@ NSString *const kJTDefaultStringsTableName = @"Localizable";
 
 - (NSString *)localizedString {
     return [JTLocalize localizedStringForKey:self comment:@""];
+}
+
+- (NSTextCheckingResult *)matchForJTLDirective {
+    NSString *string = self;
+    return [[[self class] localizationRegex]
+                firstMatchInString:string options:0 range:NSMakeRange(0, string.length)];
 }
 
 + (NSRegularExpression *)localizationRegex {

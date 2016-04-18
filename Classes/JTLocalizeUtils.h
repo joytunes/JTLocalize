@@ -59,6 +59,11 @@ extern NSString *const kJTDefaultStringsTableName;
 
 - (NSString *)localizedString;
 
+// Check if the string matches the JTL Directive by looking for the localization regular expression.
+// In case there is a match, the method will return the match as NSTextCheckingResult object.
+// Otherwise, will return nil.
+- (NSTextCheckingResult *)matchForJTLDirective;
+
 @end
 
 @interface NSAttributedString(JTLocalizeExtensions)
