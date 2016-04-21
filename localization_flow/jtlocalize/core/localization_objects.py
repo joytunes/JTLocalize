@@ -50,5 +50,7 @@ class LocalizationEntry(object):
             comments (list of str): The comments to be added to the localization entry.
         """
         for comment in comments:
-            if comment not in self.comments:
+            if comment not in self.comments and len(comment) > 0:
                 self.comments.append(comment)
+            if len(self.comments[0]) == 0:
+                self.comments.pop(0)
