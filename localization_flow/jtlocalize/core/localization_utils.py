@@ -12,7 +12,7 @@ from localization_objects import *
 JTL_REGEX = r"""JTL\(['"](.+?)['"],\s*['"](.+?)['"]\)"""
 
 # Regexp to parse and inspect localization entries in the strings file.
-HEADER_COMMENT_KEY_VALUE_TUPLES_REGEX = '((/\*\*\* *[^\n]*? *\*\*\*/\n\n)*)(/\* *[^;]* *\*/\n)"(.*?)" *= *"(.*?)";\s*\n'
+HEADER_COMMENT_KEY_VALUE_TUPLES_REGEX = '((/\*\*\* *[^\n]*? *\*\*\*/\n*)*)(/\* *[^;]* *\*/\n*)"(.*?)" *= *"(.*?)";\s*\n'
 
 
 def rewrite_localization_file_with_entry_modifications(localizable_file, output_file, modification_func):
