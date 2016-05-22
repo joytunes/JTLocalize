@@ -118,11 +118,9 @@ You can run `jtlocalize --help` or `jtlocalize OPERATION --help` to gen informat
 
 ## Updating localization bundle and preffered locale in runtime
 
-As mentioned above, we wanted to enable easy relocation of the localization bundle out of the main app bundle, to support the use case of updating the bundle from a remote server (and as an awesome side effect - **allowing us to change English strings without releasing a new version!**).
+As mentioned above, we wanted to enable easy relocation of the localization bundle out of the main app bundle, to support the use case of updating the bundle from a remote server (and as an awesome side effect - **allowing us to change English strings without releasing a new version!**). Also, we wanted to allow users to change preferred language.
 
-Also, we wanted
-
-By default, app will search for localized versions `Localizable.strings` in the `JTLocalizable.bundle` (see appendix) that is in the app bundle. Also - by default app will choose the preffered locale according to user's preferences in settings.
+By default, app will search for localized versions `Localizable.strings` in the `JTLocalizable.bundle` (see appendix) that is in the app bundle. Also, by default app will choose the preffered locale according to user's preferences in the iOS Settings app.
 
 To change this behavior, you can change the path in the following manner:
 ```objective-c
