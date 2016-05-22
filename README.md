@@ -11,12 +11,13 @@ However, we had several pains that weren't answered out of the box easily:
 - **Multiple .strings files to maintain**: `genstrings` will extract NSLocalizedString strings from code, but for each IB document you internationalize - you need to have a separate .strings file, which causes painful maintenance of strings for localization. Also - this way if you already localized a common expression that appears in several files, you'll need to remember to update it for each file separately.
 - **Localizing a new version is very painful**: When you change a view in IB, its .strings file can immediately become invalid and it is very hard to make use of the existing localizations of previous versions. This is also true for the .strings that are extracted by `genstrings`.
 - **NSLocalizedString assumes strings are in main bundle**: If you want to use another localization bundle path (e.g. some path of a file you download from your server in runtime), you need to use other more complex macros.
+- **NSLocalizedString figures out which locale to use automatically**: Which is great, but often the user wants to change this preference for your app, without changing the whole device's language.
 
 **JTLocalize** was written to solve these pains:
 - **Unified .strings file**: Collection of multiple localizable strings from multiple types of resources throughout the project. No need for separate strings file per storyboard/xib - Only one file to maintain without duplicate strings.
 - **Continuous translation intergration simplified**: When the app changes, you don't need to localize everything again. `jtlocalize` command-line tools will make it easy to just send the diff for translation and merge the translated diff back.
 - **Configurable location of localization bundle**: This allows you to easily decide to use the main bundle as default, and move to another path once you downloaded it from server. As a side effect of this, you can easily use JTLocalize to change all the English versions of your strings from server.
-
+- **Configurable preferred locale**: This allows you to easily let the user choose a language without relying solely on the language taken from device's settings.
 
 ## How to internationalize (Preparing your project's strings for the unified .strings file)
 
@@ -115,21 +116,30 @@ To get an accurate word count of the words that actually needs to be translated,
 `jtlocalize` supports many flags and features for configuring your localization flow.
 You can run `jtlocalize --help` or `jtlocalize OPERATION --help` to gen information about all of them.
 
-## Updating localization bundle in runtime
+## Updating localization bundle and preffered locale in runtime
 
 As mentioned above, we wanted to enable easy relocation of the localization bundle out of the main app bundle, to support the use case of updating the bundle from a remote server (and as an awesome side effect - **allowing us to change English strings without releasing a new version!**).
 
-By default, app will search for localized versions `Localizable.strings` in the `JTLocalizable.bundle` (see appendix) that is in the app bundle.
+Also, we wanted
+
+By default, app will search for localized versions `Localizable.strings` in the `JTLocalizable.bundle` (see appendix) that is in the app bundle. Also - by default app will choose the preffered locale according to user's preferences in settings.
 
 To change this behavior, you can change the path in the following manner:
 ```objective-c
-[JTLocalize setLocalizationBundleToPath:NEW_PATH stringsTableName:NEW_TABLE_NAME];
+[JTLocalize setLocalizationBundleToPath:NEW_PATH stringsTableName:NEW_TABLE_NAME preferredLocale:NEW_LOCALE_IDENTIFIER];
 ```
-You can pass nil as `NEW_PATH` or `NEW_TABLE_NAME` to use the defaults (app bundle, and `"Localizable"`)
+You can pass `nil` as `NEW_PATH`, `NEW_TABLE_NAME` or `NEW_LOCALE_IDENTIFIER` to use the defaults (app bundle, `"Localizable"`, and the locale iOS decides on by default from what's available)
+
+`NEW_LOCALE_IDENTIFIER` should be in the form of the ISO 639-1 code (e.g. 'en', 'fr', 'zh-Hans', 'pt-PT', etc.) and will essentially redirect the app to take the strings table from the corresponding <LOCALE>.lproj subdir of the localization bundle.
+If you want to know anywhere in your app which locale is actively beeing used by JTLocalize, you can use
+```objective-c
+[JTLocalize effectiveLocale]
+```
 
 At JoyTunes, we use the bundle version of `JTLocalizable.bundle` by default. When app loads - we download an updated version from our servers to the Documents directory, and call `setLocalizationBundleToPath` with the path we downloaded it to.
+Also, by default we set prefferedLocale to `nil`, but once the user decides to change this from a settings screen, we call this method with the updated choice, and cache it using `NSUserDefaults` for next sessions.
 
-Notice that `NSBundle`s are automatically cached, so making this call without changing the path won't cause the bundle's content to refresh even if it was changed.
+Notice that `NSBundle`s are automatically cached, so making this call without changing the path won't cause the bundle's content to refresh even if it was changed (but will replace the preferredLocale).
 
 ## Appendices
 
