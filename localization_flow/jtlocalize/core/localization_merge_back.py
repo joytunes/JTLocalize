@@ -51,6 +51,8 @@ def localization_merge_back(updated_localizable_file, old_translated_file, new_t
             translation_value = new_translated_file_dict[value].value
         elif key in old_translated_file_dict:
             translation_value = old_translated_file_dict[key].value
+        elif key in new_translated_file_dict:
+            translation_value = new_translated_file_dict[key].value
 
         if translation_value is not None:
             output_file_elements.append(LocalizationEntry(comments, key, translation_value))
