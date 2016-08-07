@@ -25,7 +25,9 @@ def rewrite_localization_file_with_entry_modifications(localizable_file, output_
         if len(header_comment) > 0:
             output_file_elements.append(Comment(header_comment))
 
-        output_file_elements.append(modification_func(LocalizationEntry(comments, key, value)))
+        after_modification = modification_func(LocalizationEntry(comments, key, value))
+        if after_modification is not None:
+            output_file_elements.append(after_modification)
 
     write_file_elements_to_strings_file(output_file, output_file_elements)
 
