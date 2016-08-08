@@ -26,7 +26,13 @@ def rewrite_localization_file_with_entry_modifications(localizable_file, output_
             output_file_elements.append(Comment(header_comment))
 
         after_modification = modification_func(LocalizationEntry(comments, key, value))
-        if after_modification is not None:
+
+        if type(after_modification) == list:
+            for entry in after_modification:
+                if type(entry) == LocalizationEntry:
+                    output_file_elements.append(entry)
+
+        elif type(after_modification) == LocalizationEntry:
             output_file_elements.append(after_modification)
 
     write_file_elements_to_strings_file(output_file, output_file_elements)
