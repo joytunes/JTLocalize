@@ -9,7 +9,7 @@ import logging
 from localization_objects import *
 
 # Regexp to parse and inspect strings in format JTL('Key Name', 'Key Comment')
-JTL_REGEX = r"""JTL\(['"](.+?)['"],\s*['"](.+?)['"]\)"""
+JTL_REGEX = r"""JTL\(\\?['"](.+?)\\?['"],\s*\\?['"](.+?)\\?['"]\)"""
 
 # Regexp to parse and inspect localization entries in the strings file.
 HEADER_COMMENT_KEY_VALUE_TUPLES_REGEX = '((/\*\*\* *[^\n]*? *\*\*\*/\n*)*)(/\* *[^;]* *\*/\n*)"(.*?)" *= *"(.*?)";\s*\n'
