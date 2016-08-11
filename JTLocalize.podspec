@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'JTLocalize'
-  s.version      = '0.1.3'
+  s.version      = '0.1.4'
   s.license      = 'MIT'
   s.homepage     = 'https://github.com/joytunes/JTLocalize'
   s.authors      = { 'JoyTunes' => 'info@joytunes.com' }
