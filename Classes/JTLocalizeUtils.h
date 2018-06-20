@@ -44,8 +44,7 @@ extern NSString *const kJTDefaultStringsTableName;
 // Optionally provide a preferredLocale argument to setLocalizationBundleToPath,
 // this would point to the specific <preferredLocale.lproj> sub-path in the bundle
 // and the strings file there would be used regardless of locale setting of the device
-// Returns YES if sub-path for preferred locale was found, NO otherwise
-+ (BOOL)setLocalizationBundleToPath:(NSString *)bundlePath stringsTableName:(NSString *)tableName preferredLocale:(NSString *)preferredLocale;
++ (void)setLocalizationBundleToPath:(NSString *)bundlePath stringsTableName:(NSString *)tableName preferredLocale:(NSString *)preferredLocale;
 
 // Returns the effective locale identifier used from the bundle
 + (NSString *)effectiveLocale;

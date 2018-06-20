@@ -78,35 +78,29 @@ NSString *const kJTDefaultStringsTableName = @"Localizable";
     [JTLocalize setLocalizationBundleToPath:bundlePath stringsTableName:tableName preferredLocale:nil];
 }
 
-+ (BOOL)setLocalizationBundleToPath:(NSString *)bundlePath stringsTableName:(NSString *)tableName preferredLocale:(NSString *)preferredLocale {
-    
-    // This is used to flag whether some kind of "default fallback" occured along the way
-    BOOL wasFullySuccessful = YES;
++ (void)setLocalizationBundleToPath:(NSString *)bundlePath stringsTableName:(NSString *)tableName preferredLocale:(NSString *)preferredLocale {
     
     [self instance].stringsTableName = tableName ?: kJTDefaultStringsTableName;
 
     NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
     if (bundle == nil) {
         bundle = [self defaultLocalizationBundle];
-        wasFullySuccessful = NO;
     }
     [self instance].localizationBundle = bundle;
     [self instance].effectiveLocale = [[bundle preferredLocalizations] firstObject] ?: @"en";
     
+    if (preferredLocale == nil) {
+        return;
+    }
+    
     // If a preferred locale is explicitly provided, we point the localization bundle
     // directly to the sub-path of the give locale (overriding the OS-based lookup)
-    if (preferredLocale != nil) {
-        NSString *localePath = [bundle pathForResource:preferredLocale ofType:@"lproj"];
-        if (localePath != nil){
-            [self instance].stringsTableName = nil;
-            [self instance].localizationBundle = [NSBundle bundleWithPath:localePath];
-            [self instance].effectiveLocale = preferredLocale;
-        } else {
-            wasFullySuccessful = NO;
-        }
+    NSString *localePath = [bundle pathForResource:preferredLocale ofType:@"lproj"];
+    if (localePath != nil) {
+        [self instance].stringsTableName = nil;
+        [self instance].localizationBundle = [NSBundle bundleWithPath:localePath];
+        [self instance].effectiveLocale = preferredLocale;
     }
-        
-    return wasFullySuccessful;
 }
 
 + (NSString *)effectiveLocale {
