@@ -29,11 +29,11 @@ def handle_duplications(file_path):
     """
     logging.info('Handling duplications for "%s"', file_path)
     f = open_strings_file(file_path, "r+")
-    header_comment_key_value_tuples = extract_header_comment_key_value_tuples_from_file(f)
+    comment_key_value_tuples = extract_comment_key_value_tuples_from_file(f)
     file_elements = []
     keys_to_objects = {}
     duplicates_found = []
-    for header_comment, comments, key, value in header_comment_key_value_tuples:
+    for comments, key, value in comment_key_value_tuples:
         if key in keys_to_objects:
             keys_to_objects[key].add_comments(comments)
             duplicates_found.append(key)
@@ -42,7 +42,7 @@ def handle_duplications(file_path):
             keys_to_objects[key] = loc_obj
             file_elements.append(loc_obj)
 
-    # Adding last section
+    # Sort by key
     file_elements = sorted(file_elements, key=lambda x: x.key)
 
     f.seek(0)

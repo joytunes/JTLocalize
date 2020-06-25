@@ -18,13 +18,11 @@ def write_string_pairs_from_ib_file_to_file(ib_files_directory, exclude_dirs, ou
 
     string_pairs = extract_string_pairs_in_dir(ib_files_directory, exclude_dirs, special_ui_components_prefix)
     output_file_desc = open_strings_file(output_file, "a")
-    write_section_header_to_file(output_file_desc, 'IB Files Section')
+
     for entry_key, entry_comment in string_pairs:
         output_file_desc.write('\n')
         if entry_key is not None:
             write_entry_to_file(output_file_desc, entry_comment, entry_key)
-        else:
-            write_section_header_to_file(output_file_desc, entry_comment)
 
     output_file_desc.close()
 

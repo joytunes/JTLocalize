@@ -32,7 +32,7 @@ class MergeLocalizableTest(unittest.TestCase):
 
         f = open_strings_file(MERGED_FILE_PATH, "r")
 
-        for header_comment, comments, key, value in extract_header_comment_key_value_tuples_from_file(f):
+        for comments, key, value in extract_comment_key_value_tuples_from_file(f):
             if key in old_localizable_file_keys_to_objects:
                 self.assertEqual(value, old_localizable_file_keys_to_objects[key].value)
                 if key in new_localizable_file_keys_to_objects:
