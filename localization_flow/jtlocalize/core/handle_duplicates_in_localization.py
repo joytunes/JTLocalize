@@ -31,28 +31,19 @@ def handle_duplications(file_path):
     f = open_strings_file(file_path, "r+")
     header_comment_key_value_tuples = extract_header_comment_key_value_tuples_from_file(f)
     file_elements = []
-    section_file_elements = []
     keys_to_objects = {}
     duplicates_found = []
     for header_comment, comments, key, value in header_comment_key_value_tuples:
-        if len(header_comment) > 0:
-            # New section - Appending the last section entries, sorted by comment
-            for elem in sorted(section_file_elements, key=lambda x: x.comments[0]):
-                file_elements.append(elem)
-            section_file_elements = []
-            file_elements.append(Comment(header_comment))
-
         if key in keys_to_objects:
             keys_to_objects[key].add_comments(comments)
             duplicates_found.append(key)
         else:
             loc_obj = LocalizationEntry(comments, key, value)
             keys_to_objects[key] = loc_obj
-            section_file_elements.append(loc_obj)
+            file_elements.append(loc_obj)
 
     # Adding last section
-    for elem in sorted(section_file_elements, key=lambda x: x.comments[0]):
-        file_elements.append(elem)
+    file_elements = sorted(file_elements, key=lambda x: x.key)
 
     f.seek(0)
 

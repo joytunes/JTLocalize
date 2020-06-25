@@ -232,7 +232,7 @@ def append_dictionary_to_file(localization_key_to_comment, file_path, section_na
     """
     output_file = open_strings_file(file_path, "a")
     write_section_header_to_file(output_file, section_name)
-    for entry_key, entry_comment in sorted(localization_key_to_comment.iteritems(), key=operator.itemgetter(1)):
+    for entry_key, entry_comment in sorted(localization_key_to_comment.iteritems(), key=operator.itemgetter(0)):
         output_file.write(u'\n')
         write_entry_to_file(output_file, entry_comment, entry_key)
     output_file.close()
@@ -247,7 +247,7 @@ def write_dict_to_new_file(file_name, localization_key_to_comment):
 
     """
     output_file_descriptor = open_strings_file(file_name, "w")
-    for entry_key, entry_comment in sorted(localization_key_to_comment.iteritems(), key=operator.itemgetter(1)):
+    for entry_key, entry_comment in sorted(localization_key_to_comment.iteritems(), key=operator.itemgetter(0)):
         write_entry_to_file(output_file_descriptor, entry_comment, entry_key)
         output_file_descriptor.write(u'\n')
     output_file_descriptor.close()
