@@ -12,11 +12,10 @@ JT_INTERNATIONALIZED_COMMENT_PREFIX = 'jtl_'
 DEFAULT_UI_COMPONENTS_PREFIX = 'JT'
 
 
-def write_string_pairs_from_ib_file_to_file(ib_files_directory, exclude_dirs, output_file,
-                                            special_ui_components_prefix):
+def write_string_pairs_from_ib_file_to_file(ib_files_directory, exclude_dirs, output_file):
     logging.info('Creating localization string pairs from IB files')
 
-    string_pairs = extract_string_pairs_in_dir(ib_files_directory, exclude_dirs, special_ui_components_prefix)
+    string_pairs = extract_string_pairs_in_dir(ib_files_directory, exclude_dirs)
     output_file_desc = open_strings_file(output_file, "a")
 
     for entry_key, entry_comment in string_pairs:
@@ -27,14 +26,12 @@ def write_string_pairs_from_ib_file_to_file(ib_files_directory, exclude_dirs, ou
     output_file_desc.close()
 
 
-def extract_string_pairs_in_dir(directory, exclude_dirs, special_ui_components_prefix):
+def extract_string_pairs_in_dir(directory, exclude_dirs):
     """ Extract string pairs in the given directory's xib/storyboard files.
 
     Args:
         directory (str): The path to the directory.
         exclude_dirs (str): A list of directories to exclude from extraction.
-        special_ui_components_prefix (str):
-            If not None, extraction will not warn about internationalized UI components with this class prefix.
 
     Returns:
         list: The extracted string pairs for all IB files in the directory.
@@ -42,7 +39,7 @@ def extract_string_pairs_in_dir(directory, exclude_dirs, special_ui_components_p
     """
     result = []
     for ib_file_path in find_files(directory, [".xib", ".storyboard"], exclude_dirs):
-        result += extract_string_pairs_in_ib_file(ib_file_path, special_ui_components_prefix)
+        result += extract_string_pairs_in_ib_file(ib_file_path)
 
     return result
 
@@ -84,23 +81,6 @@ def extract_element_internationalized_comment(element):
         return element_entry_comment[len(JT_INTERNATIONALIZED_COMMENT_PREFIX):]
 
 
-def warn_if_element_not_of_class(element, class_suffix, special_ui_components_prefix):
-    """ Log a warning if the element is not of the given type (indicating that it is not internationalized).
-
-    Args:
-        element: The xib's XML element.
-        class_name: The type the element should be, but is missing.
-        special_ui_components_prefix: If provided, will not warn about class with this prefix (default is only 'JT')
-    """
-    valid_class_names = ["%s%s" % (DEFAULT_UI_COMPONENTS_PREFIX, class_suffix)]
-    if special_ui_components_prefix is not None:
-        valid_class_names.append("%s%s" % (special_ui_components_prefix, class_suffix))
-
-    if (not element.hasAttribute('customClass')) or element.attributes['customClass'].value not in valid_class_names:
-        logging.warn("WARNING: %s is internationalized but isn't one of %s",
-                     extract_element_internationalized_comment(element), valid_class_names)
-
-
 def add_string_pairs_from_attributed_ui_element(results, ui_element, comment_prefix):
     """ Adds string pairs from a UI element with attributed text
 
@@ -134,22 +114,17 @@ def add_string_pairs_from_attributed_ui_element(results, ui_element, comment_pre
     return fragment_index > 1
 
 
-def add_string_pairs_from_label_element(xib_file, results, label, special_ui_components_prefix):
+def add_string_pairs_from_label_element(xib_file, results, label):
     """ Adds string pairs from a label element.
 
     Args:
         xib_file (str): Path to the xib file.
         results (list): The list to add the results to.
         label (element): The label element from the xib, to extract the string pairs from.
-        special_ui_components_prefix (str):
-            If not None, extraction will not warn about internationalized UI components with this class prefix.
-
     """
     label_entry_comment = extract_element_internationalized_comment(label)
     if label_entry_comment is None:
         return
-
-    warn_if_element_not_of_class(label, 'Label', special_ui_components_prefix)
 
     if label.hasAttribute('usesAttributedText') and label.attributes['usesAttributedText'].value == 'YES':
         add_string_pairs_from_attributed_ui_element(results, label, label_entry_comment)
@@ -165,16 +140,13 @@ def add_string_pairs_from_label_element(xib_file, results, label, special_ui_com
         results.append((label_entry_key, label_entry_comment))
 
 
-def add_string_pairs_from_text_field_element(xib_file, results, text_field, special_ui_components_prefix):
+def add_string_pairs_from_text_field_element(xib_file, results, text_field):
     """ Adds string pairs from a textfield element.
 
     Args:
         xib_file (str): Path to the xib file.
         results (list): The list to add the results to.
         text_field(element): The textfield element from the xib, to extract the string pairs from.
-        special_ui_components_prefix (str):
-            If not None, extraction will not warn about internationalized UI components with this class prefix.
-
     """
     text_field_entry_comment = extract_element_internationalized_comment(text_field)
     if text_field_entry_comment is None:
@@ -193,18 +165,15 @@ def add_string_pairs_from_text_field_element(xib_file, results, text_field, spec
         results.append((text_field_entry_key, text_field_entry_comment + ' placeholder text value'))
     except KeyError:
         pass
-    warn_if_element_not_of_class(text_field, 'TextField', special_ui_components_prefix)
 
 
-def add_string_pairs_from_text_view_element(xib_file, results, text_view, special_ui_components_prefix):
+def add_string_pairs_from_text_view_element(xib_file, results, text_view):
     """ Adds string pairs from a textview element.
 
     Args:
         xib_file (str): Path to the xib file.
         results (list): The list to add the results to.
         text_view(element): The textview element from the xib, to extract the string pairs from.
-        special_ui_components_prefix(str): A custom prefix for internationalize component to allow (default is only JT)
-
     """
     text_view_entry_comment = extract_element_internationalized_comment(text_view)
     if text_view_entry_comment is None:
@@ -218,18 +187,15 @@ def add_string_pairs_from_text_view_element(xib_file, results, text_view, specia
             results.append((text_view_entry_key, text_view_entry_comment + ' default text value'))
         except KeyError:
             pass
-    warn_if_element_not_of_class(text_view, 'TextView', special_ui_components_prefix)
 
 
-def add_string_pairs_from_button_element(xib_file, results, button, special_ui_components_prefix):
+def add_string_pairs_from_button_element(xib_file, results, button):
     """ Adds strings pairs from a button xib element.
 
     Args:
         xib_file (str): Path to the xib file.
         results (list): The list to add the results to.
         button(element): The button element from the xib, to extract the string pairs from.
-        special_ui_components_prefix(str): A custom prefix for internationalize component to allow (default is only JT)
-
     """
     button_entry_comment = extract_element_internationalized_comment(button)
     if button_entry_comment is None:
@@ -249,16 +215,12 @@ def add_string_pairs_from_button_element(xib_file, results, button, special_ui_c
 
             results.append((button_entry_key, state_entry_comment))
 
-    warn_if_element_not_of_class(button, 'Button', special_ui_components_prefix)
 
-
-def extract_string_pairs_in_ib_file(file_path, special_ui_components_prefix):
+def extract_string_pairs_in_ib_file(file_path):
     """ Extract the strings pairs (key and comment) from a xib file.
 
     Args:
         file_path (str): The path to the xib file.
-        special_ui_components_prefix (str):
-            If not None, extraction will not warn about internationalized UI components with this class prefix.
 
     Returns:
         list: List of tuples representing the string pairs.
@@ -277,7 +239,7 @@ def extract_string_pairs_in_ib_file(file_path, special_ui_components_prefix):
             add_func = element_name_to_add_func[element_name]
             elements = xmldoc.getElementsByTagName(element_name)
             for element in elements:
-                add_func(file_path, results, element, special_ui_components_prefix)
+                add_func(file_path, results, element)
 
         # Find strings of format JTL('Key Name', 'Key Comment') and add them to the results
         jtl_brackets_find_results = re.findall(JTL_REGEX, open(file_path).read())
@@ -293,9 +255,8 @@ def extract_string_pairs_in_ib_file(file_path, special_ui_components_prefix):
         return []
 
 
-def create_localized_strings_from_ib_files(ib_files_directory, exclude_dirs, output_file,
-                                           special_ui_components_prefix=None):
-    write_string_pairs_from_ib_file_to_file(ib_files_directory, exclude_dirs, output_file, special_ui_components_prefix)
+def create_localized_strings_from_ib_files(ib_files_directory, exclude_dirs, output_file):
+    write_string_pairs_from_ib_file_to_file(ib_files_directory, exclude_dirs, output_file)
 
 
 def parse_args():
@@ -310,11 +271,6 @@ def parse_args():
 
     parser.add_argument("output_file", help="The output file.")
 
-    parser.add_argument("--special_ui_components_prefix", 
-                        help="By default script will warn about ui components using JTL comments that aren't using the "
-                             "JT prefix (e.g. JTLabel). if you pass a value like XYZ here, it won't warn about "
-                             "components like XYZButton, XYZLabel, etc.")
-
     parser.add_argument("--exclude_dirs", nargs='+',
                         help="Directories to exclude when looking for IB files to extract strings from")
 
@@ -328,7 +284,6 @@ if __name__ == '__main__':
     args = parse_args()
     setup_logging(args)
 
-    create_localized_strings_from_ib_files(args.ib_files_directory, args.exclude_dirs, args.output_file,
-                                           args.special_ui_components_prefix)
+    create_localized_strings_from_ib_files(args.ib_files_directory, args.exclude_dirs, args.output_file)
 
 
