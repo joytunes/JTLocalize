@@ -92,7 +92,7 @@ def generate_strings(project_base_dir, localization_bundle_path, tmp_directory, 
 
     genstrings_rc = genstrings_process.returncode
     if genstrings_rc != 0:
-        logging.fatal("genstrings returned %d, aborting run!", genstrings_rc)
+        logging.fatal("\n!!!!!!!!! genstrings returned %d, ABORTING RUN !!!!!!!!!\n", genstrings_rc)
         sys.exit(genstrings_rc)
 
     create_localized_strings_from_ib_files(project_base_dir, exclude_dirs, tmp_localization_file)

@@ -34,7 +34,7 @@ def add_genstrings_comments_to_file(localization_file, genstrings_err):
     errors_to_log = [line for line in genstrings_err.splitlines() if "used with multiple comments" not in line]
 
     if len(errors_to_log) > 0:
-        logging.warning("genstrings warnings:\n%s", "\n".join(errors_to_log))
+        logging.warning("------ genstrings errors: ------\n%s\n", "\n".join(errors_to_log))
 
     loc_file = open_strings_file(localization_file, "a")
 

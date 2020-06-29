@@ -69,7 +69,7 @@ def setup_logging(args=None):
     logging_level = logging.WARNING
     if args is not None and args.verbose:
         logging_level = logging.INFO
-    config = {"level": logging_level, "format": "jtlocalize:%(message)s"}
+    config = {"level": logging_level, "format": "jtlocalize: %(message)s"}
 
     if args is not None and args.log_path != "":
         config["filename"] = args.log_path
