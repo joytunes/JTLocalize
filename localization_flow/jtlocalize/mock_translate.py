@@ -36,7 +36,7 @@ class WrapReplacement(Replacement):
 def replace_english_values(filename, replacement):
     f = open_strings_file(filename, "r+")
     localization_entries = []
-    for header_comment, comments, key, value in extract_header_comment_key_value_tuples_from_file(f):
+    for comments, key, value in extract_comment_key_value_tuples_from_file(f):
         localization_entries.append(LocalizationEntry(comments, key, replacement.replace_value(key)))
     f.close()
 

@@ -33,7 +33,7 @@ class LocalizationDiffTest(unittest.TestCase):
 
         f = open_strings_file(NEW_TRANSLATED_FILE_PATH, "r")
 
-        for header_comment, comments, key, value in extract_header_comment_key_value_tuples_from_file(f):
+        for comments, key, value in extract_comment_key_value_tuples_from_file(f):
             localizable_key = localizable_values_to_objects[key]
             self.assertFalse(localizable_key in old_translated_file_keys_to_objects)
 
@@ -42,7 +42,7 @@ class LocalizationDiffTest(unittest.TestCase):
 
         f = open_strings_file(NEW_LOCALIZABLE_FILE_PATH, "r")
 
-        for header_comment, comments, key, value in extract_header_comment_key_value_tuples_from_file(f):
+        for comments, key, value in extract_comment_key_value_tuples_from_file(f):
             merged_value = merged_file_dict[key].value
             self.assertEqual(merged_value, "test(%s)" % value)
 

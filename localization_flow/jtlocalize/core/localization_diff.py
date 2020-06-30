@@ -63,7 +63,7 @@ def localization_diff(localizable_file, translated_file, excluded_strings_file, 
  */
 """ % (VALUE_PLACEHOLDER,)))
 
-    for _header_comment, comments, key, value in extract_header_comment_key_value_tuples_from_file(f):
+    for comments, key, value in extract_comment_key_value_tuples_from_file(f):
         if key in translated_list or key in excluded_file_dictionary:
             if key in old_translated_file_dictionary:
                 old_translated_file_dictionary.pop(key)

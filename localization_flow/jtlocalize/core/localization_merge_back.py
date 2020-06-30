@@ -42,10 +42,8 @@ def localization_merge_back(updated_localizable_file, old_translated_file, new_t
 
     f = open_strings_file(updated_localizable_file, "r")
 
-    for header_comment, comments, key, value in extract_header_comment_key_value_tuples_from_file(f):
+    for comments, key, value in extract_comment_key_value_tuples_from_file(f):
         translation_value = None
-        if len(header_comment) > 0:
-            output_file_elements.append(Comment(header_comment))
 
         if value in new_translated_file_dict:
             translation_value = new_translated_file_dict[value].value

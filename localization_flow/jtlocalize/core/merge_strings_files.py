@@ -34,10 +34,7 @@ def merge_strings_files(old_strings_file, new_strings_file):
 
     f = open_strings_file(new_strings_file, "r+")
 
-    for header_comment, comments, key, value in extract_header_comment_key_value_tuples_from_file(f):
-        if len(header_comment) > 0:
-            output_file_elements.append(Comment(header_comment))
-
+    for comments, key, value in extract_comment_key_value_tuples_from_file(f):
         localize_value = value
         if key in old_localizable_dict:
             localize_value = old_localizable_dict[key].value

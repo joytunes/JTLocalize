@@ -12,7 +12,7 @@ from localization_objects import *
 JTL_REGEX = r"""JTL\(\\?['"](.+?)\\?['"],\s*\\?['"](.+?)\\?['"]\)"""
 
 # Regexp to parse and inspect localization entries in the strings file.
-HEADER_COMMENT_KEY_VALUE_TUPLES_REGEX = '((/\*\*\* *[^\n]*? *\*\*\*/\n*)*)(/\* *[^;]* *\*/\n*)"(.*?)" *= *"(.*?)";\s*\n'
+COMMENT_KEY_VALUE_TUPLES_REGEX = '(/\* *[^;]* *\*/\n*)"(.*?)" *= *"(.*?)";\s*\n'
 
 
 def rewrite_localization_file_with_entry_modifications(localizable_file, output_file, modification_func):
@@ -20,10 +20,7 @@ def rewrite_localization_file_with_entry_modifications(localizable_file, output_
 
     output_file_elements = []
 
-    for header_comment, comments, key, value in extract_header_comment_key_value_tuples_from_file(file_descriptor):
-
-        if len(header_comment) > 0:
-            output_file_elements.append(Comment(header_comment))
+    for comments, key, value in extract_comment_key_value_tuples_from_file(file_descriptor):
 
         after_modification = modification_func(LocalizationEntry(comments, key, value))
 
@@ -72,7 +69,7 @@ def setup_logging(args=None):
     logging_level = logging.WARNING
     if args is not None and args.verbose:
         logging_level = logging.INFO
-    config = {"level": logging_level, "format": "jtlocalize:%(message)s"}
+    config = {"level": logging_level, "format": "jtlocalize: %(message)s"}
 
     if args is not None and args.log_path != "":
         config["filename"] = args.log_path
@@ -92,12 +89,12 @@ def __generate_localization_dictionary_from_file(file_path, localization_entry_a
     """
     localization_dictionary = {}
     f = open_strings_file(file_path, "r+")
-    header_comment_key_value_tuples = extract_header_comment_key_value_tuples_from_file(f)
+    comment_key_value_tuples = extract_comment_key_value_tuples_from_file(f)
 
-    if len(header_comment_key_value_tuples) == 0:
+    if len(comment_key_value_tuples) == 0:
         logging.warning("Couldn't find any strings in file '%s'. Check encoding and format." % file_path)
 
-    for header_comment, comments, key, value in header_comment_key_value_tuples:
+    for comments, key, value in comment_key_value_tuples:
         localization_entry = LocalizationEntry(comments, key, value)
         localization_dictionary[
             localization_entry.__getattribute__(localization_entry_attribute_name_for_key)] = localization_entry
@@ -129,7 +126,7 @@ def generate_localization_value_to_entry_dictionary_from_file(file_path):
     return __generate_localization_dictionary_from_file(file_path, "value")
 
 
-def extract_header_comment_key_value_tuples_from_file(file_descriptor):
+def extract_comment_key_value_tuples_from_file(file_descriptor):
     """ Extracts tuples representing comments and localization entries from strings file.
 
     Args:
@@ -140,14 +137,14 @@ def extract_header_comment_key_value_tuples_from_file(file_descriptor):
 
     """
     file_data = file_descriptor.read()
-    findall_result = re.findall(HEADER_COMMENT_KEY_VALUE_TUPLES_REGEX, file_data, re.MULTILINE | re.DOTALL)
+    findall_result = re.findall(COMMENT_KEY_VALUE_TUPLES_REGEX, file_data, re.MULTILINE | re.DOTALL)
 
     returned_list = []
-    for header_comment, _ignored, raw_comments, key, value in findall_result:
+    for raw_comments, key, value in findall_result:
         comments = re.findall("/\* (.*?) \*/", raw_comments)
         if len(comments) == 0:
             comments = [u""]
-        returned_list.append((header_comment, comments, key, value))
+        returned_list.append((comments, key, value))
 
     return returned_list
 
@@ -211,16 +208,6 @@ def write_entry_to_file(file_descriptor, entry_comment, entry_key):
     file_descriptor.write(u'"%s" = "%s";\n' % (escaped_key, escaped_key))
 
 
-def write_section_header_to_file(file_descriptor, section_name):
-    """ Writes a section header to the file
-
-    Args:
-        file_descriptor (file, instance): The file to writes the section header to.
-        section_name (str): The name of the section.
-    """
-    file_descriptor.write('/*** %s ***/\n' % section_name)
-
-
 def append_dictionary_to_file(localization_key_to_comment, file_path, section_name):
     """ Appends dictionary of localization keys and comments to a file
 
@@ -231,8 +218,7 @@ def append_dictionary_to_file(localization_key_to_comment, file_path, section_na
 
     """
     output_file = open_strings_file(file_path, "a")
-    write_section_header_to_file(output_file, section_name)
-    for entry_key, entry_comment in sorted(localization_key_to_comment.iteritems(), key=operator.itemgetter(1)):
+    for entry_key, entry_comment in sorted(localization_key_to_comment.iteritems(), key=operator.itemgetter(0)):
         output_file.write(u'\n')
         write_entry_to_file(output_file, entry_comment, entry_key)
     output_file.close()
@@ -247,7 +233,7 @@ def write_dict_to_new_file(file_name, localization_key_to_comment):
 
     """
     output_file_descriptor = open_strings_file(file_name, "w")
-    for entry_key, entry_comment in sorted(localization_key_to_comment.iteritems(), key=operator.itemgetter(1)):
+    for entry_key, entry_comment in sorted(localization_key_to_comment.iteritems(), key=operator.itemgetter(0)):
         write_entry_to_file(output_file_descriptor, entry_comment, entry_key)
         output_file_descriptor.write(u'\n')
     output_file_descriptor.close()
