@@ -80,10 +80,10 @@ def localization_diff(localizable_file, translated_file, excluded_strings_file, 
         output_file_elements.append(Comment(u"""
 /*
  * Entry removed from previous translation file:
- * %s
+ * /* %s */
  * "%s" = "%s";
  */
-""" % (", ".join(removed_trans.comments), removed_trans.key, removed_trans.value)))
+""" % (", ".join(removed_trans.comments), removed_trans.key, removed_trans.key)))
 
     write_file_elements_to_strings_file(output_translation_file, output_file_elements)
 

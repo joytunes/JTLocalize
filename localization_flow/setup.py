@@ -4,7 +4,7 @@ import setuptools
 from distutils.core import setup
 
 setup(name='jtlocalize',
-      version='1.0.0',
+      version='1.1.0',
       description='iOS localization framework',
       author='JoyTunes',
       author_email='info@joytunes.com',
