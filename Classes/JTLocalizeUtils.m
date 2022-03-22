@@ -97,7 +97,6 @@ NSString *const kJTDefaultStringsTableName = @"Localizable";
     // directly to the sub-path of the give locale (overriding the OS-based lookup)
     NSString *localePath = [bundle pathForResource:preferredLocale ofType:@"lproj"];
     if (localePath != nil) {
-        [self instance].stringsTableName = nil;
         [self instance].localizationBundle = [NSBundle bundleWithPath:localePath];
         [self instance].effectiveLocale = preferredLocale;
     }
