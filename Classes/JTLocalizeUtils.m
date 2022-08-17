@@ -114,6 +114,13 @@ NSString *const kJTDefaultStringsTableName = @"Localizable";
                                                              [self instance].localizationBundle,
                                                              comment);
 
+    if (localized == nil && [self instance].stringsTableName != kJTDefaultStringsTableName) {
+        localized = NSLocalizedStringFromTableInBundle(key,
+                                                       kJTDefaultStringsTableName,
+                                                       [self instance].localizationBundle,
+                                                       comment);
+    }
+
     return localized ?: key;
 }
 #pragma clang diagnostic pop
