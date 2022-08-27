@@ -114,7 +114,7 @@ NSString *const kJTDefaultStringsTableName = @"Localizable";
                                                              [self instance].localizationBundle,
                                                              comment);
 
-    if (localized == nil && [self instance].stringsTableName != kJTDefaultStringsTableName) {
+    if (localized == key && [self instance].stringsTableName != kJTDefaultStringsTableName) {
         localized = NSLocalizedStringFromTableInBundle(key,
                                                        kJTDefaultStringsTableName,
                                                        [self instance].localizationBundle,
