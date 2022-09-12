@@ -95,9 +95,12 @@ NSString *const kJTDefaultStringsTableName = @"Localizable";
     
     // If a preferred locale is explicitly provided, we point the localization bundle
     // directly to the sub-path of the give locale (overriding the OS-based lookup)
-    NSString *localePath = [bundle pathForResource:preferredLocale ofType:@"lproj"];
-    if (localePath != nil) {
-        [self instance].localizationBundle = [NSBundle bundleWithPath:localePath];
+
+    NSString *localePath = [NSString stringWithFormat:@"%@/%@.%@", [bundle resourcePath], preferredLocale, @"lproj"];
+    NSBundle *preferredLocaleBundle = [NSBundle bundleWithPath:localePath];
+
+    if (preferredLocaleBundle != nil) {
+        [self instance].localizationBundle = preferredLocaleBundle;
         [self instance].effectiveLocale = preferredLocale;
     }
 }
