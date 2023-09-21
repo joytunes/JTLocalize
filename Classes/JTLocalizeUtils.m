@@ -21,6 +21,7 @@
 // THE SOFTWARE.
 
 #import "JTLocalizeUtils.h"
+#import "JTGameConfig.h"
 
 NSString *const kJTDefaultLocalizationBundleName = @"JTLocalizable.bundle";
 NSString *const kJTDefaultStringsTableName = @"Localizable";
@@ -55,6 +56,11 @@ NSString *const kJTDefaultStringsTableName = @"Localizable";
         self.stringsTableName = kJTDefaultStringsTableName;
         self.localizationBundle = [self.class defaultLocalizationBundle];
         self.effectiveLocale = [[self.localizationBundle preferredLocalizations] firstObject] ?: @"en";
+        if (![[[JTGameConfig sharedInstance] settingForKey:@"dutchEnabled" defaultValue:@(false)] boolValue]) {
+            if ([self.effectiveLocale isEqualToString:@"nl"]) {
+                self.effectiveLocale = @"en";
+            }
+        }
     }
 
     return self;
@@ -88,7 +94,12 @@ NSString *const kJTDefaultStringsTableName = @"Localizable";
     }
     [self instance].localizationBundle = bundle;
     [self instance].effectiveLocale = [[bundle preferredLocalizations] firstObject] ?: @"en";
-    
+    if (![[[JTGameConfig sharedInstance] settingForKey:@"dutchEnabled" defaultValue:@(false)] boolValue]) {
+        if ([[self instance].effectiveLocale isEqualToString:@"nl"]) {
+            [self instance].effectiveLocale = @"en";
+        }
+    }
+
     if (preferredLocale == nil) {
         return;
     }
@@ -106,7 +117,16 @@ NSString *const kJTDefaultStringsTableName = @"Localizable";
 }
 
 + (NSString *)effectiveLocale {
-    return [self instance].effectiveLocale;
+    NSString *effectiveLocale = [self instance].effectiveLocale;
+    if ([[[JTGameConfig sharedInstance] settingForKey:@"dutchEnabled" defaultValue:@(false)] boolValue]) {
+        return [self instance].effectiveLocale;
+    } else {
+        if ([effectiveLocale isEqualToString:@"nl"]) {
+            return @"en";
+        } else {
+            return effectiveLocale;
+        }
+    }
 }
 
 #pragma clang diagnostic push
