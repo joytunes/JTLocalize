@@ -49,6 +49,9 @@ extern NSString *const kJTDefaultStringsTableName;
 // Returns the effective locale identifier used from the bundle
 + (NSString *)effectiveLocale;
 
+// Returns true if the effective locale is right to left. Otherwise, returns false.
++ (BOOL)isRightToLeft;
+
 // Will search the string in the pre-set bundle path.
 // If not set otherwise: will search kJTDefaultLocalizationBundleName in the app bundle,
 // and will use kJTDefaultStringsTableName

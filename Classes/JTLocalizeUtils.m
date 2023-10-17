@@ -30,6 +30,7 @@ NSString *const kJTDefaultStringsTableName = @"Localizable";
 
 @property (nonatomic, copy) NSString *stringsTableName;
 @property (nonatomic, copy) NSString *effectiveLocale;
+@property (nonatomic) BOOL isRightToLeft;
 @property (nonatomic, strong) NSBundle *localizationBundle;
 
 @end
@@ -103,6 +104,10 @@ NSString *const kJTDefaultStringsTableName = @"Localizable";
         [self instance].localizationBundle = preferredLocaleBundle;
         [self instance].effectiveLocale = preferredLocale;
     }
+}
+
++ (BOOL)isRightToLeft {
+    return [JTLocalize.effectiveLocale isEqualToString:@"he"] || [JTLocalize.effectiveLocale isEqualToString:@"ar"];
 }
 
 + (NSString *)effectiveLocale {
